@@ -6,7 +6,7 @@ Generates TypeScript (and possibly other) language-bindings from Asheron's Call 
 
 Languages:
 
-- [x] Typescript
+- [x] Typescript. See [./generated/protocol.ts](./generated/protocol.ts)
 
 Protocol Elements:
 
