@@ -1058,15 +1058,7 @@ enum AttackType {
     OffhandDoubleSlash = 2048,
     OffhandTripleSlash = 4096,
     OffhandDoubleThrust = 8192,
-    OffhandTripleThrust = 16384,
-    Unarmed = NaN,
-    DoubleStrike = NaN,
-    TripleStrike = NaN,
-    Offhand = NaN,
-    Thrusts = NaN,
-    Slashes = NaN,
-    Punches = NaN,
-    MultiStrike = NaN
+    OffhandTripleThrust = 16384
 }
 /*The objects type information*/
 enum ItemType {
@@ -2789,8 +2781,7 @@ enum FactionBits {
     None = 0,
     CelestialHand = 1,
     EldrytchWeb = 2,
-    RadiantBlood = 4,
-    ValidFactions = NaN
+    RadiantBlood = 4
 }
 /*Creature type*/
 enum CreatureType {
@@ -2918,8 +2909,6 @@ enum CombatStyle {
     StubbornProjectile = 131072,
     StubbornMelee = 262144,
     StubbornMissile = 524288,
-    Melee = NaN,
-    Missile = NaN,
     All = 65535
 }
 /*Indicates what data is present in the ACQualities data*/
@@ -3018,8 +3007,7 @@ enum AetheriaBitfield {
     None = 0,
     Blue = 1,
     Yellow = 2,
-    Red = 4,
-    All = NaN
+    Red = 4
 }
 enum HookGroupType {
     Undef = 0,

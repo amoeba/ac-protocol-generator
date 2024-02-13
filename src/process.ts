@@ -4,9 +4,6 @@ import ts from "typescript";
 import type { ParseResult, EnumData, EnumValue } from "./types";
 
 const createEnumMember = (member: EnumValue) => {
-// TODO: Handle Unions, e.g.,
-// <value name="Unarmed" value="Punch | Kick | OffhandPunch" />
-
   const node = ts.factory.createEnumMember(
     member.name,
     ts.factory.createNumericLiteral(Number(member.value)),
@@ -103,6 +100,11 @@ const parse = (xml: string): ParseResult => {
       result.enums.push(new_enum);
     } else if (node.name === NODE_NAME.VALUE) {
       state = STATES.VALUE;
+
+      // Ignore union enums ACE made up
+      if (node.attributes.value.includes("|")) {
+        return;
+      }
 
       result_cursor.members.push({
         name: node.attributes.name,
