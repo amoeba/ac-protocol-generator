@@ -5,10 +5,12 @@ export interface ParseResult {
 
 export interface EnumValue {
   name: string,
-  value: string
+  value: string,
+  comment?: string
 }
 
 export interface EnumData {
   name: string,
+  comment?: string,
   members: EnumValue[]
 }

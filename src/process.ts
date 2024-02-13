@@ -5,19 +5,29 @@ import ts from "typescript";
 import type { ParseResult, EnumData, EnumValue } from "./types"
 
 const createEnumMember = function (member: EnumValue) {
-  return ts.factory.createEnumMember(
+  const node = ts.factory.createEnumMember(
     member.name,
     ts.factory.createNumericLiteral(Number(member.value)));
+
+  if (member.comment) {
+    ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, member.comment, true);
+  }
+
+  return node;
 }
 
 const createEnum = function (enum_data: EnumData) {
   const id = ts.factory.createIdentifier(enum_data.name);
-  const enum_decl = ts.factory.createEnumDeclaration(
+  const node = ts.factory.createEnumDeclaration(
   /*modifiers*/ undefined,
   /*name*/ id,
   /*members*/ enum_data.members.map((x: any) => createEnumMember(x)))
 
-  return enum_decl;
+  if (enum_data.comment) {
+    ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, enum_data.comment, true);
+  }
+
+  return node;
 }
 
 function print(nodes: ts.EnumDeclaration[]) {
@@ -73,6 +83,7 @@ const parse = function (xml: string): ParseResult {
 
       const new_enum = {
         name: node.attributes.name,
+        comment: node.attributes.text,
         "members": []
       }
 
@@ -84,6 +95,7 @@ const parse = function (xml: string): ParseResult {
       result_cursor.members.push({
         name: node.attributes.name,
         value: node.attributes.value,
+        comment: node.attributes.text
       });
     }
   })

@@ -28,6 +28,7 @@ enum FragmentGroup {
     Private = 9,
     Object = 10
 }
+/*The type of server to switch*/
 enum ServerSwitchType {
     World = 0,
     Logon = 1
@@ -46,17 +47,24 @@ enum NetAuthType {
 }
 enum GameMessageGroup {
     Event = 1,
+    /*C2S, small number of admin messages and a few others*/
     Control = 2,
+    /*C2S, most all game actions, all ordered*/
     Weenie = 3,
+    /*Bidirectional, login messages, turbine chat*/
     Logon = 4,
+    /*Bidirectional, DAT patching*/
     Database = 5,
     SecureControl = 6,
     SecureWeenie = 7,
     SecureLogin = 8,
+    /*S2C, game events (ordered) and other character related messages*/
     UIQueue = 9,
+    /*S2C, messages mostly related to object creation/deletion and their motion, effects*/
     SmartBox = 10,
     Observer = 8
 }
+/*Client to Server message opcodes*/
 enum C2SMessage {
     Login_LogOffCharacter = 63059,
     Character_CharacterDelete = 63061,
@@ -74,6 +82,7 @@ enum C2SMessage {
     DDD_EndDDDMessage = 63467,
     Ordered_GameAction = 63409
 }
+/*Server to Client message opcodes*/
 enum S2CMessage {
     Item_ServerSaysRemove = 36,
     Character_ServerSaysAttemptFailed = 160,
@@ -168,6 +177,7 @@ enum S2CMessage {
     DDD_OnEndDDD = 63466,
     Ordered_GameEvent = 63408
 }
+/*Ordered (0xF7B0) Server to Client opcodes*/
 enum GameEvent {
     Allegiance_AllegianceUpdateAborted = 3,
     Communication_PopUpString = 4,
@@ -270,6 +280,7 @@ enum GameEvent {
     Social_SendClientContractTrackerTable = 788,
     Social_SendClientContractTracker = 789
 }
+/*Ordered (0xF7B1) Client to server opcodes*/
 enum GameAction {
     Character_PlayerOptionChangedEvent = 5,
     Combat_TargetedMeleeAttack = 8,
@@ -502,6 +513,7 @@ enum WeenieType {
     PetDevice = 70,
     CombatPet = 71
 }
+/*Flags that dictate what property tables are included with the ACBaseQuali*/
 enum ACBaseQualitiesFlags {
     None = 0,
     PropertyInt = 1,
@@ -513,6 +525,7 @@ enum ACBaseQualitiesFlags {
     PropertyInstanceId = 64,
     PropertyInt64 = 128
 }
+/*Set of predefined error messages that accept interpolated string argument*/
 enum WeenieErrorWithString {
     IsTooBusyToAcceptGifts = 30,
     CannotCarryAnymore = 43,
@@ -628,6 +641,7 @@ enum WeenieErrorWithString {
     YouRestoreAllegianceChatPrivilegesTo_ = 1411,
     CowersFromYou = 1418
 }
+/*Set of predefined error messages*/
 enum WeenieError {
     None = 0,
     NoMem = 1,
@@ -999,20 +1013,30 @@ enum WeenieError {
     OlthoiCanOnlyRecallToLifestone = 1427,
     ContractError = 1428
 }
+/*The PositionFlags value defines the fields present in the Position structure.*/
 enum PositionFlags {
+    /*velocity vector is present*/
     HasVelocity = 1,
+    /*placement id is present*/
     HasPlacementId = 2,
+    /*object is grounded*/
     IsGrounded = 4,
+    /*orientation quaternion has no w component*/
     OrientationHasNoW = 8,
+    /*orientation quaternion has no x component*/
     OrientationHasNoX = 16,
+    /*orientation quaternion has no y component*/
     OrientationHasNoY = 32,
+    /*orientation quaternion has no z component*/
     OrientationHasNoZ = 64
 }
+/*Height of the attack.  TODO these need to be verified.*/
 enum AttackHeight {
     High = 1,
     Medium = 2,
     Low = 3
 }
+/*Container properties of an item*/
 enum ContainerProperties {
     None = 0,
     Container = 1,
@@ -1044,6 +1068,7 @@ enum AttackType {
     Punches = NaN,
     MultiStrike = NaN
 }
+/*The objects type information*/
 enum ItemType {
     MeleeWeapon = 1,
     Armor = 2,
@@ -1077,6 +1102,7 @@ enum ItemType {
     TinkeringMaterial = 1073741824,
     Gameboard = 2147483648
 }
+/*The Skill identifies a specific Character skill.*/
 enum SkillId {
     Axe = 1,
     Bow = 2,
@@ -1132,6 +1158,7 @@ enum SkillId {
     Challenge = 53,
     Summoning = 54
 }
+/*The SkillAdvancementClass identifies whether a skill is untrained, trained or specialized.*/
 enum SkillAdvancementClass {
     Untrained = 1,
     Trained = 2,
@@ -1146,6 +1173,7 @@ enum PropertyAttribute2nd {
     MaxMana = 5,
     Mana = 6
 }
+/*The EmoteType identifies the type of emote action*/
 enum EmoteType {
     Invalid_EmoteType = 0,
     Invalid_VendorEmoteType = 0,
@@ -1271,6 +1299,7 @@ enum EmoteType {
     RemoveContract_EmoteType = 120,
     InqContractsFull_EmoteType = 121
 }
+/*The EmoteCategory identifies the category of an emote.*/
 enum EmoteCategory {
     Invalid_EmoteCategory = 0,
     Refuse_EmoteCategory = 1,
@@ -1312,6 +1341,7 @@ enum EmoteCategory {
     ReceiveLocalSignal_EmoteCategory = 37,
     ReceiveTalkDirect_EmoteCategory = 38
 }
+/*The CharacterOptions1 word contains character options.*/
 enum CharacterOptions1 {
     AutoRepeatAttack = 2,
     IgnoreAllegianceRequests = 4,
@@ -1345,6 +1375,7 @@ enum CharacterOptions1 {
     HearAllegianceChat = 1073741824,
     UseCraftSuccessDialog = 2147483648
 }
+/*The CharacterOptions2 word contains additional character options.*/
 enum CharacterOptions2 {
     PersistentAtDay = 1,
     DisplayDateOfBirth = 2,
@@ -1373,6 +1404,7 @@ enum CharacterOptions2 {
     LockUI = 16777216,
     HearPKDeath = 33554432
 }
+/*The various options for filtering the spellbook*/
 enum SpellBookFilterOptions {
     None = 0,
     Creature = 1,
@@ -1390,6 +1422,7 @@ enum SpellBookFilterOptions {
     Level9 = 4096,
     Void = 8192
 }
+/*The EquipMask value describes the equipment slots an item uses.*/
 enum EquipMask {
     Head = 1,
     ChestUnderwear = 2,
@@ -1417,17 +1450,20 @@ enum EquipMask {
     Ammunition = 8388608,
     Wand = 16777216
 }
+/*The type of the friend change event.*/
 enum FriendsUpdateType {
     Full = 0,
     Added = 1,
     Removed = 2,
     LoginChange = 4
 }
+/*The permission levels that can be given to an allegiance officer*/
 enum AllegianceOfficerLevel {
     Speaker = 1,
     Seneschal = 2,
     Castellan = 3
 }
+/*Actions related to /allegiance lock*/
 enum AllegianceLockAction {
     LockedOff = 1,
     LockedOn = 2,
@@ -1436,6 +1472,7 @@ enum AllegianceLockAction {
     DisplayBypass = 5,
     ClearBypass = 6
 }
+/*Actions related to /allegiance house*/
 enum AllegianceHouseAction {
     Help = 1,
     GuestOpen = 2,
@@ -1443,6 +1480,7 @@ enum AllegianceHouseAction {
     StorageOpen = 4,
     StorageClosed = 5
 }
+/*The AttributeId identifies a specific Character attribute.*/
 enum AttributeId {
     Strength = 1,
     Endurance = 2,
@@ -1451,16 +1489,19 @@ enum AttributeId {
     Focus = 5,
     Self = 6
 }
+/*The VitalId identifies a specific Character vital (secondary attribute).*/
 enum VitalId {
     MaximumHealth = 1,
     MaximumStamina = 3,
     MaximumMana = 5
 }
+/*The CurVitalId identifies a specific Character vital (secondary attribute).*/
 enum CurVitalId {
     CurrentHealth = 2,
     CurrentStamina = 4,
     CurrentMana = 6
 }
+/*The combat mode for a character or monster.*/
 enum CombatMode {
     NonCombat = 1,
     Melee = 2,
@@ -1674,6 +1715,7 @@ enum Sound {
     RegenDownVoid = 203,
     SkillDownVoid = 204
 }
+/*The ChatFragmentType categorizes chat window messages to control color and filtering.*/
 enum ChatFragmentType {
     Default = 0,
     Speech = 2,
@@ -1702,62 +1744,112 @@ enum ChatFragmentType {
     Salvaging = 25,
     AdminTell = 31
 }
+/*Flags related to the use of the item.*/
 enum ObjectDescriptionFlag {
+    /*can be opened (false if locked)*/
     Openable = 1,
+    /*inscribable*/
     Inscribable = 2,
+    /*cannot be picked up*/
     Stuck = 4,
+    /*player*/
     Player = 8,
+    /*attackable*/
     Attackable = 16,
+    /*player killer*/
     PlayerKiller = 32,
+    /*hidden admin*/
     HiddenAdmin = 64,
+    /*hidden*/
     UiHidden = 128,
+    /*book*/
     Book = 256,
+    /*merchant*/
     Vendor = 512,
+    /*pk altar*/
     PkSwitch = 1024,
+    /*npk altar*/
     NpkSwitch = 2048,
+    /*door*/
     Door = 4096,
+    /*corpse*/
     Corpse = 8192,
+    /*lifestone*/
     LifeStone = 16384,
+    /*food*/
     Food = 32768,
+    /*healing kit*/
     Healer = 65536,
+    /*lockpick*/
     Lockpick = 131072,
+    /*portal*/
     Portal = 262144,
+    /*admin*/
     Admin = 1048576,
+    /*free pk status*/
     FreePkStatus = 2097152,
+    /*immute cell restrictions*/
     ImmuneCellRestrictions = 4194304,
+    /*requires pack slot*/
     RequiresPackSlot = 8388608,
+    /*retained*/
     Retained = 16777216,
+    /*pklite status*/
     PkLiteStatus = 33554432,
+    /*has an extra flags DWORD*/
     IncludesSecondHeader = 67108864,
+    /*bindstone*/
     BindStone = 134217728,
+    /*volatile rare*/
     VolatileRare = 268435456,
+    /*wield on use*/
     WieldOnUse = 536870912,
+    /*wield left*/
     WieldLeft = 1073741824
 }
+/*The AmmoType value describes the type of ammunition a missile weapon uses.*/
 enum AmmoType {
     ThrownWeapon = 0,
     Arrow = 1,
     Bolt = 2,
     Dart = 4
 }
+/*The useablilty flags of the object*/
 enum Usable {
+    /*source not usable*/
     SourceUnusable = 1,
+    /*source self*/
     SourceSelf = 2,
+    /*source usable while wielded*/
     SourceWielded = 4,
+    /*source usable while contained (owned by player)*/
     SourceContained = 8,
+    /*source usable while viewed*/
     SourceViewed = 16,
+    /*source usable while remote*/
     SourceRemote = 32,
+    /*source don't approach*/
     SourceNoApproach = 64,
+    /*source object self*/
     SourceObjectSelf = 128,
+    /*target not usable*/
     TargetUnusable = 65536,
+    /*target self*/
     TargetSelf = 131072,
+    /*target usable while wielded*/
     TargetWielded = 262144,
+    /*target usable while contained (owned by player)*/
     TargetContained = 524288,
+    /*target usable while viewed*/
     TargetViewed = 1048576,
+    /*target usable while remote*/
     TargetRemote = 2097152,
+    /*target don't approach*/
     TargetNoApproach = 4194304,
+    /*target object self*/
     TargetObjectSelf = 8388608
 }
+/*The CoverageMask value describes what parts of the body an item protects.*/
 enum CoverageMask {
     UpperLegsUnderwear = 2,
     LowerLegsUnderwear = 4,
@@ -1775,6 +1867,7 @@ enum CoverageMask {
     Hands = 32768,
     Feet = 65536
 }
+/*The HookType identifies the types of dwelling hooks.*/
 enum HookType {
     Floor = 1,
     Wall = 2,
@@ -1782,6 +1875,7 @@ enum HookType {
     Yard = 8,
     Roof = 16
 }
+/*The MaterialType identifies the material an object is made of.*/
 enum MaterialType {
     Ceramic = 1,
     Porcelain = 2,
@@ -1856,45 +1950,83 @@ enum MaterialType {
     Pine = 76,
     Teak = 77
 }
+/*The ConfirmationType identifies the specific confirmation panel to be displayed.*/
 enum ConfirmationType {
+    /*Swear Allegiance Request*/
     SwearAllegiance = 1,
+    /*Alter Skill Confirmation Request*/
     AlterSkill = 2,
+    /*Alter Attribute Confirmation Request*/
     AlterAttribute = 3,
+    /*Fellowship Request*/
     Fellowship = 4,
+    /*Craft Interaction Confirmation Request*/
     Craft = 5,
+    /*Augmentation Confirmation Request*/
     Augmentation = 6,
+    /*Yes/No Confirmation Request*/
     YesNo = 7
 }
+/*The EnvrionChangeType identifies the environment option set.*/
 enum EnvrionChangeType {
+    /*Removes all overrides*/
     Clear = 0,
+    /*Sets Red Fog*/
     RedFog = 1,
+    /*Sets Blue Fog*/
     BlueFog = 2,
+    /*Sets White Fog*/
     WhiteFog = 3,
+    /*Sets Green Fog*/
     GreenFog = 4,
+    /*Sets Black Fog*/
     BlackFog = 5,
+    /*Sets Black Fog*/
     BlackFog2 = 6,
+    /*Play Roar Sound*/
     RoarSound = 101,
+    /*Play Bell Sound*/
     BellSound = 102,
+    /*Play Chant1 Sound*/
     Chant1Sound = 103,
+    /*Play Chant2 Sound*/
     Chant2Sound = 104,
+    /*Play DarkWhispers1 Sound*/
     DarkWhispers1Sound = 105,
+    /*Play DarkWhispers2 Sound*/
     DarkWhispers2Sound = 106,
+    /*Play DarkLaugh Sound*/
     DarkLaughSound = 107,
+    /*Play DarkWind Sound*/
     DarkWindSound = 108,
+    /*Play DarkSpeech Sound*/
     DarkSpeechSound = 109,
+    /*Play Drums Sound*/
     DrumsSound = 110,
+    /*Play GhostSpeak Sound*/
     GhostSpeakSound = 111,
+    /*Play Breathing Sound*/
     BreathingSound = 112,
+    /*Play Howl Sound*/
     HowlSound = 113,
+    /*Play LostSouls Sound*/
     LostSoulsSound = 114,
+    /*Play Squeal Sound*/
     SquealSound = 117,
+    /*Play Thunder1 Sound*/
     Thunder1Sound = 118,
+    /*Play Thunder2 Sound*/
     Thunder2Sound = 119,
+    /*Play Thunder3 Sound*/
     Thunder3Sound = 120,
+    /*Play Thunder4 Sound*/
     Thunder4Sound = 121,
+    /*Play Thunder5 Sound*/
     Thunder5Sound = 122,
+    /*Play Thunder6 Sound*/
     Thunder6Sound = 123
 }
+/*The movement type defines the fields for the rest of the message*/
 enum MovementType {
     InterpertedMotionState = 0,
     MoveToObject = 6,
@@ -1902,11 +2034,13 @@ enum MovementType {
     TurnToObject = 8,
     TurnToPosition = 9
 }
+/*Additional movement options*/
 enum MovementOption {
     None = 0,
     StickToObject = 1,
     StandingLongJump = 2
 }
+/*Command types*/
 enum Command {
     Invalid = 0,
     HoldRun = 1,
@@ -2317,6 +2451,7 @@ enum Command {
     OffhandPunchSlowMed = 406,
     OffhandPunchSlowLow = 407
 }
+/*The stance for a character or monster.*/
 enum StanceMode {
     HandCombat = 60,
     NonCombat = 61,
@@ -2335,6 +2470,7 @@ enum StanceMode {
     AtlatlCombat = 312,
     ThrownShieldCombat = 313
 }
+/*The movement (forward, side, turn) for a character or monster.*/
 enum MovementCommand {
     HoldRun = 1,
     HoldSidestep = 2,
@@ -2346,11 +2482,13 @@ enum MovementCommand {
     SideStepRight = 15,
     SideStepLeft = 16
 }
+/*House flags*/
 enum HouseBitfield {
     Undef = 0,
     Active = 1,
     RequiresMonarch = 2
 }
+/*The type response to a chargen request*/
 enum CharGenResponseType {
     OK = 1,
     NameInUse = 3,
@@ -2359,29 +2497,52 @@ enum CharGenResponseType {
     Corrupt_0x0006 = 6,
     AdminPrivilegeDenied = 7
 }
+/*The CharacterErrorType identifies the type of character error that has occured.*/
 enum CharacterErrorType {
+    /*Id_CHAR_ERROR_LOGON*/
     Logon = 1,
+    /*Id_CHAR_ERROR_ACCOUNT_LOGON*/
     AccountLogin = 3,
+    /*Id_CHAR_ERROR_SERVER_CRASH*/
     ServerCrash = 4,
+    /*Id_CHAR_ERROR_LOGOFF*/
     Logoff = 5,
+    /*Id_CHAR_ERROR_DELETE*/
     Delete = 6,
+    /*Id_CHAR_ERROR_SERVER_CRASH*/
     ServerCrash2 = 8,
+    /*Id_CHAR_ERROR_ACCOUNT_INVALId*/
     AccountInvalid = 9,
+    /*Id_CHAR_ERROR_ACCOUNT_DOESNT_EXIST*/
     AccountDoesntExist = 10,
+    /*Id_CHAR_ERROR_ENTER_GAME_GENERIC*/
     EnterGameGeneric = 11,
+    /*Id_CHAR_ERROR_ENTER_GAME_STRESS_ACCOUNT*/
     EnterGameStressAccount = 12,
+    /*Id_CHAR_ERROR_ENTER_GAME_CHARACTER_IN_WORLD*/
     EnterGameCharacterInWorld = 13,
+    /*Id_CHAR_ERROR_ENTER_GAME_PLAYER_ACCOUNT_MISSING*/
     EnterGamePlayerAccountMissing = 14,
+    /*Id_CHAR_ERROR_ENTER_GAME_CHARACTER_NOT_OWNED*/
     EnterGameCharacterNotOwned = 15,
+    /*Id_CHAR_ERROR_ENTER_GAME_CHARACTER_IN_WORLD_SERVER*/
     EnterGameCharacterInWorldServer = 16,
+    /*Id_CHAR_ERROR_ENTER_GAME_OLD_CHARACTER*/
     EnterGameOldCharacter = 17,
+    /*Id_CHAR_ERROR_ENTER_GAME_CORRUPT_CHARACTER*/
     EnterGameCorruptCharacter = 18,
+    /*Id_CHAR_ERROR_ENTER_GAME_START_SERVER_DOWN*/
     EnterGameStartServerDown = 19,
+    /*Id_CHAR_ERROR_ENTER_GAME_COULDNT_PLACE_CHARACTER*/
     EnterGameCouldntPlaceCharacter = 20,
+    /*Id_CHAR_ERROR_LOGON_SERVER_FULL*/
     LogonServerFull = 21,
+    /*Id_CHAR_ERROR_ENTER_GAME_CHARACTER_LOCKED*/
     EnterGameCharacterLocked = 23,
+    /*Id_CHAR_ERROR_SUBSCRIPTION_EXPIRED*/
     SubscriptionExpired = 24
 }
+/*The state flags for an object*/
 enum PhysicsState {
     None = 0,
     Static = 1,
@@ -2408,20 +2569,24 @@ enum PhysicsState {
     Sledding = 8388608,
     Frozen = 16777216
 }
+/*The TurbineChatType identifies the type of Turbine Chat message.*/
 enum TurbineChatType {
     ServerToClientMessage = 1,
     ClientToServerMessage = 3,
     AckClientToServerMessage = 5
 }
+/*The DatFileType identifies the dat file to be used.*/
 enum DatFileType {
     client_portal = 1,
     client_cell_1 = 2,
     client_local_English = 3
 }
+/*The CompressionType identifies the type of data compression used.*/
 enum CompressionType {
     None = 0,
     ZLib = 1
 }
+/*The AttributeMask selects which creature attributes highlighting is applied to.*/
 enum AttributeMask {
     Strength = 1,
     Endurance = 2,
@@ -2433,6 +2598,7 @@ enum AttributeMask {
     Stamina = 128,
     Mana = 256
 }
+/*The DamageType identifies the type of damage.*/
 enum DamageType {
     Slashing = 1,
     Piercing = 2,
@@ -2442,11 +2608,13 @@ enum DamageType {
     Acid = 32,
     Electric = 64
 }
+/*The HookAppraisalFlags identifies various properties for an item hooked.*/
 enum HookAppraisalFlags {
     Inscribable = 1,
     IsHealer = 2,
     IsLockpick = 8
 }
+/*The ArmorHighlightMask selects which armor attributes highlighting is applied to.*/
 enum ArmorHighlightMask {
     ArmorLevel = 1,
     SlashingProtection = 2,
@@ -2457,6 +2625,7 @@ enum ArmorHighlightMask {
     AcidProtection = 64,
     ElectricalProtection = 128
 }
+/*The ResistHighlightMask selects which wand attributes highlighting is applied to.*/
 enum ResistHighlightMask {
     ResistSlash = 1,
     ResistPierce = 2,
@@ -2474,6 +2643,7 @@ enum ResistHighlightMask {
     ElementalDamageMod = 8192,
     ResistNether = 16384
 }
+/*The WeaponHighlightMask selects which weapon attributes highlighting is applied to.*/
 enum WeaponHighlightMask {
     AttackSkill = 1,
     MeleeDefense = 2,
@@ -2482,11 +2652,13 @@ enum WeaponHighlightMask {
     DamageVariance = 16,
     DamageMod = 32
 }
+/*Additional attack information*/
 enum AttackConditionsMask {
     CriticalProtectionAugmentation = 1,
     Recklessness = 2,
     SneakAttack = 4
 }
+/*The DamageLocation indicates where damage was done.*/
 enum DamageLocation {
     Head = 0,
     Chest = 1,
@@ -2498,6 +2670,7 @@ enum DamageLocation {
     LowerLeg = 7,
     Foot = 8
 }
+/*The LogTextType indicates the kind of text going to the chat area.*/
 enum LogTextType {
     Default = 0,
     Speech = 2,
@@ -2526,54 +2699,79 @@ enum LogTextType {
     Salvaging = 25,
     AdminTell = 31
 }
+/*The EndTradeReason identifies the reason trading was ended.*/
 enum EndTradeReason {
     Normal = 0,
     EnteredCombat = 2,
     Cancelled = 81
 }
+/*The TradeSide identifies the side of the trade window.*/
 enum TradeSide {
     Self = 1,
     Partner = 2
 }
+/*The HouseType identifies the type of house.*/
 enum HouseType {
     Cottage = 1,
     Villa = 2,
     Mansion = 3,
     Apartment = 4
 }
+/*Identifies the chess move attempt result.  Negative/0 values are failures.*/
 enum ChessMoveResult {
+    /*Its not your turn, please wait for your opponents move.*/
     FailureNotYourTurn = NaN,
+    /*The selected piece cannot move that direction*/
     FailureInvalidDirection = NaN,
+    /*The selected piece cannot move that far*/
     FailureInvalidDistance = NaN,
+    /*You tried to move an empty square*/
     FailureMovingEmptySquare = NaN,
+    /*The selected piece is not yours*/
     FailureMovingOpponentPiece = NaN,
+    /*You cannot move off the board*/
     FailureMovedPieceOffBoard = NaN,
+    /*You cannot attack your own pieces*/
     FailureAttackingOwnPiece = NaN,
+    /*That move would put you in check*/
     FailureCannotMoveIntoCheck = NaN,
+    /*You can only move through empty squares*/
     FailurePathBlocked = NaN,
+    /*You cannot castle out of check*/
     FailureCastleOutOfCheck = NaN,
+    /*You cannot castle through check*/
     FailureCastleThroughCheck = NaN,
+    /*You cannot castle after moving the King or Rook*/
     FailureCastlePieceMoved = NaN,
+    /*That move is invalid*/
     FailureInvalidMove = 0,
+    /*Successful move.*/
     Success = 1,
+    /*Your opponent is in Check.*/
     OpponentInCheck = 1024,
+    /*You have checkmated your opponent!*/
     CheckMatedOpponent = 2048
 }
+/*Type of fellow update*/
 enum FellowUpdateType {
     FullUpdate = 1,
     UpdateStats = 2,
     UpdateVitals = 3
 }
+/*Stage a contract is in.  Values 4+ appear to provide contract specific update messages*/
 enum ContractStage {
     New = 1,
     InProgress = 2,
+    /*If this is set, it looks at the time when repeats to show either Done, Available, or # to Repeat*/
     DoneOrPendingRepeat = 3
 }
+/*Movement hold key*/
 enum HoldKey {
     Invalid = 0,
     None = 1,
     Run = 2
 }
+/*Radar behavior*/
 enum RadarBehavior {
     Undefined = 0,
     ShowNever = 1,
@@ -2581,6 +2779,7 @@ enum RadarBehavior {
     ShowAttacking = 3,
     ShowAlways = 4
 }
+/*Gender of a player*/
 enum Gender {
     Invalid = 0,
     Male = 1,
@@ -2593,6 +2792,7 @@ enum FactionBits {
     RadiantBlood = 4,
     ValidFactions = NaN
 }
+/*Creature type*/
 enum CreatureType {
     Olthoi = 1,
     Banderling = 2,
@@ -2722,6 +2922,7 @@ enum CombatStyle {
     Missile = NaN,
     All = 65535
 }
+/*Indicates what data is present in the ACQualities data*/
 enum ACQualitiesFlags {
     Attributes = 1,
     Skills = 2,
@@ -3342,6 +3543,7 @@ enum ContractId {
     Contract_321_Kill__Tou_Tou_Shadows = 321,
     Contract_322_Kill__Tou_Tou_Void_Lords = 322
 }
+/*The PropertyInt64 identifies a specific Character or Object int64 property.*/
 enum PropertyInt64 {
     TotalExperience = 1,
     AvailableExperience = 2,
@@ -3352,6 +3554,7 @@ enum PropertyInt64 {
     MaximumLuminance = 7,
     InteractionReqs = 8
 }
+/*The PropertyBool identifies a specific Character or Object boolean property.*/
 enum PropertyBool {
     Undef = 0,
     Stuck = 1,
@@ -3485,6 +3688,7 @@ enum PropertyBool {
     NoOlthoiTalk = 129,
     AutowieldLeft = 130
 }
+/*The DataPropertyId identifies a specific Character or Object data property.*/
 enum PropertyDataId {
     Setup = 1,
     MotionTable = 2,
@@ -3548,6 +3752,7 @@ enum PropertyDataId {
     RedSurgeSpell = 60,
     OlthoiDeathTreasureType = 61
 }
+/*The PropertyInt identifies a specific Character or Object int property.*/
 enum PropertyInt {
     ItemType = 1,
     CreatureType = 2,
@@ -3940,6 +4145,7 @@ enum PropertyInt {
     GearOverpowerResist = 389,
     Enlightenment = 390
 }
+/*The PropertyInstanceId identifies a specific Character or Object instance property.*/
 enum PropertyInstanceId {
     Owner = 1,
     Container = 2,
@@ -3987,35 +4193,64 @@ enum PropertyInstanceId {
     PetOwner = 44,
     PetDevice = 45
 }
+/*The PropertyPosition identifies a specific Character or Object position property.*/
 enum PropertyPosition {
+    /*Current Position*/
     Location = 1,
+    /*May be used to store where we are headed when we teleport (?)*/
     Destination = 2,
+    /*Where will we pop into the world (?)*/
     Instantiation = 3,
+    /*Last Lifestone Used? (@ls)? | @home | @save | @recall*/
     Sanctuary = 4,
+    /*This is the home, starting, or base position of an object. It's usually the position the object first spawned in at.*/
     Home = 5,
+    /*The need to research*/
     ActivationMove = 6,
+    /*The the position of target.*/
     Target = 7,
+    /*Primary Portal Recall | Summon Primary Portal | Primary Portal Tie*/
     LinkedPortalOne = 8,
+    /*Portal Recall (Last Used Portal that can be recalled to)*/
     LastPortal = 9,
+    /*The portal storm - need research - maybe where you were portaled from or to - to does not seem likely to me.*/
     PortalStorm = 10,
+    /*The crash and turn - I can't wait to find out.*/
     CrashAndTurn = 11,
+    /*We are tracking what the portal ties are - could this be the physical location of the portal you summoned?   More research needed.*/
     PortalSummonLoc = 12,
+    /*That little spot you get sent to just outside the barrier when the slum lord evicts you (??)*/
     HouseBoot = 13,
+    /*The last outside death. --- boy would I love to extend this to cover deaths in dungeons as well.*/
     LastOutsideDeath = 14,
+    /*The linked lifestone - Lifestone Recall | Lifestone Tie*/
     LinkedLifestone = 15,
+    /*Secondary Portal Recall | Summon Secondary Portal | Secondary Portal Tie*/
     LinkedPortalTwo = 16,
+    /*Admin Quick Recall Position 1*/
     Save1 = 17,
+    /*Admin Quick Recall Position 2*/
     Save2 = 18,
+    /*Admin Quick Recall Position 3*/
     Save3 = 19,
+    /*Admin Quick Recall Position 4*/
     Save4 = 20,
+    /*Admin Quick Recall Position 5*/
     Save5 = 21,
+    /*Admin Quick Recall Position 6*/
     Save6 = 22,
+    /*Admin Quick Recall Position 7*/
     Save7 = 23,
+    /*Admin Quick Recall Position 8*/
     Save8 = 24,
+    /*Admin Quick Recall Position 9*/
     Save9 = 25,
+    /*Position data is relative to Location*/
     RelativeDestination = 26,
+    /*Admin - Position to return player to when using @telereturn which is where a character was at time of admin using @teletome*/
     TeleportedCharacter = 27
 }
+/*The PropertyString identifies a specific Character or Object string property.*/
 enum PropertyString {
     Name = 1,
     Title = 2,
@@ -4070,6 +4305,7 @@ enum PropertyString {
     UseSendsSignal = 51,
     GearPlatingName = 52
 }
+/*The PropertyFloat identifies a specific Character or Object float property.*/
 enum PropertyFloat {
     Undef = 0,
     HeartbeatInterval = 1,
@@ -4244,6 +4480,7 @@ enum PropertyFloat {
     WeaponAuraElemental = 170,
     WeaponAuraManaConv = 171
 }
+/*Chat channels*/
 enum Channel {
     Undef = 0,
     Abuse = 1,
@@ -4283,6 +4520,7 @@ enum Channel {
     GhostChans = 2130737152,
     AllChans = 2130739007
 }
+/*Equipment Set Ids*/
 enum EquipmentSet {
     None = 0,
     Test = 1,
@@ -4426,6 +4664,7 @@ enum EquipmentSet {
     ParagonCaster = 139,
     ParagonMelee = 140
 }
+/*Radar Color*/
 enum RadarColor {
     Default = 0,
     Blue = 1,
@@ -4451,6 +4690,7 @@ enum RadarColor {
     FellowshipLeader = NaN,
     PKLite = NaN
 }
+/*Flags that determine what data is contained in the EnchantmentRegistry*/
 enum EnchantmentRegistryFlags {
     LifeSpells = 1,
     CreatureSpells = 2,
@@ -5188,6 +5428,7 @@ enum SpellCategory {
     GauntletCriticalDamageRatingRaising = 732,
     GauntletCriticalDamageReductionRatingRaising = 733
 }
+/*Heritage of a player*/
 enum HeritageGroup {
     Invalid = 0,
     Aluvian = 1,
@@ -5204,6 +5445,7 @@ enum HeritageGroup {
     Olthoi = 12,
     OlthoiAcid = 13
 }
+/*the type of highlight (outline) applied to the object's icon*/
 enum IconHighlight {
     Invalid = 0,
     Magical = 1,
@@ -5228,6 +5470,7 @@ enum CombatUse {
     Shield = 4,
     TwoHanded = 5
 }
+/*the type of wieldable item this is*/
 enum WieldType {
     Invalid = 0,
     MeleeWeapon = 1,
@@ -5235,6 +5478,7 @@ enum WieldType {
     Clothing = 4,
     Jewelry = 8
 }
+/*Chat channel type, for turbine chat*/
 enum ChatType {
     Undef = 0,
     Allegiance = 1,
@@ -5248,8 +5492,11 @@ enum ChatType {
     SocietyRadBlo = 9,
     Olthoi = 10
 }
+/*The ChatDisplayMask identifies that types of chat that are displayed in each chat window. */
 enum ChatDisplayMask {
+    /*Gameplay (main chat window only)*/
     Gameplay = 59842593,
+    /*Mandatory (main chat window only, cannot be disabled)*/
     Mandatory = 49922,
     AreaChat = 4100,
     Tells = 24,
