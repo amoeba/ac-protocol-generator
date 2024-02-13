@@ -11,7 +11,6 @@ const parseSignedHexString = (text: string) => {
   } else {
     out = Number(text);
   }
-  console.log(text, out)
 
   return out;
 }
@@ -116,7 +115,9 @@ const parse = (xml: string): ParseResult => {
       state = STATES.VALUE;
 
       // Ignore union enums ACE made up
-      if (node.attributes.value.includes("|")) {
+      if (
+        node.attributes.value.includes("|") ||
+        Number.isNaN(parseSignedHexString(node.attributes.value))) {
         return;
       }
 

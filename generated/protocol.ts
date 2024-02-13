@@ -3068,12 +3068,7 @@ enum PlayerKillerStatus {
     Unprotected = 8,
     RubberGlue = 16,
     Free = 32,
-    PKLite = 64,
-    Creature = NaN,
-    Trap = NaN,
-    NPC = NaN,
-    Vendor = NaN,
-    Baelzharon = NaN
+    PKLite = 64
 }
 enum PortalBitmask {
     Undef = 0,
@@ -4664,19 +4659,7 @@ enum RadarColor {
     Green = 7,
     Yellow = 8,
     Cyan = 9,
-    BrightGreen = 16,
-    Admin = NaN,
-    Advocate = NaN,
-    Creature = NaN,
-    LifeStone = NaN,
-    NPC = NaN,
-    PlayerKiller = NaN,
-    Portal = NaN,
-    Sentinel = NaN,
-    Vendor = NaN,
-    Fellowship = NaN,
-    FellowshipLeader = NaN,
-    PKLite = NaN
+    BrightGreen = 16
 }
 /*Flags that determine what data is contained in the EnchantmentRegistry*/
 enum EnchantmentRegistryFlags {
