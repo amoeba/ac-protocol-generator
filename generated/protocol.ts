@@ -2712,29 +2712,29 @@ enum HouseType {
 /*Identifies the chess move attempt result.  Negative/0 values are failures.*/
 enum ChessMoveResult {
     /*Its not your turn, please wait for your opponents move.*/
-    FailureNotYourTurn = NaN,
+    FailureNotYourTurn = -3,
     /*The selected piece cannot move that direction*/
-    FailureInvalidDirection = NaN,
+    FailureInvalidDirection = -100,
     /*The selected piece cannot move that far*/
-    FailureInvalidDistance = NaN,
+    FailureInvalidDistance = -101,
     /*You tried to move an empty square*/
-    FailureMovingEmptySquare = NaN,
+    FailureMovingEmptySquare = -102,
     /*The selected piece is not yours*/
-    FailureMovingOpponentPiece = NaN,
+    FailureMovingOpponentPiece = -103,
     /*You cannot move off the board*/
-    FailureMovedPieceOffBoard = NaN,
+    FailureMovedPieceOffBoard = -104,
     /*You cannot attack your own pieces*/
-    FailureAttackingOwnPiece = NaN,
+    FailureAttackingOwnPiece = -105,
     /*That move would put you in check*/
-    FailureCannotMoveIntoCheck = NaN,
+    FailureCannotMoveIntoCheck = -106,
     /*You can only move through empty squares*/
-    FailurePathBlocked = NaN,
+    FailurePathBlocked = -107,
     /*You cannot castle out of check*/
-    FailureCastleOutOfCheck = NaN,
+    FailureCastleOutOfCheck = -108,
     /*You cannot castle through check*/
-    FailureCastleThroughCheck = NaN,
+    FailureCastleThroughCheck = -109,
     /*You cannot castle after moving the King or Rook*/
-    FailureCastlePieceMoved = NaN,
+    FailureCastlePieceMoved = -110,
     /*That move is invalid*/
     FailureInvalidMove = 0,
     /*Successful move.*/

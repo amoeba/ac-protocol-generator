@@ -3,10 +3,24 @@ import ts from "typescript";
 
 import type { ParseResult, EnumData, EnumValue } from "./types";
 
+const parseSignedHexString = (text: string) => {
+  let out: number;
+
+  if (text.includes("-")) {
+    out = -Number(text.replace("-", ""));
+  } else {
+    out = Number(text);
+  }
+  console.log(text, out)
+
+  return out;
+}
+
 const createEnumMember = (member: EnumValue) => {
+
   const node = ts.factory.createEnumMember(
     member.name,
-    ts.factory.createNumericLiteral(Number(member.value)),
+    ts.factory.createNumericLiteral(parseSignedHexString(member.value)),
   );
 
   if (member.comment) {
