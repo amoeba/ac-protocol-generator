@@ -1,6 +1,4 @@
 
-const fs = require("fs");
-const path = require("path");
 const sax = require("sax");
 import ts from "typescript";
 
@@ -33,10 +31,10 @@ const convert = function (x) {
       ts.ScriptKind.TSX
     );
 
-    console.log(printer.printList(ts.ListFormat.MultiLine, nodes, resultFile));
+    return printer.printList(ts.ListFormat.MultiLine, nodes, resultFile);
   }
 
-  print(x.enums.map(e => createEnum(e)));
+  return print(x.enums.map(e => createEnum(e)));
 }
 
 const parse = function (xml: string): ParseResult {
@@ -96,8 +94,8 @@ const parse = function (xml: string): ParseResult {
   return result;
 }
 
-export const process = function (file_path: string) {
-  const xml = fs.readFileSync(file_path, 'utf8');
-  const result = parse(xml);
-  convert(result);
+export const process = function (document: string) {
+  const result = parse(document);
+
+  return convert(result);
 }
