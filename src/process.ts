@@ -4,6 +4,8 @@ import ts from "typescript";
 import type { ParseResult, EnumData, EnumValue } from "./types";
 
 const createEnumMember = (member: EnumValue) => {
+// TODO: Handle Unions, e.g.,
+// <value name="Unarmed" value="Punch | Kick | OffhandPunch" />
 
   const node = ts.factory.createEnumMember(
     member.name,
