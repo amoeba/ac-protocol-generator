@@ -20,42 +20,48 @@ const createEnum = function (enum_data: EnumData) {
   return enum_decl;
 }
 
-const convert = function (x) {
-  function print(nodes) {
-    const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-    const resultFile = ts.createSourceFile(
-      "temp.ts",
-      "",
-      ts.ScriptTarget.Latest,
-      false,
-      ts.ScriptKind.TSX
-    );
+function print(nodes: ts.EnumDeclaration[]) {
+  const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+  const resultFile = ts.createSourceFile(
+    /*does nothing?*/"temp.ts",
+    "",
+    ts.ScriptTarget.Latest,
+    false,
+    ts.ScriptKind.TSX
+  );
 
-    return printer.printList(ts.ListFormat.MultiLine, nodes, resultFile);
-  }
+  return printer.printList(ts.ListFormat.MultiLine, nodes, resultFile);
+}
 
-  return print(x.enums.map(e => createEnum(e)));
+const convert = function (result: ParseResult): string {
+  return print(result.enums.map((e: EnumData) => createEnum(e)));
 }
 
 const parse = function (xml: string): ParseResult {
+  // result is passed into our SAX parser's callbacks so the structure of this
+  // function is set up to allow that
   const result: ParseResult = {
     enums: []
   }
+
+  // Keep a cursor into result
+  let result_cursor: any = null;
 
   enum NODE_NAME {
     ENUM = "enum",
     VALUE = "value"
   }
 
+  // State
   enum STATES {
     NONE,
     ENUM,
     VALUE,
   }
-
   let state = STATES.NONE;
-  let current: any = null;
-  var saxStream = sax.createStream(true, {})
+
+  // Build SAX stream parser
+  var saxStream = sax.createStream(/*strict*/true, {})
 
   saxStream.on("error", function (e: any) {
     console.error("error!", e)
@@ -65,17 +71,17 @@ const parse = function (xml: string): ParseResult {
     if (node.name === NODE_NAME.ENUM) {
       state = STATES.ENUM
 
-      const x = {
+      const new_enum = {
         name: node.attributes.name,
         "members": []
       }
 
-      current = x;
-      result.enums.push(x)
+      result_cursor = new_enum;
+      result.enums.push(new_enum)
     } else if (node.name === NODE_NAME.VALUE) {
       state = STATES.VALUE
 
-      current.members.push({
+      result_cursor.members.push({
         name: node.attributes.name,
         value: node.attributes.value,
       });
@@ -85,10 +91,11 @@ const parse = function (xml: string): ParseResult {
   saxStream.on("closetag", function (node: any) {
     if (node.name === NODE_NAME.ENUM) {
       state = STATES.NONE
-      current = null;
+      result_cursor = null;
     }
   })
 
+  // Use it
   saxStream.write(xml);
 
   return result;
