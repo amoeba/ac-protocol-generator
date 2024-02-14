@@ -23,7 +23,7 @@ export interface Field {
 }
 
 export interface TypeData {
-  name: String
+  name: string
   primitive: boolean
   size: number
   fields: Field[]
