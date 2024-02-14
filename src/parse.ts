@@ -83,11 +83,11 @@ export const parse = (xml: string): ParseResult => {
       // </type>
 
       const new_type: TypeData = {
-        "name": node.attributes.name,
-        "fields": [],
-        "comment": node.attributes.text,
-        "primitive": parseBool(node.attributes.primitive),
-        "size": Number(node.attributes.size)
+        name: node.attributes.name,
+        fields: [],
+        comment: node.attributes.text,
+        primitive: parseBool(node.attributes.primitive),
+        size: Number(node.attributes.size)
       };
       result_cursor = new_type;
       result.types.push(new_type)
@@ -101,9 +101,9 @@ export const parse = (xml: string): ParseResult => {
         return;
       }
       result_cursor.fields.push({
-        "name": node.attributes.name,
-        "type": node.attributes.type,
-        "comment": node.attributes.text
+        name: node.attributes.name,
+        type: node.attributes.type,
+        comment: node.attributes.text
       })
     }
   });
