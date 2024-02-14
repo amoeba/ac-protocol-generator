@@ -17,5 +17,5 @@ const input = Bun.file(protocol_file);
 const xml = await input.text();
 
 const result = process(xml);
-console.log(result)
+
 Bun.write(out_file, result);

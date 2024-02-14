@@ -75,7 +75,6 @@ export const parse = (xml: string): ParseResult => {
       result_cursor = null;
     } else if (node.name === NODE_NAME.TYPE) {
       state = STATES.TYPE;
-      console.log(NODE_NAME.TYPE);
 
       // <type name="LayeredSpellId" text="Full spell Id combining the spell id with the spell layer.">
       //   <field type="SpellId" name="Id" text="Id of the spell" />
@@ -93,11 +92,9 @@ export const parse = (xml: string): ParseResult => {
       result.types.push(new_type)
     } else if (node.name === NODE_NAME.FIELD) {
       state = STATES.FIELD;
-      console.log(NODE_NAME.FIELD);
 
       // TODO: Remove this once parsing is complete
       if (!result_cursor || !result_cursor.fields) {
-        console.log("unimplemented")
         return;
       }
       result_cursor.fields.push({
@@ -117,6 +114,5 @@ export const parse = (xml: string): ParseResult => {
 
   saxStream.write(xml);
 
-  console.log(result)
   return result;
 };
