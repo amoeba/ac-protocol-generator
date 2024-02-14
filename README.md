@@ -12,6 +12,13 @@ Protocol Elements:
 
 - [x] Enums
 - [ ] Types
+  - [ ] Base Types
+  - [ ] GameActions
+  - [ ] GameEvents
+  - [ ] Messsages
+    - [ ] C2S
+    - [ ] S2C
+    - [ ] Packets
 
 ## Running
 
