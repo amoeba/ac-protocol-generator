@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "generate": "bun run src/index.ts",
-    "lint": "bun run biome lint src"
+    "lint": "bun run biome lint src",
+    "typedoc": "npx typedoc src/index.ts"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
