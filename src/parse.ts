@@ -1,16 +1,21 @@
 import sax from "sax";
-import type { ParseResult } from "./types";
-import { parseSignedHexString } from "./util";
+import type { ParseResult, TypeData } from "./types";
+import { parseBool, parseSignedHexString } from "./util";
 
 enum NODE_NAME {
   ENUM = "enum",
   VALUE = "value",
+  TYPES = "types",
+  TYPE = "type",
+  FIELD = "field"
 }
 
 enum STATES {
   NONE = 0,
   ENUM = 1,
   VALUE = 2,
+  TYPE = 3,
+  FIELD = 4,
 }
 
 export const parse = (xml: string): ParseResult => {
@@ -18,6 +23,7 @@ export const parse = (xml: string): ParseResult => {
   // function is set up to allow that
   const result: ParseResult = {
     enums: [],
+    types: [],
   };
 
   // Keep a cursor into result
@@ -64,6 +70,41 @@ export const parse = (xml: string): ParseResult => {
         value: node.attributes.value,
         comment: node.attributes.text,
       });
+    } else if (node.name === NODE_NAME.TYPES) {
+      // TODO: Change this once I figure out what I want to do
+      result_cursor = null;
+    } else if (node.name === NODE_NAME.TYPE) {
+      state = STATES.TYPE;
+      console.log(NODE_NAME.TYPE);
+
+      // <type name="LayeredSpellId" text="Full spell Id combining the spell id with the spell layer.">
+      //   <field type="SpellId" name="Id" text="Id of the spell" />
+      //   <field type="ushort" name="Layer" text="Layer of the spell, seperating multiple instances of the same spell" />
+      // </type>
+
+      const new_type: TypeData = {
+        "name": node.attributes.name,
+        "fields": [],
+        "comment": node.attributes.text,
+        "primitive": parseBool(node.attributes.primitive),
+        "size": Number(node.attributes.size)
+      };
+      result_cursor = new_type;
+      result.types.push(new_type)
+    } else if (node.name === NODE_NAME.FIELD) {
+      state = STATES.FIELD;
+      console.log(NODE_NAME.FIELD);
+
+      // TODO: Remove this once parsing is complete
+      if (!result_cursor || !result_cursor.fields) {
+        console.log("unimplemented")
+        return;
+      }
+      result_cursor.fields.push({
+        "name": node.attributes.name,
+        "type": node.attributes.type,
+        "comment": node.attributes.text
+      })
     }
   });
 
@@ -76,5 +117,6 @@ export const parse = (xml: string): ParseResult => {
 
   saxStream.write(xml);
 
+  console.log(result)
   return result;
 };

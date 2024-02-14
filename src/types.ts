@@ -1,6 +1,7 @@
 
 export interface ParseResult {
   enums: EnumData[]
+  types: TypeData[]
 }
 
 export interface EnumValue {
@@ -13,4 +14,18 @@ export interface EnumData {
   name: string,
   comment?: string,
   members: EnumValue[]
+}
+
+export interface Field {
+  name: string,
+  type: string, // TODO: Should eventually be a type reference
+  comment?: string
+}
+
+export interface TypeData {
+  name: String
+  primitive: boolean
+  size: number
+  fields: Field[]
+  comment?: string
 }

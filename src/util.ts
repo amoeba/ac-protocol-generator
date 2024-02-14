@@ -9,3 +9,7 @@ export const parseSignedHexString = (text: string) => {
 
   return out;
 }
+
+export const parseBool = (text: string) => {
+  return text === "true"
+}
