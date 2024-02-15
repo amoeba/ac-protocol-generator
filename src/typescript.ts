@@ -24,7 +24,7 @@ const createEnumMember = (member: EnumValue) => {
 const createEnum = (enum_data: EnumData) => {
   const id = ts.factory.createIdentifier(enum_data.name);
   const node = ts.factory.createEnumDeclaration(
-    /*modifiers*/ undefined,
+    /*modifiers*/[ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
     /*name*/ id,
     /*members*/ enum_data.members.map((x: any) => createEnumMember(x)),
   );
@@ -66,9 +66,10 @@ const createType = (type_data: TypeData): ts.InterfaceDeclaration => {
   const id = ts.factory.createIdentifier(type_data.name);
   const members = type_data.fields.map(f => createTypeMember(f));
 
+  ts.flags
   const interface_decl = ts.factory.createInterfaceDeclaration(
-    /*modifiers*/undefined,
-    /*name*/type_data.name,
+    /*modifiers*/[ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+    /*name*/id,
     /*typeParameters*/undefined,
     /*heritageClauses*/undefined,
     members

@@ -1,32 +1,32 @@
-interface WString {
+export interface WString {
 }
 
-interface WORD {
+export interface WORD {
 }
 
-interface DWORD {
+export interface DWORD {
 }
 
-interface PackedWORD {
+export interface PackedWORD {
 }
 
-interface PackedDWORD {
+export interface PackedDWORD {
 }
 
-interface ObjectId {
+export interface ObjectId {
 }
 
-interface LandcellId {
+export interface LandcellId {
 }
 
-interface SpellId {
+export interface SpellId {
 }
 
-interface DataId {
+export interface DataId {
 }
 
 /*Full spell Id combining the spell id with the spell layer.*/
-interface LayeredSpellId {
+export interface LayeredSpellId {
     /*Id of the spell*/
     Id: string;
     /*Layer of the spell, seperating multiple instances of the same spell*/
@@ -34,13 +34,13 @@ interface LayeredSpellId {
 }
 
 /*List which is packable for network*/
-interface PackableList {
+export interface PackableList {
     /*Number of items in the list*/
     Count: string;
 }
 
 /*HashTable which is packable for network*/
-interface PackableHashTable {
+export interface PackableHashTable {
     /*number of items in the table*/
     Count: string;
     /*max size of the table*/
@@ -48,17 +48,17 @@ interface PackableHashTable {
 }
 
 /*HashTable which is packable for network*/
-interface PHashTable {
+export interface PHashTable {
     PackedSize: string;
 }
 
-interface Vector3 {
+export interface Vector3 {
     X: string;
     Y: string;
     Z: string;
 }
 
-interface Quaternion {
+export interface Quaternion {
     W: string;
     X: string;
     Y: string;
@@ -66,7 +66,7 @@ interface Quaternion {
 }
 
 /*Landcell location, without orientation*/
-interface Origin {
+export interface Origin {
     /*the landcell in which the object is located*/
     Landcell: string;
     /*the location in the landcell for the object*/
@@ -74,7 +74,7 @@ interface Origin {
 }
 
 /*Landcell location, including orientation*/
-interface Position {
+export interface Position {
     /*the landcell in which the object is located*/
     Landcell: string;
     /*the location and orientation in the landcell*/
@@ -82,7 +82,7 @@ interface Position {
 }
 
 /*A the location and orientation of an object within a landcell*/
-interface Frame {
+export interface Frame {
     /*the location in a landcell in which the object is located*/
     Origin: string;
     /*a quaternion describing the object's orientation*/
@@ -90,25 +90,25 @@ interface Frame {
 }
 
 /*Optional header data when PacketHeaderFlags includes ServerSwitch*/
-interface ServerSwitchHeader {
+export interface ServerSwitchHeader {
     Sequence: string;
     Type: string;
 }
 
 /*Optional header data when PacketHeaderFlags includes CICMDCommand*/
-interface CICMDCommandHeader {
+export interface CICMDCommandHeader {
     Command: string;
     Parameter: string;
 }
 
 /*Optional header data when PacketHeaderFlags includes Flow*/
-interface FlowHeader {
+export interface FlowHeader {
     Bytes: string;
     Interval: string;
 }
 
 /*Optional header data when PacketHeaderFlags includes LogonServerAddr*/
-interface SocketAddress {
+export interface SocketAddress {
     Family: string;
     Port: string;
     Address: string;
@@ -116,7 +116,7 @@ interface SocketAddress {
 }
 
 /*Optional header data when PacketHeaderFlags includes LoginRequest*/
-interface LoginRequestHeader {
+export interface LoginRequestHeader {
     ClientVersion: string;
     Length: string;
     AuthType: string;
@@ -133,7 +133,7 @@ interface LoginRequestHeader {
 }
 
 /*Optional header data when PacketHeaderFlags includes Referral*/
-interface ReferralHeader {
+export interface ReferralHeader {
     Cookie: string;
     Address: string;
     IdServer: string;
@@ -141,7 +141,7 @@ interface ReferralHeader {
 }
 
 /*Optional header data when PacketHeaderFlags includes ConnectRequest*/
-interface ConnectRequestHeader {
+export interface ConnectRequestHeader {
     ServerTime: string;
     Cookie: string;
     NetID: string;
@@ -150,18 +150,18 @@ interface ConnectRequestHeader {
     Unknown: string;
 }
 
-interface NetError {
+export interface NetError {
     StringId: string;
     TableId: string;
 }
 
-interface EchoResponseHeader {
+export interface EchoResponseHeader {
     LocalTime: string;
     HoldingTime: string;
 }
 
 /*A collection of property tables.*/
-interface ACBaseQualities {
+export interface ACBaseQualities {
     /*determines which property types appear in the message*/
     Flags: string;
     /*Expect it always should be 0xA*/
@@ -177,7 +177,7 @@ interface ACBaseQualities {
 }
 
 /*The ACQualities structure contains character property lists.*/
-interface ACQualities {
+export interface ACQualities {
     /*determines which property vector types appear in the message*/
     Flags: string;
     /*seems to indicate this object has health attribute*/
@@ -201,7 +201,7 @@ interface ACQualities {
 }
 
 /*The AttributeCache structure contains information about a character attributes.*/
-interface AttributeCache {
+export interface AttributeCache {
     /*The attributes included in the character description - this is always 0x1FF*/
     Flags: string;
     /*strength attribute information*/
@@ -225,7 +225,7 @@ interface AttributeCache {
 }
 
 /*The Attribute structure contains information about a character attribute.*/
-interface AttributeInfo {
+export interface AttributeInfo {
     /*points raised*/
     PointsRaised: string;
     /*innate points*/
@@ -235,7 +235,7 @@ interface AttributeInfo {
 }
 
 /*The SecondaryAttribute structure contains information about a character vital.*/
-interface SecondaryAttributeInfo {
+export interface SecondaryAttributeInfo {
     /*secondary attribute's data*/
     Attribute: string;
     /*current value of the vital*/
@@ -243,7 +243,7 @@ interface SecondaryAttributeInfo {
 }
 
 /*The Skill structure contains information about a character skill.*/
-interface Skill {
+export interface Skill {
     /*points raised*/
     PointsRaised: string;
     /*If this is not 0, it appears to trigger the initLevel to be treated as extra XP applied to the skill*/
@@ -261,12 +261,12 @@ interface Skill {
 }
 
 /*Contains body part table*/
-interface Body {
+export interface Body {
     BodyParts: string;
 }
 
 /*Information on individual body parts. (Needs to be confirmed if this was used in prod)*/
-interface BodyPart {
+export interface BodyPart {
     HasBPSD: string;
     DamageType: string;
     DamageVal: string;
@@ -278,7 +278,7 @@ interface BodyPart {
 }
 
 /*Information on armor levels*/
-interface ArmorCache {
+export interface ArmorCache {
     BaseArmor: string;
     ArmorVsSlash: string;
     ArmorVsPierce: string;
@@ -290,7 +290,7 @@ interface ArmorCache {
     ArmorVsNether: string;
 }
 
-interface BodyPartSelectionData {
+export interface BodyPartSelectionData {
     HLF: string;
     MLF: string;
     LLF: string;
@@ -306,7 +306,7 @@ interface BodyPartSelectionData {
 }
 
 /*Contains information related to the spell in your spellbook*/
-interface SpellBookPage {
+export interface SpellBookPage {
     /*Final value has 2.0 subtracted if network value > 2.0.  Believe this is the charge of the spell which was unused later*/
     CastingLikelihood: string;
     /*Client skips this value*/
@@ -316,7 +316,7 @@ interface SpellBookPage {
 }
 
 /*Contains information related to the spells in effect on the character*/
-interface EnchantmentRegistry {
+export interface EnchantmentRegistry {
     /*Flags that determine what data is contained in the EnchantmentRegistry*/
     Flags: string;
     /*Life spells active on the player*/
@@ -330,7 +330,7 @@ interface EnchantmentRegistry {
 }
 
 /*The Enchantment structure describes an active enchantment.*/
-interface Enchantment {
+export interface Enchantment {
     /*the spell Id of the enchantment*/
     Id: string;
     /*Value greater or equal to 1 means we read EquipmentSet*/
@@ -358,7 +358,7 @@ interface Enchantment {
 }
 
 /*Information on stat modification*/
-interface StatMod {
+export interface StatMod {
     /*flags that indicate the type of effect the spell has*/
     Type: string;
     /*along with flags, indicates which attribute is affected by the spell*/
@@ -368,23 +368,23 @@ interface StatMod {
 }
 
 /*Contains a list of events to filter? Unknown what this does currently.*/
-interface EventFilter {
+export interface EventFilter {
     /*List of events*/
     Events: string;
 }
 
 /*Contains a list of emotes for NPCs? Unknown what this does currently.*/
-interface EmoteTable {
+export interface EmoteTable {
     /*Key may be an EmoteCategory?*/
     Emotes: string;
 }
 
-interface EmoteSetList {
+export interface EmoteSetList {
     /*List of emote sets*/
     Emotes: string;
 }
 
-interface EmoteSet {
+export interface EmoteSet {
     Category: string;
     Probability: string;
     ClassId: string;
@@ -398,7 +398,7 @@ interface EmoteSet {
     Emotes: string;
 }
 
-interface Emote {
+export interface Emote {
     Type: string;
     Delay: string;
     Extent: string;
@@ -463,7 +463,7 @@ interface Emote {
 }
 
 /*Set information about an item for creation*/
-interface CreationProfile {
+export interface CreationProfile {
     WeenieClassId: string;
     Palette: string;
     Shade: string;
@@ -473,7 +473,7 @@ interface CreationProfile {
 }
 
 /*List of pages in a book*/
-interface PageDataList {
+export interface PageDataList {
     MaxNumPages: string;
     MaxNumCharsPerPage: string;
     /*List of pages*/
@@ -481,7 +481,7 @@ interface PageDataList {
 }
 
 /*Data for an individual page*/
-interface PageData {
+export interface PageData {
     AuthorId: string;
     AuthorName: string;
     AuthorAccount: string;
@@ -493,7 +493,7 @@ interface PageData {
 }
 
 /*Blob fragment data used to contruct message data. These can be spread across multiple packets*/
-interface BlobFragments {
+export interface BlobFragments {
     /*Fragment Sequence / Order*/
     Sequence: string;
     /*The id of this fragment*/
@@ -507,12 +507,12 @@ interface BlobFragments {
     Group: string;
 }
 
-interface GeneratorTable {
+export interface GeneratorTable {
     /*List of generator profiles*/
     Generators: string;
 }
 
-interface GeneratorProfile {
+export interface GeneratorProfile {
     Probability: string;
     TypeId: string;
     Delay: string;
@@ -527,11 +527,11 @@ interface GeneratorProfile {
     Slot: string;
 }
 
-interface GeneratorRegistry {
+export interface GeneratorRegistry {
     Registry: string;
 }
 
-interface GeneratorRegistryNode {
+export interface GeneratorRegistryNode {
     WcidOrType: string;
     Ts: string;
     TreasureType: string;
@@ -542,16 +542,16 @@ interface GeneratorRegistryNode {
 }
 
 /*Set of inventory items*/
-interface GeneratorQueue {
+export interface GeneratorQueue {
     Queue: string;
 }
 
-interface GeneratorQueueNode {
+export interface GeneratorQueueNode {
     Slot: string;
     When: string;
 }
 
-interface WindowProperty {
+export interface WindowProperty {
     Key_a: string;
     Unknown_c: string;
     TitleSource: string;
@@ -574,13 +574,13 @@ interface WindowProperty {
     Value_j: string;
 }
 
-interface WindowOption {
+export interface WindowOption {
     Type_a: string;
     Unknown_b: string;
     PropertyCount: string;
 }
 
-interface OptionProperty {
+export interface OptionProperty {
     Type: string;
     Unknown_a: string;
     WindowOptions: string;
@@ -590,7 +590,7 @@ interface OptionProperty {
     inactiveOpacity: string;
 }
 
-interface GameplayOptions {
+export interface GameplayOptions {
     /*The size in bytes of the GameplayOptions payload that follows*/
     Size: string;
     Unknown200_2: string;
@@ -598,7 +598,7 @@ interface GameplayOptions {
 }
 
 /*The PlayerModule structure contains character options.*/
-interface PlayerModule {
+export interface PlayerModule {
     Flags: string;
     Options: string;
     /*List of short cuts.*/
@@ -621,13 +621,13 @@ interface PlayerModule {
 }
 
 /*Set of shortcuts*/
-interface ShortCutManager {
+export interface ShortCutManager {
     /*List of short cuts.*/
     Shortcuts: string;
 }
 
 /*Shortcut*/
-interface ShortCutData {
+export interface ShortCutData {
     /*Position*/
     Index: string;
     /*Object Id*/
@@ -637,27 +637,27 @@ interface ShortCutData {
 }
 
 /*List of spells in spell tab*/
-interface SpellTab {
+export interface SpellTab {
     /*List of spells on tab.*/
     Spells: string;
 }
 
 /*Set of inventory items*/
-interface ContentProfile {
+export interface ContentProfile {
     ObjectId: string;
     /*Whether or not this object is a container.*/
     ContainerType: string;
 }
 
 /*Set of inventory items*/
-interface InventoryPlacement {
+export interface InventoryPlacement {
     ObjectId: string;
     Location: string;
     Priority: string;
 }
 
 /*Allegience information*/
-interface AllegianceProfile {
+export interface AllegianceProfile {
     /*The number of allegiance members.*/
     TotalMembers: string;
     /*Your personal number of followers.*/
@@ -666,14 +666,14 @@ interface AllegianceProfile {
 }
 
 /*Allegience record*/
-interface AllegianceRecord {
+export interface AllegianceRecord {
     /*The Object Id for the parent character to this character.  Used by the client to decide how to build the display in the Allegiance tab. 1 is the monarch.*/
     TreeParent: string;
     AllegianceData: string;
 }
 
 /*Allegience hierarchy information*/
-interface AllegianceHierarchy {
+export interface AllegianceHierarchy {
     /*Number of character allegiance records.*/
     RecordCount: string;
     /*Defines which properties are available. 0x0B seems to be the latest version which includes all properties.*/
@@ -710,7 +710,7 @@ interface AllegianceHierarchy {
 }
 
 /*Set of allegiance data for a specific player*/
-interface AllegianceData {
+export interface AllegianceData {
     /*Character Id*/
     CharacterId: string;
     /*XP gained while logged off*/
@@ -735,7 +735,7 @@ interface AllegianceData {
     Name: string;
 }
 
-interface FriendData {
+export interface FriendData {
     FriendId: string;
     Online: string;
     AppearOffline: string;
@@ -745,7 +745,7 @@ interface FriendData {
 }
 
 /*Data related to an item, namely the amount and description*/
-interface ItemProfile {
+export interface ItemProfile {
     PackedAmount: string;
     /*the object Id of the item*/
     ObjectId: string;
@@ -756,7 +756,7 @@ interface ItemProfile {
 }
 
 /*The PublicWeenieDesc structure defines an object's game behavior.*/
-interface PublicWeenieDesc {
+export interface PublicWeenieDesc {
     /*game data flags*/
     Header: string;
     /*object name*/
@@ -841,7 +841,7 @@ interface PublicWeenieDesc {
 }
 
 /*The RestrictionDB contains the access control list for a dwelling object.*/
-interface RestrictionDB {
+export interface RestrictionDB {
     /*If high word is not 0, this value indicates the version of the message.*/
     Version: string;
     /*0 = private dwelling, 1 = open to public*/
@@ -853,7 +853,7 @@ interface RestrictionDB {
 }
 
 /*The OldPublicWeenieDesc structure defines an object's game behavior.*/
-interface OldPublicWeenieDesc {
+export interface OldPublicWeenieDesc {
     /*game data flags*/
     Header: string;
     /*object name*/
@@ -928,7 +928,7 @@ interface OldPublicWeenieDesc {
 }
 
 /*Information related to a secure trade.*/
-interface Trade {
+export interface Trade {
     /*Id of other participant in the trade*/
     PartnerId: string;
     /*Some kind of sequence*/
@@ -944,7 +944,7 @@ interface Trade {
 }
 
 /*A jump with sequences*/
-interface JumpPack {
+export interface JumpPack {
     /*Power of jump?*/
     Extent: string;
     /*Velocity data*/
@@ -960,7 +960,7 @@ interface JumpPack {
 }
 
 /*A set of data related to changing states with sequences*/
-interface MoveToStatePack {
+export interface MoveToStatePack {
     /*Raw motion data*/
     RawMotionState: string;
     /*Position data*/
@@ -977,7 +977,7 @@ interface MoveToStatePack {
     Contact: string;
 }
 
-interface PackedMotionCommand {
+export interface PackedMotionCommand {
     /*Command Id*/
     CommandId: string;
     /*Sequence of the animation.*/
@@ -987,7 +987,7 @@ interface PackedMotionCommand {
 }
 
 /*Data related to the movement of the object sent from a client*/
-interface RawMotionState {
+export interface RawMotionState {
     /*Command Id*/
     Flags: string;
     CurrentHoldkey: string;
@@ -1014,7 +1014,7 @@ interface RawMotionState {
 }
 
 /*An autonomous position with sequences*/
-interface AutonomousPositionPack {
+export interface AutonomousPositionPack {
     /*position*/
     Position: string;
     /*The instance sequence value for the object (number of logins for players)*/
@@ -1030,7 +1030,7 @@ interface AutonomousPositionPack {
 }
 
 /*A position with sequences*/
-interface PositionPack {
+export interface PositionPack {
     Flags: string;
     /*the location of the object in the world*/
     Origin: string;
@@ -1051,7 +1051,7 @@ interface PositionPack {
 }
 
 /*Data related to the movement and animation of the object*/
-interface MovementData {
+export interface MovementData {
     /*The movement sequence value for this object*/
     ObjectMovementSequence: string;
     /*The server control sequence value for the object*/
@@ -1093,7 +1093,7 @@ interface MovementData {
 }
 
 /*Contains information for animations and general free motion*/
-interface InterpertedMotionState {
+export interface InterpertedMotionState {
     Flags: string;
     /*Stance.  If not present, defaults to 0x3D (NonCombat)*/
     CurrentStyle: string;
@@ -1111,7 +1111,7 @@ interface InterpertedMotionState {
     TurnSpeed: string;
 }
 
-interface DDDRevision {
+export interface DDDRevision {
     /*Dat File header offset 0x0150, Dat File header offset 0x014C*/
     IdDatFile: string;
     /*The corresponding Dat file revision for this patch set*/
@@ -1121,7 +1121,7 @@ interface DDDRevision {
 }
 
 /*Set of movement parameters required for a MoveTo movement*/
-interface MoveToMovementParameters {
+export interface MoveToMovementParameters {
     /*bitmember of some options related to the motion (TODO needs further research)*/
     Bitmember: string;
     /*The distance to the given location*/
@@ -1139,7 +1139,7 @@ interface MoveToMovementParameters {
 }
 
 /*Set of movement parameters required for a TurnTo motion*/
-interface TurnToMovementParameters {
+export interface TurnToMovementParameters {
     /*bitmember of some options related to the motion (TODO needs further research)*/
     Bitmember: string;
     /*speed of animation*/
@@ -1149,7 +1149,7 @@ interface TurnToMovementParameters {
 }
 
 /*The ObjDesc structure defines an object's visual appearance.*/
-interface ObjDesc {
+export interface ObjDesc {
     /*always 0x11*/
     Version: string;
     /*the number of palettes associated with this object*/
@@ -1163,7 +1163,7 @@ interface ObjDesc {
 }
 
 /*Contains data for a subpalette*/
-interface Subpalette {
+export interface Subpalette {
     /*palette DataId (minus 0x04000000)*/
     Palette: string;
     /*The number of palette entries to skip*/
@@ -1173,7 +1173,7 @@ interface Subpalette {
 }
 
 /*Contains data for texture map changes*/
-interface TextureMapChange {
+export interface TextureMapChange {
     /*the index of the model we are replacing the texture in*/
     PartIndex: string;
     /*texture DataId (minus 0x05000000)*/
@@ -1183,7 +1183,7 @@ interface TextureMapChange {
 }
 
 /*Contains data for animation part changes*/
-interface AnimPartChange {
+export interface AnimPartChange {
     /*The index of the model*/
     PartIndex: string;
     /*model DataId (minus 0x01000000)*/
@@ -1191,7 +1191,7 @@ interface AnimPartChange {
 }
 
 /*Data for a character creation*/
-interface CharGenResult {
+export interface CharGenResult {
     /*Account name*/
     Account: string;
     /*Always 1*/
@@ -1237,7 +1237,7 @@ interface CharGenResult {
 }
 
 /*Basic information for a character used at the Login screen*/
-interface CharacterIdentity {
+export interface CharacterIdentity {
     /*The character Id for this entry.*/
     CharacterId: string;
     /*The name of this character.*/
@@ -1246,14 +1246,14 @@ interface CharacterIdentity {
     SecondsGreyedOut: string;
 }
 
-interface EquipLocation {
+export interface EquipLocation {
     ObjectId: string;
     /*the slot in which this object is equipped, referenced in the Setup table of the dats*/
     Slot: string;
 }
 
 /*The PhysicsDesc structure defines an object's physical behavior.*/
-interface PhysicsDesc {
+export interface PhysicsDesc {
     /*physics data flags*/
     Flags: string;
     /*The current physics state for the object*/
@@ -1299,17 +1299,17 @@ interface PhysicsDesc {
     ObjectInstanceSequence: string;
 }
 
-interface AdminAccountData {
+export interface AdminAccountData {
     AccountName: string;
     BookieId: string;
 }
 
-interface AdminPlayerData {
+export interface AdminPlayerData {
     name: string;
     bookieId: string;
 }
 
-interface VendorProfile {
+export interface VendorProfile {
     /*the categories of items the merchant will buy*/
     Categories: string;
     /*the lowest value of an item the merchant will buy*/
@@ -1329,7 +1329,7 @@ interface VendorProfile {
     CurrencyName: string;
 }
 
-interface ArmorProfile {
+export interface ArmorProfile {
     /*relative protection against slashing damage (multiply by AL for actual protection)*/
     ProtSlashing: string;
     /*relative protection against piercing damage (multiply by AL for actual protection)*/
@@ -1348,7 +1348,7 @@ interface ArmorProfile {
     ProtLightning: string;
 }
 
-interface CreatureAppraisalProfile {
+export interface CreatureAppraisalProfile {
     /*These Flags indication which members will be available for assess.*/
     Flags: string;
     /*current health*/
@@ -1381,7 +1381,7 @@ interface CreatureAppraisalProfile {
     AttrColor: string;
 }
 
-interface WeaponProfile {
+export interface WeaponProfile {
     /*the type of damage done by the weapon*/
     DamageType: string;
     /*the speed of the weapon*/
@@ -1402,13 +1402,13 @@ interface WeaponProfile {
     MaxVelocityEstimated: string;
 }
 
-interface HookAppraisalProfile {
+export interface HookAppraisalProfile {
     Flags: string;
     ValidLocations: string;
     AmmoType: string;
 }
 
-interface SquelchDB {
+export interface SquelchDB {
     /*Account name and */
     AccountHash: string;
     CharacterHash: string;
@@ -1417,7 +1417,7 @@ interface SquelchDB {
 }
 
 /*Set of information related to a squelch entry*/
-interface SquelchInfo {
+export interface SquelchInfo {
     Filters: string;
     /*the name of the squelched player*/
     Name: string;
@@ -1426,7 +1426,7 @@ interface SquelchInfo {
 }
 
 /*Set of information related to purchasing a housing*/
-interface HouseProfile {
+export interface HouseProfile {
     /*the number associated with this dwelling*/
     DwellingId: string;
     /*the object Id of the the current owner*/
@@ -1448,7 +1448,7 @@ interface HouseProfile {
 }
 
 /*The HousePayment structure contains information about a house purchase or maintenance item.*/
-interface HousePayment {
+export interface HousePayment {
     /*the quantity required*/
     Required: string;
     /*the quantity paid*/
@@ -1462,7 +1462,7 @@ interface HousePayment {
 }
 
 /*Set of information related to owning a housing*/
-interface HouseData {
+export interface HouseData {
     /*when the house was purchased (Unix timestamp)*/
     BuyTime: string;
     /*when the current maintenance period began (Unix timestamp)*/
@@ -1478,7 +1478,7 @@ interface HouseData {
 }
 
 /*Set of information related to house access*/
-interface HAR {
+export interface HAR {
     /*0x10000002, seems to be some kind of version. Older version started with bitmask, so starting with 0x10000000 allows them to determine if this is V1 or V2.  The latter half appears to indicate wheither there is a roommate list or not.*/
     Version: string;
     /*0 is private house, 1 = open to public*/
@@ -1492,7 +1492,7 @@ interface HAR {
 }
 
 /*Set of information related to a house guest*/
-interface GuestInfo {
+export interface GuestInfo {
     /*0 is just access to house, 1 = access to storage*/
     HasStoragePermission: string;
     /*Name of the guest*/
@@ -1500,7 +1500,7 @@ interface GuestInfo {
 }
 
 /*Set of information related to a chess game move*/
-interface GameMoveData {
+export interface GameMoveData {
     /*Type of move*/
     Type: string;
     /*Player making the move*/
@@ -1522,7 +1522,7 @@ interface GameMoveData {
 }
 
 /*Set of information related to a salvage operation*/
-interface SalvageOperationsResultData {
+export interface SalvageOperationsResultData {
     /*Which skill was used for the salvaging action*/
     SkillUsed: string;
     /*Set of items that could not be salvaged*/
@@ -1534,13 +1534,13 @@ interface SalvageOperationsResultData {
 }
 
 /*Set of information related to a salvage of an item*/
-interface SalvageResult {
+export interface SalvageResult {
     Material: string;
     Workmanship: string;
     Units: string;
 }
 
-interface FellowshipLockData {
+export interface FellowshipLockData {
     /*Always 0 in captures so far*/
     Unknown1: string;
     /*Value varies. May be 2 WORDs*/
@@ -1552,7 +1552,7 @@ interface FellowshipLockData {
 }
 
 /*Set of information for a fellowship*/
-interface Fellowship {
+export interface Fellowship {
     /*Set of fellowship members with their Id as the key and some additional info for them*/
     Members: string;
     /*the fellowship name*/
@@ -1573,7 +1573,7 @@ interface Fellowship {
 }
 
 /*The FellowInfo structure contains information about a fellowship member.*/
-interface Fellow {
+export interface Fellow {
     /*Perhaps cp stored up before distribution?*/
     XPCached: string;
     /*Perhaps lum stored up before distribution?*/
@@ -1599,7 +1599,7 @@ interface Fellow {
 }
 
 /*Contains information about a contract.*/
-interface ContractTracker {
+export interface ContractTracker {
     Version: string;
     ContractId: string;
     ContractStage: string;
@@ -1608,13 +1608,13 @@ interface ContractTracker {
 }
 
 /*Contains table of ContractTrackers*/
-interface ContractTrackerTable {
+export interface ContractTrackerTable {
     /*Set of contract trackers  with the contractId as the key and some additional info for them*/
     ContactTrackers: string;
 }
 
 /*Set a single character option.*/
-interface Character_PlayerOptionChangedEvent {
+export interface Character_PlayerOptionChangedEvent {
     /*the option being set*/
     Option: string;
     /*the value of the option*/
@@ -1622,7 +1622,7 @@ interface Character_PlayerOptionChangedEvent {
 }
 
 /*Starts a melee attack against a target*/
-interface Combat_TargetedMeleeAttack {
+export interface Combat_TargetedMeleeAttack {
     /*Id of creature being attacked*/
     ObjectId: string;
     /*Height of the attack*/
@@ -1632,7 +1632,7 @@ interface Combat_TargetedMeleeAttack {
 }
 
 /*Starts a missle attack against a target*/
-interface Combat_TargetedMissileAttack {
+export interface Combat_TargetedMissileAttack {
     /*Id of creature being attacked*/
     ObjectId: string;
     /*Height of the attack*/
@@ -1642,37 +1642,37 @@ interface Combat_TargetedMissileAttack {
 }
 
 /*Set AFK mode.*/
-interface Communication_SetAFKMode {
+export interface Communication_SetAFKMode {
     /*Whether the user is AFK*/
     AFK: string;
 }
 
 /*Set AFK message.*/
-interface Communication_SetAFKMessage {
+export interface Communication_SetAFKMessage {
     /*The message text*/
     Message: string;
 }
 
 /*Talking*/
-interface Communication_Talk {
+export interface Communication_Talk {
     /*The message text*/
     Message: string;
 }
 
 /*Removes a friend*/
-interface Social_RemoveFriend {
+export interface Social_RemoveFriend {
     /*The id of the friend to remove*/
     ObjectId: string;
 }
 
 /*Adds a friend*/
-interface Social_AddFriend {
+export interface Social_AddFriend {
     /*The name of the friend to add*/
     CharacterName: string;
 }
 
 /*Store an item in a container.*/
-interface Inventory_PutItemInContainer {
+export interface Inventory_PutItemInContainer {
     /*The item being stored*/
     ObjectId: string;
     /*The container the item is being stored in*/
@@ -1682,7 +1682,7 @@ interface Inventory_PutItemInContainer {
 }
 
 /*Gets and weilds an item.*/
-interface Inventory_GetAndWieldItem {
+export interface Inventory_GetAndWieldItem {
     /*The item being equipped*/
     ObjectId: string;
     /*The position in the container where the item is being placed*/
@@ -1690,70 +1690,70 @@ interface Inventory_GetAndWieldItem {
 }
 
 /*Drop an item.*/
-interface Inventory_DropItem {
+export interface Inventory_DropItem {
     /*The item being dropped*/
     ObjectId: string;
 }
 
 /*Swear allegiance*/
-interface Allegiance_SwearAllegiance {
+export interface Allegiance_SwearAllegiance {
     /*The person you are swearing allegiance to*/
     ObjectId: string;
 }
 
 /*Break allegiance*/
-interface Allegiance_BreakAllegiance {
+export interface Allegiance_BreakAllegiance {
     /*The person you are breaking allegiance from*/
     ObjectId: string;
 }
 
 /*Allegiance update request*/
-interface Allegiance_UpdateRequest {
+export interface Allegiance_UpdateRequest {
     /*Whether the UI panel is open*/
     On: string;
 }
 
 /*Clears friend list*/
-interface Social_ClearFriends {
+export interface Social_ClearFriends {
 }
 
 /*Teleport to the PKLite Arena*/
-interface Character_TeleToPKLArena {
+export interface Character_TeleToPKLArena {
 }
 
 /*Teleport to the PK Arena*/
-interface Character_TeleToPKArena {
+export interface Character_TeleToPKArena {
 }
 
 /*Sets a character's display title*/
-interface Social_SetDisplayCharacterTitle {
+export interface Social_SetDisplayCharacterTitle {
     /*Title id*/
     TitleId: string;
 }
 
 /*Query the allegiance name*/
-interface Allegiance_QueryAllegianceName {
+export interface Allegiance_QueryAllegianceName {
 }
 
 /*Clears the allegiance name*/
-interface Allegiance_ClearAllegianceName {
+export interface Allegiance_ClearAllegianceName {
 }
 
 /*Direct message by Id*/
-interface Communication_TalkDirect {
+export interface Communication_TalkDirect {
     /*The message text*/
     Message: string;
     TargetId: string;
 }
 
 /*Sets the allegiance name*/
-interface Allegiance_SetAllegianceName {
+export interface Allegiance_SetAllegianceName {
     /*The new allegiance name*/
     Name: string;
 }
 
 /*Attempt to use an item with a target.*/
-interface Inventory_UseWithTargetEvent {
+export interface Inventory_UseWithTargetEvent {
     /*The item being used*/
     ObjectId: string;
     /*The target*/
@@ -1761,13 +1761,13 @@ interface Inventory_UseWithTargetEvent {
 }
 
 /*Attempt to use an item.*/
-interface Inventory_UseEvent {
+export interface Inventory_UseEvent {
     /*The item being used*/
     ObjectId: string;
 }
 
 /*Sets an allegiance officer*/
-interface Allegiance_SetAllegianceOfficer {
+export interface Allegiance_SetAllegianceOfficer {
     /*The allegiance officer's name*/
     CharacterName: string;
     /*Level of the officer*/
@@ -1775,7 +1775,7 @@ interface Allegiance_SetAllegianceOfficer {
 }
 
 /*Sets an allegiance officer title for a given level*/
-interface Allegiance_SetAllegianceOfficerTitle {
+export interface Allegiance_SetAllegianceOfficerTitle {
     /*The allegiance officer level*/
     Level: string;
     /*The new title for officers at that level*/
@@ -1783,27 +1783,27 @@ interface Allegiance_SetAllegianceOfficerTitle {
 }
 
 /*List the allegiance officer titles*/
-interface Allegiance_ListAllegianceOfficerTitles {
+export interface Allegiance_ListAllegianceOfficerTitles {
 }
 
 /*Clears the allegiance officer titles*/
-interface Allegiance_ClearAllegianceOfficerTitles {
+export interface Allegiance_ClearAllegianceOfficerTitles {
 }
 
 /*Perform the allegiance lock action*/
-interface Allegiance_DoAllegianceLockAction {
+export interface Allegiance_DoAllegianceLockAction {
     /*Allegiance housing action to take*/
     Action: string;
 }
 
 /*Sets a person as an approved vassal*/
-interface Allegiance_SetAllegianceApprovedVassal {
+export interface Allegiance_SetAllegianceApprovedVassal {
     /*Player who is being approved as a vassal*/
     CharacterName: string;
 }
 
 /*Gags a person in allegiance chat*/
-interface Allegiance_AllegianceChatGag {
+export interface Allegiance_AllegianceChatGag {
     /*Player who is being gagged or ungagged*/
     CharacterName: string;
     /*Whether the gag is on*/
@@ -1811,13 +1811,13 @@ interface Allegiance_AllegianceChatGag {
 }
 
 /*Perform the allegiance house action*/
-interface Allegiance_DoAllegianceHouseAction {
+export interface Allegiance_DoAllegianceHouseAction {
     /*Allegiance housing action to take*/
     Action: string;
 }
 
 /*Spend XP to raise a vital.*/
-interface Train_TrainAttribute2nd {
+export interface Train_TrainAttribute2nd {
     /*The Id of the vital*/
     Type: string;
     /*The amount of XP being spent*/
@@ -1825,7 +1825,7 @@ interface Train_TrainAttribute2nd {
 }
 
 /*Spend XP to raise an attribute.*/
-interface Train_TrainAttribute {
+export interface Train_TrainAttribute {
     /*The Id of the attribute*/
     Type: string;
     /*The amount of XP being spent*/
@@ -1833,7 +1833,7 @@ interface Train_TrainAttribute {
 }
 
 /*Spend XP to raise a skill.*/
-interface Train_TrainSkill {
+export interface Train_TrainSkill {
     /*The Id of the skill*/
     Skill: string;
     /*The amount of XP being spent*/
@@ -1841,7 +1841,7 @@ interface Train_TrainSkill {
 }
 
 /*Spend skill credits to train a skill.*/
-interface Train_TrainSkillAdvancementClass {
+export interface Train_TrainSkillAdvancementClass {
     /*The Id of the skill*/
     Skill: string;
     /*The number of skill credits being spent*/
@@ -1849,13 +1849,13 @@ interface Train_TrainSkillAdvancementClass {
 }
 
 /*Cast a spell with no target.*/
-interface Magic_CastUntargetedSpell {
+export interface Magic_CastUntargetedSpell {
     /*The Id of the spell*/
     SpellId: string;
 }
 
 /*Cast a spell on a target*/
-interface Magic_CastTargetedSpell {
+export interface Magic_CastTargetedSpell {
     /*The target of the spell*/
     ObjectId: string;
     /*The Id of the spell*/
@@ -1863,13 +1863,13 @@ interface Magic_CastTargetedSpell {
 }
 
 /*Changes the combat mode*/
-interface Combat_ChangeCombatMode {
+export interface Combat_ChangeCombatMode {
     /*New combat mode for player*/
     Mode: string;
 }
 
 /*Merges one stack with another*/
-interface Inventory_StackableMerge {
+export interface Inventory_StackableMerge {
     /*Id of object where items are being taken from*/
     ObjectId: string;
     /*Id of object where items are being merged into*/
@@ -1879,7 +1879,7 @@ interface Inventory_StackableMerge {
 }
 
 /*Split a stack and place it into a container*/
-interface Inventory_StackableSplitToContainer {
+export interface Inventory_StackableSplitToContainer {
     /*Id of object where items are being taken from*/
     ObjectId: string;
     /*Id of container where items are being moved to*/
@@ -1891,7 +1891,7 @@ interface Inventory_StackableSplitToContainer {
 }
 
 /*Split a stack and place it into the world*/
-interface Inventory_StackableSplitTo3D {
+export interface Inventory_StackableSplitTo3D {
     /*Id of object where items are being taken from*/
     ObjectId: string;
     /*Number of items from the stack to placed into the world*/
@@ -1899,7 +1899,7 @@ interface Inventory_StackableSplitTo3D {
 }
 
 /*Changes an account squelch*/
-interface Communication_ModifyCharacterSquelch {
+export interface Communication_ModifyCharacterSquelch {
     /*0 = unsquelch, 1 = squelch*/
     Add: string;
     /*The character id who's acount should be squelched*/
@@ -1911,7 +1911,7 @@ interface Communication_ModifyCharacterSquelch {
 }
 
 /*Changes an account squelch*/
-interface Communication_ModifyAccountSquelch {
+export interface Communication_ModifyAccountSquelch {
     /*0 = unsquelch, 1 = squelch*/
     Add: string;
     /*The character who's acount should be squelched*/
@@ -1919,7 +1919,7 @@ interface Communication_ModifyAccountSquelch {
 }
 
 /*Changes the global filters, /filter -type as well as /chat and /notell*/
-interface Communication_ModifyGlobalSquelch {
+export interface Communication_ModifyGlobalSquelch {
     /*0 = unsquelch, 1 = squelch*/
     Add: string;
     /*The message type to squelch or unsquelch*/
@@ -1927,7 +1927,7 @@ interface Communication_ModifyGlobalSquelch {
 }
 
 /*Direct message by name*/
-interface Communication_TalkDirectByName {
+export interface Communication_TalkDirectByName {
     /*The message text*/
     Message: string;
     /*Name of person you are sending a message to*/
@@ -1935,7 +1935,7 @@ interface Communication_TalkDirectByName {
 }
 
 /*Buy from a vendor*/
-interface Vendor_Buy {
+export interface Vendor_Buy {
     /*Id of vendor being bought from*/
     ObjectId: string;
     /*Items being purchased from the vendor*/
@@ -1945,7 +1945,7 @@ interface Vendor_Buy {
 }
 
 /*Sell to a vendor*/
-interface Vendor_Sell {
+export interface Vendor_Sell {
     /*Id of vendor being sold to*/
     ObjectId: string;
     /*Items being sold to the vendor*/
@@ -1953,15 +1953,15 @@ interface Vendor_Sell {
 }
 
 /*Teleport to your lifestone. (/lifestone)*/
-interface Character_TeleToLifestone {
+export interface Character_TeleToLifestone {
 }
 
 /*The client is ready for the character to materialize after portalling or logging on.*/
-interface Character_LoginCompleteNotification {
+export interface Character_LoginCompleteNotification {
 }
 
 /*Create a fellowship*/
-interface Fellowship_Create {
+export interface Fellowship_Create {
     /*Name of the fellowship*/
     Name: string;
     /*Whether fellowship shares xp*/
@@ -1969,37 +1969,37 @@ interface Fellowship_Create {
 }
 
 /*Quit the fellowship*/
-interface Fellowship_Quit {
+export interface Fellowship_Quit {
     /*Whether to disband the fellowship while quiting*/
     Disband: string;
 }
 
 /*Dismiss a player from the fellowship*/
-interface Fellowship_Dismiss {
+export interface Fellowship_Dismiss {
     /*Id of player being dismissed from the fellowship*/
     ObjectId: string;
 }
 
 /*Recruit a player to the fellowship*/
-interface Fellowship_Recruit {
+export interface Fellowship_Recruit {
     /*Id of player being recruited to the fellowship*/
     ObjectId: string;
 }
 
 /*Update request*/
-interface Fellowship_UpdateRequest {
+export interface Fellowship_UpdateRequest {
     /*Whether the fellowship UI is visible*/
     On: string;
 }
 
 /*Request update to book data (seems to be sent after failed add page)*/
-interface Writing_BookAddPage {
+export interface Writing_BookAddPage {
     /*Object id of book*/
     ObjectId: string;
 }
 
 /*Updates a page in a book*/
-interface Writing_BookModifyPage {
+export interface Writing_BookModifyPage {
     /*Id of book*/
     ObjectId: string;
     /*Number of page being updated*/
@@ -2009,13 +2009,13 @@ interface Writing_BookModifyPage {
 }
 
 /*Add a page to a book*/
-interface Writing_BookData {
+export interface Writing_BookData {
     /*Id of book to add a page to*/
     ObjectId: string;
 }
 
 /*Removes a page from a book*/
-interface Writing_BookDeletePage {
+export interface Writing_BookDeletePage {
     /*Id of book to remove a page from*/
     ObjectId: string;
     /*Number of page to remove*/
@@ -2023,7 +2023,7 @@ interface Writing_BookDeletePage {
 }
 
 /*Requests data for a page in a book*/
-interface Writing_BookPageData {
+export interface Writing_BookPageData {
     /*Id of book*/
     ObjectId: string;
     /*Number of page to get data for*/
@@ -2031,7 +2031,7 @@ interface Writing_BookPageData {
 }
 
 /*Sets the inscription on an object*/
-interface Writing_SetInscription {
+export interface Writing_SetInscription {
     /*Id of object being inscribed*/
     ObjectId: string;
     /*Inscription text*/
@@ -2039,13 +2039,13 @@ interface Writing_SetInscription {
 }
 
 /*Appraise something*/
-interface Item_Appraise {
+export interface Item_Appraise {
     /*The object being appraised*/
     ObjectId: string;
 }
 
 /*Give an item to someone.*/
-interface Inventory_GiveObjectRequest {
+export interface Inventory_GiveObjectRequest {
     /*The recipient of the item*/
     TargetId: string;
     /*The item being given*/
@@ -2055,7 +2055,7 @@ interface Inventory_GiveObjectRequest {
 }
 
 /*Advocate Teleport*/
-interface Advocate_Teleport {
+export interface Advocate_Teleport {
     /*Person being teleported*/
     ObjectId: string;
     /*Destination to teleport target to*/
@@ -2063,7 +2063,7 @@ interface Advocate_Teleport {
 }
 
 /*Sends an abuse report.*/
-interface Character_AbuseLogRequest {
+export interface Character_AbuseLogRequest {
     /*Name of character*/
     Character: string;
     /*1*/
@@ -2073,19 +2073,19 @@ interface Character_AbuseLogRequest {
 }
 
 /*Joins a chat channel*/
-interface Communication_AddToChannel {
+export interface Communication_AddToChannel {
     /*Channel id*/
     Channel: string;
 }
 
 /*Leaves a chat channel*/
-interface Communication_RemoveFromChannel {
+export interface Communication_RemoveFromChannel {
     /*Channel id*/
     Channel: string;
 }
 
 /*Sends a message to a chat channel*/
-interface Communication_ChannelBroadcast {
+export interface Communication_ChannelBroadcast {
     /*Channel id*/
     Channel: string;
     /*the name of the player sending the message*/
@@ -2094,23 +2094,23 @@ interface Communication_ChannelBroadcast {
     Message: string;
 }
 
-interface Communication_ChannelList {
+export interface Communication_ChannelList {
     /*Channel id*/
     Channel: string;
 }
 
 /*Requests a channel index*/
-interface Communication_ChannelIndex {
+export interface Communication_ChannelIndex {
 }
 
 /*Stop viewing the contents of a container*/
-interface Inventory_NoLongerViewingContents {
+export interface Inventory_NoLongerViewingContents {
     /*Id of the container*/
     ObjectId: string;
 }
 
 /*Splits an item to a wield location.*/
-interface Inventory_StackableSplitToWield {
+export interface Inventory_StackableSplitToWield {
     /*Id of object being split*/
     ObjectId: string;
     /*Equip location to place the stack*/
@@ -2120,58 +2120,58 @@ interface Inventory_StackableSplitToWield {
 }
 
 /*Add an item to the shortcut bar.*/
-interface Character_AddShortCut {
+export interface Character_AddShortCut {
     /*Shortcut information*/
     Shortcut: string;
 }
 
 /*Remove an item from the shortcut bar.*/
-interface Character_RemoveShortCut {
+export interface Character_RemoveShortCut {
     /*Position on the shortcut bar (0-8) of the item to be removed*/
     Index: string;
 }
 
 /*Set multiple character options.*/
-interface Character_CharacterOptionsEvent {
+export interface Character_CharacterOptionsEvent {
     Options: string;
 }
 
 /*Removes a spell from the spell book*/
-interface Magic_RemoveSpell {
+export interface Magic_RemoveSpell {
     SpellId: string;
 }
 
 /*Cancels an attack*/
-interface Combat_CancelAttack {
+export interface Combat_CancelAttack {
 }
 
 /*Query's a creatures health*/
-interface Combat_QueryHealth {
+export interface Combat_QueryHealth {
     ObjectId: string;
 }
 
 /*Query a character's age*/
-interface Character_QueryAge {
+export interface Character_QueryAge {
     ObjectId: string;
 }
 
 /*Query a character's birth day*/
-interface Character_QueryBirth {
+export interface Character_QueryBirth {
     ObjectId: string;
 }
 
 /*Emote message*/
-interface Communication_Emote {
+export interface Communication_Emote {
     Message: string;
 }
 
 /*Soul emote message*/
-interface Communication_SoulEmote {
+export interface Communication_SoulEmote {
     Message: string;
 }
 
 /*Add a spell to a spell bar.*/
-interface Character_AddSpellFavorite {
+export interface Character_AddSpellFavorite {
     /*The spell's Id*/
     SpellId: string;
     /*Position on the spell bar where the spell is to be added*/
@@ -2181,7 +2181,7 @@ interface Character_AddSpellFavorite {
 }
 
 /*Remove a spell from a spell bar.*/
-interface Character_RemoveSpellFavorite {
+export interface Character_RemoveSpellFavorite {
     /*The spell's Id*/
     SpellId: string;
     /*The spell bar number*/
@@ -2189,21 +2189,21 @@ interface Character_RemoveSpellFavorite {
 }
 
 /*Request a ping*/
-interface Character_RequestPing {
+export interface Character_RequestPing {
 }
 
 /*Starts trading with another player.*/
-interface Trade_OpenTradeNegotiations {
+export interface Trade_OpenTradeNegotiations {
     /*Id of player to trade with*/
     ObjectId: string;
 }
 
 /*Ends trading, when trade window is closed?*/
-interface Trade_CloseTradeNegotiations {
+export interface Trade_CloseTradeNegotiations {
 }
 
 /*Adds an object to the trade.*/
-interface Trade_AddToTrade {
+export interface Trade_AddToTrade {
     /*Id of object to add to the trade*/
     ObjectId: string;
     /*Slot in trade window to add the object*/
@@ -2211,94 +2211,94 @@ interface Trade_AddToTrade {
 }
 
 /*Accepts a trade.*/
-interface Trade_AcceptTrade {
+export interface Trade_AcceptTrade {
     /*The contents of the trade*/
     Contents: string;
 }
 
 /*Declines a trade, when cancel is clicked?*/
-interface Trade_DeclineTrade {
+export interface Trade_DeclineTrade {
 }
 
 /*Resets the trade, when clear all is clicked?*/
-interface Trade_ResetTrade {
+export interface Trade_ResetTrade {
 }
 
 /*Clears the player's corpse looting consent list, /consent clear*/
-interface Character_ClearPlayerConsentList {
+export interface Character_ClearPlayerConsentList {
 }
 
 /*Display the player's corpse looting consent list, /consent who */
-interface Character_DisplayPlayerConsentList {
+export interface Character_DisplayPlayerConsentList {
 }
 
 /*Remove your corpse looting permission for the given player, /consent remove */
-interface Character_RemoveFromPlayerConsentList {
+export interface Character_RemoveFromPlayerConsentList {
     /*Name of player to remove permission to loot the playes corpses*/
     TargetName: string;
 }
 
 /*Grants a player corpse looting permission, /permit add*/
-interface Character_AddPlayerPermission {
+export interface Character_AddPlayerPermission {
     /*Name of player to grant permission to loot the playes corpses*/
     TargetName: string;
 }
 
 /*Buy a house*/
-interface House_BuyHouse {
+export interface House_BuyHouse {
     ObjectId: string;
     /*items being used to buy the house*/
     Items: string;
 }
 
 /*Query your house info, during signin*/
-interface House_QueryHouse {
+export interface House_QueryHouse {
 }
 
 /*Abandons your house*/
-interface House_AbandonHouse {
+export interface House_AbandonHouse {
 }
 
 /*Revokes a player's corpse looting permission, /permit remove*/
-interface Character_RemovePlayerPermission {
+export interface Character_RemovePlayerPermission {
     /*Name of player to remove permission to loot the playes corpses*/
     TargetName: string;
 }
 
 /*Pay rent for a house*/
-interface House_RentHouse {
+export interface House_RentHouse {
     ObjectId: string;
     /*items being used to pay the house rent*/
     Items: string;
 }
 
 /*Sets a new fill complevel for a component*/
-interface Character_SetDesiredComponentLevel {
+export interface Character_SetDesiredComponentLevel {
     /*class id of the component*/
     Wcid: string;
     Amount: string;
 }
 
 /*Adds a guest to your house guest list*/
-interface House_AddPermanentGuest {
+export interface House_AddPermanentGuest {
     /*Player name to add to your house guest list*/
     GuestName: string;
 }
 
 /*Removes a specific player from your house guest list, /house guest remove*/
-interface House_RemovePermanentGuest {
+export interface House_RemovePermanentGuest {
     /*Player name to remove from your house guest list*/
     GuestName: string;
 }
 
 /*Sets your house open status*/
-interface House_SetOpenHouseStatus {
+export interface House_SetOpenHouseStatus {
     /*Whether the house is open or not*/
     OpenHouse: string;
 }
 
 /*Changes a specific players storage permission, /house storage add/remove*/
-interface House_ChangeStoragePermission {
+export interface House_ChangeStoragePermission {
     /*Player name to boot from your house*/
     GuestName: string;
     /*Whether the player has permission on your storage*/
@@ -2306,81 +2306,81 @@ interface House_ChangeStoragePermission {
 }
 
 /*Boots a specific player from your house /house boot*/
-interface House_BootSpecificHouseGuest {
+export interface House_BootSpecificHouseGuest {
     /*Player name to boot from your house*/
     GuestName: string;
 }
 
 /*Removes all storage permissions, /house storage remove_all*/
-interface House_RemoveAllStoragePermission {
+export interface House_RemoveAllStoragePermission {
 }
 
 /*Requests your full guest list, /house guest list*/
-interface House_RequestFullGuestList {
+export interface House_RequestFullGuestList {
 }
 
 /*Sets the allegiance message of the day, /allegiance motd set*/
-interface Allegiance_SetMotd {
+export interface Allegiance_SetMotd {
     /*Text motd to display*/
     Message: string;
 }
 
 /*Query the motd, /allegiance motd*/
-interface Allegiance_QueryMotd {
+export interface Allegiance_QueryMotd {
 }
 
 /*Clear the motd, /allegiance motd clear*/
-interface Allegiance_ClearMotd {
+export interface Allegiance_ClearMotd {
 }
 
 /*Gets SlumLord info, sent after getting a failed house transaction*/
-interface House_QueryLord {
+export interface House_QueryLord {
     /*SlumLord Id to request info for*/
     ObjectId: string;
 }
 
 /*Adds all to your storage permissions, /house storage add -all*/
-interface House_AddAllStoragePermission {
+export interface House_AddAllStoragePermission {
 }
 
 /*Removes all guests, /house guest remove_all*/
-interface House_RemoveAllPermanentGuests {
+export interface House_RemoveAllPermanentGuests {
 }
 
 /*Boot everyone from your house, /house boot -all*/
-interface House_BootEveryone {
+export interface House_BootEveryone {
 }
 
 /*Teleports you to your house, /house recall*/
-interface House_TeleToHouse {
+export interface House_TeleToHouse {
 }
 
 /*Queries an item's mana*/
-interface Item_QueryItemMana {
+export interface Item_QueryItemMana {
     /*Id of object whos mana is being queried*/
     ObjectId: string;
 }
 
 /*Modify whether house hooks are visibile or not, /house hooks on/off*/
-interface House_SetHooksVisibility {
+export interface House_SetHooksVisibility {
     /*Whether hooks are visible or not*/
     Visible: string;
 }
 
 /*Modify whether allegiance members are guests, /house guest add_allegiance/remove_allegiance*/
-interface House_ModifyAllegianceGuestPermission {
+export interface House_ModifyAllegianceGuestPermission {
     /*Whether we are adding or removing permissions*/
     Add: string;
 }
 
 /*Modify whether allegiance members can access storage, /house storage add_allegiance/remove_allegiance*/
-interface House_ModifyAllegianceStoragePermission {
+export interface House_ModifyAllegianceStoragePermission {
     /*Whether we are adding or removing permissions*/
     Add: string;
 }
 
 /*Joins a chess game*/
-interface Game_Join {
+export interface Game_Join {
     /*Id of the game the player is joining*/
     GameId: string;
     /*Which team the player is joining as*/
@@ -2388,11 +2388,11 @@ interface Game_Join {
 }
 
 /*Quits a chess game*/
-interface Game_Quit {
+export interface Game_Quit {
 }
 
 /*Makes a chess move*/
-interface Game_Move {
+export interface Game_Move {
     /*Current x location of piece being moved*/
     XFrom: string;
     /*Current y location of piece being moved*/
@@ -2404,30 +2404,30 @@ interface Game_Move {
 }
 
 /*Skip a move?*/
-interface Game_MovePass {
+export interface Game_MovePass {
 }
 
 /*Offer or confirm stalemate*/
-interface Game_Stalemate {
+export interface Game_Stalemate {
     /*Whether stalemate offer is active or not*/
     On: string;
 }
 
 /*Lists available house /house available*/
-interface House_ListAvailableHouses {
+export interface House_ListAvailableHouses {
     /*Type of house being listed*/
     Type: string;
 }
 
 /*Confirms a dialog*/
-interface Character_ConfirmationResponse {
+export interface Character_ConfirmationResponse {
     Type: string;
     Context: string;
     Accepted: string;
 }
 
 /*Boots a player from the allegiance, optionally all characters on their account*/
-interface Allegiance_BreakAllegianceBoot {
+export interface Allegiance_BreakAllegianceBoot {
     /*Name of character to boot*/
     BooteeName: string;
     /*Whether to boot all characters on their account*/
@@ -2435,54 +2435,54 @@ interface Allegiance_BreakAllegianceBoot {
 }
 
 /*Teleports player to their allegiance housing, /house mansion_recall*/
-interface House_TeleToMansion {
+export interface House_TeleToMansion {
 }
 
 /*Player is commiting suicide*/
-interface Character_Suicide {
+export interface Character_Suicide {
 }
 
 /*Request allegiance info for a player*/
-interface Allegiance_AllegianceInfoRequest {
+export interface Allegiance_AllegianceInfoRequest {
     /*Name of player whom the request is targeting*/
     TargetName: string;
 }
 
 /*Salvages items*/
-interface Inventory_CreateTinkeringTool {
+export interface Inventory_CreateTinkeringTool {
     ToolId: string;
     /*Set of object Id's to be salvaged*/
     Items: string;
 }
 
 /*Changes the spell book filter*/
-interface Character_SpellbookFilterEvent {
+export interface Character_SpellbookFilterEvent {
     /*Mask containing the different filters applied to the spellbook*/
     Options: string;
 }
 
 /*Teleport to the marketplace*/
-interface Character_TeleToMarketplace {
+export interface Character_TeleToMarketplace {
 }
 
 /*Enter PKLite mode*/
-interface Character_EnterPKLite {
+export interface Character_EnterPKLite {
 }
 
 /*Fellowship Assign a new leader*/
-interface Fellowship_AssignNewLeader {
+export interface Fellowship_AssignNewLeader {
     /*Id of player to make the new leader of the fellowship*/
     ObjectId: string;
 }
 
 /*Fellowship Change openness*/
-interface Fellowship_ChangeFellowOpeness {
+export interface Fellowship_ChangeFellowOpeness {
     /*Sets whether the fellowship is open or not*/
     Open: string;
 }
 
 /*Boots a player from the allegiance chat*/
-interface Allegiance_AllegianceChatBoot {
+export interface Allegiance_AllegianceChatBoot {
     /*Character name being booted*/
     CharacterName: string;
     /*Reason for getting booted*/
@@ -2490,47 +2490,47 @@ interface Allegiance_AllegianceChatBoot {
 }
 
 /*Bans a player from the allegiance*/
-interface Allegiance_AddAllegianceBan {
+export interface Allegiance_AddAllegianceBan {
     /*Character name being banned*/
     CharacterName: string;
 }
 
 /*Removes a player ban from the allegiance*/
-interface Allegiance_RemoveAllegianceBan {
+export interface Allegiance_RemoveAllegianceBan {
     /*Character name being unbanned*/
     CharacterName: string;
 }
 
 /*Display allegiance bans*/
-interface Allegiance_ListAllegianceBans {
+export interface Allegiance_ListAllegianceBans {
 }
 
 /*Removes an allegiance officer*/
-interface Allegiance_RemoveAllegianceOfficer {
+export interface Allegiance_RemoveAllegianceOfficer {
     /*Character name being removed*/
     CharacterName: string;
 }
 
 /*List allegiance officers*/
-interface Allegiance_ListAllegianceOfficers {
+export interface Allegiance_ListAllegianceOfficers {
 }
 
 /*Clear allegiance officers*/
-interface Allegiance_ClearAllegianceOfficers {
+export interface Allegiance_ClearAllegianceOfficers {
 }
 
 /*Recalls to players allegiance hometown*/
-interface Allegiance_RecallAllegianceHometown {
+export interface Allegiance_RecallAllegianceHometown {
 }
 
 /*Admin Returns a plugin list response*/
-interface Admin_QueryPluginListResponse {
+export interface Admin_QueryPluginListResponse {
     Context: string;
     PluginList: string;
 }
 
 /*Admin Returns plugin info*/
-interface Admin_QueryPluginResponse {
+export interface Admin_QueryPluginResponse {
     Context: string;
     Success: string;
     PluginName: string;
@@ -2540,7 +2540,7 @@ interface Admin_QueryPluginResponse {
 }
 
 /*Completes the barber interaction*/
-interface Character_FinishBarber {
+export interface Character_FinishBarber {
     BasePalette: string;
     HeadObject: string;
     HeadTexture: string;
@@ -2562,25 +2562,25 @@ interface Character_FinishBarber {
 }
 
 /*Abandons a contract*/
-interface Social_AbandonContract {
+export interface Social_AbandonContract {
     /*Id of contact being abandoned*/
     ContractId: string;
 }
 
 /*Performs a jump*/
-interface Movement_Jump {
+export interface Movement_Jump {
     /*set of jumping data*/
     Jump: string;
 }
 
 /*Move to state data*/
-interface Movement_MoveToState {
+export interface Movement_MoveToState {
     /*set of move to data, currently not in client, may not be used?*/
     MoveToState: string;
 }
 
 /*Performs a movement based on input*/
-interface Movement_DoMovementCommand {
+export interface Movement_DoMovementCommand {
     /*motion command*/
     Motion: string;
     /*speed of movement*/
@@ -2590,7 +2590,7 @@ interface Movement_DoMovementCommand {
 }
 
 /*Stops a movement*/
-interface Movement_StopMovementCommand {
+export interface Movement_StopMovementCommand {
     /*Motion being stopped*/
     Motion: string;
     /*Key being held*/
@@ -2598,37 +2598,37 @@ interface Movement_StopMovementCommand {
 }
 
 /*Sets an autonomy level*/
-interface Movement_AutonomyLevel {
+export interface Movement_AutonomyLevel {
     /*Seems to be 0, 1 or 2. I think 0/1 is server controlled, 2 is client controlled*/
     AutonomyLevel: string;
 }
 
 /*Sends an autonomous position*/
-interface Movement_AutonomousPosition {
+export interface Movement_AutonomousPosition {
     /*Set of autonomous position data*/
     Position: string;
 }
 
 /*Performs a non autonomous jump*/
-interface Movement_Jump_NonAutonomous {
+export interface Movement_Jump_NonAutonomous {
     /*Power of jump*/
     Extent: string;
 }
 
 /*Allegiance update cancelled*/
-interface Allegiance_AllegianceUpdateAborted {
+export interface Allegiance_AllegianceUpdateAborted {
     /*Failure type*/
     FailureType: string;
 }
 
 /*Display a message in a popup message window.*/
-interface Communication_PopUpString {
+export interface Communication_PopUpString {
     /*the message text*/
     Message: string;
 }
 
 /*Information describing your character.*/
-interface Login_PlayerDescription {
+export interface Login_PlayerDescription {
     /*Contains basic data types (int, float bool, etc.)*/
     BaseQualities: string;
     Qualities: string;
@@ -2640,20 +2640,20 @@ interface Login_PlayerDescription {
 }
 
 /*Returns info related to your monarch, patron and vassals.*/
-interface Allegiance_AllegianceUpdate {
+export interface Allegiance_AllegianceUpdate {
     Rank: string;
     Profile: string;
 }
 
 /*Friends list update*/
-interface Social_FriendsUpdate {
+export interface Social_FriendsUpdate {
     Friends: string;
     /*The type of the update*/
     Type: string;
 }
 
 /*Store an item in a container.*/
-interface Item_ServerSaysContainId {
+export interface Item_ServerSaysContainId {
     /*the object Id of the item being stored*/
     ObjectId: string;
     /*the object Id of the container the item is being stored in*/
@@ -2665,7 +2665,7 @@ interface Item_ServerSaysContainId {
 }
 
 /*Equip an item.*/
-interface Item_WearItem {
+export interface Item_WearItem {
     /*the object Id of the item being equipped*/
     ObjectId: string;
     /*the slot(s) the item uses*/
@@ -2673,7 +2673,7 @@ interface Item_WearItem {
 }
 
 /*Titles for the current character.*/
-interface Social_CharacterTitleTable {
+export interface Social_CharacterTitleTable {
     /*the title Id of the currently active title*/
     DisplayTitle: string;
     /*Titles character currently has.*/
@@ -2681,7 +2681,7 @@ interface Social_CharacterTitleTable {
 }
 
 /*Set a title for the current character.*/
-interface Social_AddOrSetCharacterTitle {
+export interface Social_AddOrSetCharacterTitle {
     /*the title Id of the new title*/
     NewTitle: string;
     /*true if the title should be made the current title, false if it should just be added to the title list*/
@@ -2689,13 +2689,13 @@ interface Social_AddOrSetCharacterTitle {
 }
 
 /*Close Container - Only sent when explicitly closed*/
-interface Item_StopViewingObjectContents {
+export interface Item_StopViewingObjectContents {
     /*Chest or corpse being closed*/
     ObjectId: string;
 }
 
 /*Open the buy/sell panel for a merchant.*/
-interface Vendor_VendorInfo {
+export interface Vendor_VendorInfo {
     /*the object Id of the merchant*/
     ObjectId: string;
     /*the object Id of the merchant*/
@@ -2705,7 +2705,7 @@ interface Vendor_VendorInfo {
 }
 
 /*Opens barber UI*/
-interface Character_StartBarber {
+export interface Character_StartBarber {
     BasePalette: string;
     HeadObject: string;
     HeadTexture: string;
@@ -2727,19 +2727,19 @@ interface Character_StartBarber {
 }
 
 /*Member left fellowship*/
-interface Fellowship_Quit {
+export interface Fellowship_Quit {
     /*Whether to disband the fellowship while quiting*/
     Disband: string;
 }
 
 /*Member dismissed from fellowship*/
-interface Fellowship_Dismiss {
+export interface Fellowship_Dismiss {
     /*Id of player being dismissed from the fellowship*/
     ObjectId: string;
 }
 
 /*Sent when you first open a book, contains the entire table of contents.*/
-interface Writing_BookOpen {
+export interface Writing_BookOpen {
     /*The readable object you have just opened.*/
     BookId: string;
     /*The total number of pages in the book.*/
@@ -2755,7 +2755,7 @@ interface Writing_BookOpen {
 }
 
 /*Response to an attempt to add a page to a book.*/
-interface Writing_BookAddPageResponse {
+export interface Writing_BookAddPageResponse {
     /*The readable object being changed.*/
     BookId: string;
     /*The number the of page being added in the book.*/
@@ -2765,7 +2765,7 @@ interface Writing_BookAddPageResponse {
 }
 
 /*Response to an attempt to delete a page from a book.*/
-interface Writing_BookDeletePageResponse {
+export interface Writing_BookDeletePageResponse {
     /*The readable object being changed.*/
     BookId: string;
     /*The number the of page being deleted in the book.*/
@@ -2775,7 +2775,7 @@ interface Writing_BookDeletePageResponse {
 }
 
 /*Contains the text of a single page of a book, parchment or sign.*/
-interface Writing_BookPageDataResponse {
+export interface Writing_BookPageDataResponse {
     /*The object id for the readable object.*/
     ObjectId: string;
     /*The 0-based index of the page you are currently viewing.*/
@@ -2784,7 +2784,7 @@ interface Writing_BookPageDataResponse {
 }
 
 /*Get Inscription Response, doesn't seem to be really used by client*/
-interface Item_GetInscriptionResponse {
+export interface Item_GetInscriptionResponse {
     /*The inscription comment*/
     Inscription: string;
     /*The name of the inscription author.*/
@@ -2793,7 +2793,7 @@ interface Item_GetInscriptionResponse {
 }
 
 /*The result of an attempt to assess an item or creature.*/
-interface Item_SetAppraiseInfo {
+export interface Item_SetAppraiseInfo {
     /*the object Id of the item or creature being assessed*/
     ObjectId: string;
     Flags: string;
@@ -2843,7 +2843,7 @@ interface Item_SetAppraiseInfo {
 }
 
 /*ChannelBroadcast: Group Chat*/
-interface Communication_ChannelBroadcast {
+export interface Communication_ChannelBroadcast {
     /*Channel id*/
     Channel: string;
     /*Message being sent*/
@@ -2851,53 +2851,53 @@ interface Communication_ChannelBroadcast {
 }
 
 /*ChannelList: Provides list of characters listening to a channel, I assume in response to a command*/
-interface Communication_ChannelList {
+export interface Communication_ChannelList {
     Characters: string;
 }
 
 /*ChannelIndex: Provides list of channels available to the player, I assume in response to a command*/
-interface Communication_ChannelIndex {
+export interface Communication_ChannelIndex {
     Channels: string;
 }
 
 /*Set Pack Contents*/
-interface Item_OnViewContents {
+export interface Item_OnViewContents {
     /*The pack we are setting the contents of. This pack objects and the contained objects may be created before or after the message.*/
     ContainerId: string;
     Items: string;
 }
 
 /*ServerSaysMoveItem: Removes an item from inventory (when you place it on the ground or give it away)*/
-interface Item_ServerSaysMoveItem {
+export interface Item_ServerSaysMoveItem {
     /*The item leaving your inventory.*/
     ObjectId: string;
 }
 
 /*HandleAttackDoneEvent: Melee attack completed*/
-interface Combat_HandleAttackDoneEvent {
+export interface Combat_HandleAttackDoneEvent {
     /*Number of user attacks, doesn't appear to be used by client*/
     Number: string;
 }
 
 /*RemoveSpell: Delete a spell from your spellbook.*/
-interface Magic_RemoveSpell {
+export interface Magic_RemoveSpell {
     SpellId: string;
 }
 
 /*You just died.*/
-interface Combat_HandleVictimNotificationEventSelf {
+export interface Combat_HandleVictimNotificationEventSelf {
     /*Your (typically mocking) death message.*/
     Message: string;
 }
 
 /*Message for a death, something you killed or your own death message.*/
-interface Combat_HandleVictimNotificationEventOther {
+export interface Combat_HandleVictimNotificationEventOther {
     /*The text of the nearby or present death message.*/
     Message: string;
 }
 
 /*HandleAttackerNotificationEvent: You have hit your target with a melee attack.*/
-interface Combat_HandleAttackerNotificationEvent {
+export interface Combat_HandleAttackerNotificationEvent {
     /*the name of your target*/
     DefenderName: string;
     /*the type of damage done*/
@@ -2913,7 +2913,7 @@ interface Combat_HandleAttackerNotificationEvent {
 }
 
 /*HandleDefenderNotificationEvent: You have been hit by a creature's melee attack.*/
-interface Combat_HandleDefenderNotificationEvent {
+export interface Combat_HandleDefenderNotificationEvent {
     /*the name of the creature*/
     AttackerName: string;
     /*the type of damage done*/
@@ -2931,23 +2931,23 @@ interface Combat_HandleDefenderNotificationEvent {
 }
 
 /*HandleEvasionAttackerNotificationEvent: Your target has evaded your melee attack.*/
-interface Combat_HandleEvasionAttackerNotificationEvent {
+export interface Combat_HandleEvasionAttackerNotificationEvent {
     /*the name of your target*/
     DefenderName: string;
 }
 
 /*HandleEvasionDefenderNotificationEvent: You have evaded a creature's melee attack.*/
-interface Combat_HandleEvasionDefenderNotificationEvent {
+export interface Combat_HandleEvasionDefenderNotificationEvent {
     /*the name of the creature*/
     AttackerName: string;
 }
 
 /*HandleCommenceAttackEvent: Start melee attack*/
-interface Combat_HandleCommenceAttackEvent {
+export interface Combat_HandleCommenceAttackEvent {
 }
 
 /*QueryHealthResponse: Update a creature's health bar.*/
-interface Combat_QueryHealthResponse {
+export interface Combat_QueryHealthResponse {
     /*the object Id of the creature*/
     ObjectId: string;
     /*the amount of health remaining, scaled from 0.0 (none) to 1.0 (full)*/
@@ -2955,7 +2955,7 @@ interface Combat_QueryHealthResponse {
 }
 
 /*QueryAgeResponse: happens when you do /age in the game*/
-interface Character_QueryAgeResponse {
+export interface Character_QueryAgeResponse {
     /*Name of target, or empty if self*/
     TargetName: string;
     /*Your age in the format 1mo 1d 1h 1m 1s*/
@@ -2963,42 +2963,42 @@ interface Character_QueryAgeResponse {
 }
 
 /*UseDone: Ready. Previous action complete*/
-interface Item_UseDone {
+export interface Item_UseDone {
     FailureType: string;
 }
 
 /*Allegiance update finished*/
-interface Allegiance_AllegianceUpdateDone {
+export interface Allegiance_AllegianceUpdateDone {
     /*Failure type*/
     FailureType: string;
 }
 
 /*Fellow update is done*/
-interface Fellowship_FellowUpdateDone {
+export interface Fellowship_FellowUpdateDone {
 }
 
 /*Fellow stats are done*/
-interface Fellowship_FellowStatsDone {
+export interface Fellowship_FellowStatsDone {
 }
 
 /*Close Assess Panel*/
-interface Item_AppraiseDone {
+export interface Item_AppraiseDone {
     /*Seems to always be 0. Client does not use it.*/
     Unknown: string;
 }
 
 /*Ping Reply*/
-interface Character_ReturnPing {
+export interface Character_ReturnPing {
 }
 
 /*Squelch and Filter List*/
-interface Communication_SetSquelchDB {
+export interface Communication_SetSquelchDB {
     /*The set of squelch information for the user*/
     SquelchDB: string;
 }
 
 /*RegisterTrade: Send to begin a trade and display the trade window*/
-interface Trade_RegisterTrade {
+export interface Trade_RegisterTrade {
     /*Person initiating the trade*/
     InitiatorId: string;
     /*Person receiving the trade*/
@@ -3008,19 +3008,19 @@ interface Trade_RegisterTrade {
 }
 
 /*OpenTrade: Open trade window*/
-interface Trade_OpenTrade {
+export interface Trade_OpenTrade {
     /*Person opening the trade*/
     ObjectId: string;
 }
 
 /*CloseTrade: End trading*/
-interface Trade_CloseTrade {
+export interface Trade_CloseTrade {
     /*Reason trade was cancelled*/
     Reason: string;
 }
 
 /*RemoveFromTrade: Item was removed from trade window*/
-interface Trade_AddToTrade {
+export interface Trade_AddToTrade {
     /*The item being removed from trade window*/
     ObjectId: string;
     /*Side of the trade window object was removed*/
@@ -3028,7 +3028,7 @@ interface Trade_AddToTrade {
 }
 
 /*Removes an item from the trade window, not sure if this is used still?*/
-interface Trade_RemoveFromTrade {
+export interface Trade_RemoveFromTrade {
     /*The item being removed from the trade window*/
     ObjectId: string;
     /*Side of the trade window object was removed*/
@@ -3036,25 +3036,25 @@ interface Trade_RemoveFromTrade {
 }
 
 /*AcceptTrade: The trade was accepted*/
-interface Trade_AcceptTrade {
+export interface Trade_AcceptTrade {
     /*Person who accepted the trade*/
     ObjectId: string;
 }
 
 /*DeclineTrade: The trade was declined*/
-interface Trade_DeclineTrade {
+export interface Trade_DeclineTrade {
     /*Person who declined the trade*/
     ObjectId: string;
 }
 
 /*ResetTrade: The trade window was reset*/
-interface Trade_ResetTrade {
+export interface Trade_ResetTrade {
     /*Person who cleared the window*/
     ObjectId: string;
 }
 
 /*TradeFailure: Failure to add a trade item*/
-interface Trade_TradeFailure {
+export interface Trade_TradeFailure {
     /*Item that could not be added to trade window*/
     ObjectId: string;
     /*The numeric reason it couldn't be traded. Client does not appear to use this.*/
@@ -3062,41 +3062,41 @@ interface Trade_TradeFailure {
 }
 
 /*ClearTradeAcceptance: Failure to complete a trade*/
-interface Trade_ClearTradeAcceptance {
+export interface Trade_ClearTradeAcceptance {
 }
 
 /*Buy a dwelling or pay maintenance*/
-interface House_HouseProfile {
+export interface House_HouseProfile {
     /*the object Id of the dwelling's covenant crystal*/
     ObjectId: string;
     Profile: string;
 }
 
 /*House panel information for owners.*/
-interface House_HouseData {
+export interface House_HouseData {
     /*the house data*/
     Data: string;
 }
 
 /*House Data*/
-interface House_HouseStatus {
+export interface House_HouseStatus {
     /*Type of message to display*/
     NoticeType: string;
 }
 
 /*Update Rent Time*/
-interface House_UpdateRentTime {
+export interface House_UpdateRentTime {
     /*when the current maintenance period began (Unix timestamp)*/
     RentTime: string;
 }
 
 /*Update Rent Payment*/
-interface House_UpdateRentPayment {
+export interface House_UpdateRentPayment {
     Rent: string;
 }
 
 /*Update Restrictions*/
-interface House_UpdateRestrictions {
+export interface House_UpdateRestrictions {
     /*Sequence value for restrictions list for this house*/
     Sequence: string;
     /*Object having restrictions updated*/
@@ -3106,19 +3106,19 @@ interface House_UpdateRestrictions {
 }
 
 /*House Guest List*/
-interface House_UpdateHAR {
+export interface House_UpdateHAR {
     /*Set of house access records*/
     GuestList: string;
 }
 
 /*House Profile*/
-interface House_HouseTransaction {
+export interface House_HouseTransaction {
     /*Type of message to display*/
     NoticeType: string;
 }
 
 /*Update an item's mana bar.*/
-interface Item_QueryItemManaResponse {
+export interface Item_QueryItemManaResponse {
     /*the object Id of the item*/
     ObjectId: string;
     /*the amount of mana remaining, scaled from 0.0 (none) to 1.0 (full)*/
@@ -3128,7 +3128,7 @@ interface Item_QueryItemManaResponse {
 }
 
 /*Display a list of available dwellings in the chat window.*/
-interface House_AvailableHouses {
+export interface House_AvailableHouses {
     /*The type of house (1=cottage, 2=villa, 3=mansion, 4=apartment)*/
     Type: string;
     /*Landcell location of the houses*/
@@ -3138,7 +3138,7 @@ interface House_AvailableHouses {
 }
 
 /*Display a confirmation panel.*/
-interface Character_ConfirmationRequest {
+export interface Character_ConfirmationRequest {
     /*the type of confirmation panel to display*/
     ConfirmationType: string;
     /*sequence number*/
@@ -3148,7 +3148,7 @@ interface Character_ConfirmationRequest {
 }
 
 /*Confirmation done*/
-interface Character_ConfirmationDone {
+export interface Character_ConfirmationDone {
     /*the type of confirmation panel being closed*/
     ConfirmationType: string;
     /*sequence number*/
@@ -3156,7 +3156,7 @@ interface Character_ConfirmationDone {
 }
 
 /*Display an allegiance login/logout message in the chat window.*/
-interface Allegiance_AllegianceLoginNotificationEvent {
+export interface Allegiance_AllegianceLoginNotificationEvent {
     /*the object Id of the player logging in or out*/
     CharacterId: string;
     /*0=logout, 1=login*/
@@ -3164,7 +3164,7 @@ interface Allegiance_AllegianceLoginNotificationEvent {
 }
 
 /*Returns data for a player's allegiance information*/
-interface Allegiance_AllegianceInfoResponseEvent {
+export interface Allegiance_AllegianceInfoResponseEvent {
     /*Target of the request*/
     TargetId: string;
     /*Allegiance Profile Data*/
@@ -3172,7 +3172,7 @@ interface Allegiance_AllegianceInfoResponseEvent {
 }
 
 /*Joining game response*/
-interface Game_JoinGameResponse {
+export interface Game_JoinGameResponse {
     /*Some kind of identifier for this game*/
     GameId: string;
     /*-1 indicates failure, otherwise which team you are for this game*/
@@ -3180,7 +3180,7 @@ interface Game_JoinGameResponse {
 }
 
 /*Start game*/
-interface Game_StartGame {
+export interface Game_StartGame {
     /*Some kind of identifier for this game*/
     GameId: string;
     /*Which team that should go first*/
@@ -3188,7 +3188,7 @@ interface Game_StartGame {
 }
 
 /*Move response*/
-interface Game_MoveResponse {
+export interface Game_MoveResponse {
     /*Some kind of identifier for this game*/
     GameId: string;
     /*If less than or equal to 0, then failure*/
@@ -3196,7 +3196,7 @@ interface Game_MoveResponse {
 }
 
 /*Opponent Turn*/
-interface Game_OpponentTurn {
+export interface Game_OpponentTurn {
     /*Some kind of identifier for this game*/
     GameId: string;
     /*Team making this move*/
@@ -3206,7 +3206,7 @@ interface Game_OpponentTurn {
 }
 
 /*Opponent Stalemate State*/
-interface Game_OpponentStalemateState {
+export interface Game_OpponentStalemateState {
     /*Some kind of identifier for this game*/
     GameId: string;
     /*Team*/
@@ -3216,13 +3216,13 @@ interface Game_OpponentStalemateState {
 }
 
 /*Display a status message in the chat window.*/
-interface Communication_WeenieError {
+export interface Communication_WeenieError {
     /*the type of status message to display*/
     Type: string;
 }
 
 /*Display a parameterized status message in the chat window.*/
-interface Communication_WeenieErrorWithString {
+export interface Communication_WeenieErrorWithString {
     /*the type of status message to display*/
     Type: string;
     /*text to be included in the status message*/
@@ -3230,14 +3230,14 @@ interface Communication_WeenieErrorWithString {
 }
 
 /*End of Chess game*/
-interface Game_GameOver {
+export interface Game_GameOver {
     GameId: string;
     /*Which team was the winner for this game*/
     TeamWinner: string;
 }
 
 /*Set Turbine Chat channel numbers.*/
-interface Communication_ChatRoomTracker {
+export interface Communication_ChatRoomTracker {
     /*the channel number of the allegiance channel*/
     AllegianceRoomId: string;
     /*the channel number of the general channel*/
@@ -3261,24 +3261,24 @@ interface Communication_ChatRoomTracker {
 }
 
 /*TODO: QueryPluginList*/
-interface Admin_QueryPluginList {
+export interface Admin_QueryPluginList {
 }
 
 /*TODO: QueryPlugin*/
-interface Admin_QueryPlugin {
+export interface Admin_QueryPlugin {
 }
 
 /*TODO: QueryPluginResponse*/
-interface Admin_QueryPluginResponse2 {
+export interface Admin_QueryPluginResponse2 {
 }
 
 /*Salvage operation results*/
-interface Inventory_SalvageOperationsResultData {
+export interface Inventory_SalvageOperationsResultData {
     Result: string;
 }
 
 /*Someone has sent you a @tell.*/
-interface Communication_HearDirectSpeech {
+export interface Communication_HearDirectSpeech {
     /*the message text*/
     Message: string;
     /*the name of the creature sending you the message*/
@@ -3294,114 +3294,114 @@ interface Communication_HearDirectSpeech {
 }
 
 /*Create or join a fellowship*/
-interface Fellowship_FullUpdate {
+export interface Fellowship_FullUpdate {
     /*Full set of fellowship information*/
     Fellowship: string;
 }
 
 /*Disband your fellowship.*/
-interface Fellowship_Disband {
+export interface Fellowship_Disband {
 }
 
 /*Add/Update a member to your fellowship.*/
-interface Fellowship_UpdateFellow {
+export interface Fellowship_UpdateFellow {
     Fellow: string;
     UpdateType: string;
 }
 
 /*Add a spell to your spellbook.*/
-interface Magic_UpdateSpell {
+export interface Magic_UpdateSpell {
     /*the spell Id of the new spell*/
     SpellId: string;
 }
 
 /*Apply an enchantment to your character.*/
-interface Magic_UpdateEnchantment {
+export interface Magic_UpdateEnchantment {
     Enchantment: string;
 }
 
 /*Remove an enchantment from your character.*/
-interface Magic_RemoveEnchantment {
+export interface Magic_RemoveEnchantment {
     /*the spell Id of the enchantment to be removed*/
     SpellId: string;
 }
 
 /*Update multiple enchantments from your character.*/
-interface Magic_UpdateMultipleEnchantments {
+export interface Magic_UpdateMultipleEnchantments {
     /*List of enchantments getting updated*/
     Enchantments: string;
 }
 
 /*Remove multiple enchantments from your character.*/
-interface Magic_RemoveMultipleEnchantments {
+export interface Magic_RemoveMultipleEnchantments {
     /*List of enchantments getting removed*/
     Enchantments: string;
 }
 
 /*Silently remove all enchantments from your character, e.g. when you die (no message in the chat window).*/
-interface Magic_PurgeEnchantments {
+export interface Magic_PurgeEnchantments {
 }
 
 /*Silently remove An enchantment from your character.*/
-interface Magic_DispelEnchantment {
+export interface Magic_DispelEnchantment {
     /*the spell Id of the enchantment to be removed*/
     SpellId: string;
 }
 
 /*Silently remove multiple enchantments from your character (no message in the chat window).*/
-interface Magic_DispelMultipleEnchantments {
+export interface Magic_DispelMultipleEnchantments {
     /*List of enchantments getting removed*/
     Enchantments: string;
 }
 
 /*A portal storm is brewing.*/
-interface Misc_PortalStormBrewing {
+export interface Misc_PortalStormBrewing {
     /*Less than or equal to 0.0 resets timer, otherwise sets timer*/
     Extent: string;
 }
 
 /*A portal storm is imminent.*/
-interface Misc_PortalStormImminent {
+export interface Misc_PortalStormImminent {
     /*Less than or equal to 0.0 resets timer, otherwise sets timer*/
     Extent: string;
 }
 
 /*You have been portal stormed.*/
-interface Misc_PortalStorm {
+export interface Misc_PortalStorm {
 }
 
 /*The portal storm has subsided.*/
-interface Misc_PortalStormSubsided {
+export interface Misc_PortalStormSubsided {
 }
 
 /*Display a status message on the Action Viewscreen (the red text overlaid on the 3D area).*/
-interface Communication_TransientString {
+export interface Communication_TransientString {
     /*the message text*/
     Message: string;
 }
 
 /*Remove all bad enchantments from your character.*/
-interface Magic_PurgeBadEnchantments {
+export interface Magic_PurgeBadEnchantments {
 }
 
 /*Sends all contract data*/
-interface Social_SendClientContractTrackerTable {
+export interface Social_SendClientContractTrackerTable {
     ContractTracker: string;
 }
 
 /*Updates a contract data*/
-interface Social_SendClientContractTracker {
+export interface Social_SendClientContractTracker {
     ContractTracker: string;
     DeleteContract: string;
     SetAsDisplayContract: string;
 }
 
 /*Instructs the client to return to 2D mode - the character list.*/
-interface Login_LogOffCharacter {
+export interface Login_LogOffCharacter {
 }
 
 /*Mark a character for deletetion.*/
-interface Character_CharacterDelete {
+export interface Character_CharacterDelete {
     /*The account for the character*/
     Account: string;
     /*Slot to delete*/
@@ -3409,7 +3409,7 @@ interface Character_CharacterDelete {
 }
 
 /*Character creation result*/
-interface Character_SendCharGenResult {
+export interface Character_SendCharGenResult {
     /*The account for the character*/
     Account: string;
     /*The data for the character generation*/
@@ -3417,7 +3417,7 @@ interface Character_SendCharGenResult {
 }
 
 /*The character to log in.*/
-interface Login_SendEnterWorld {
+export interface Login_SendEnterWorld {
     /*The character Id of the character to log in*/
     CharacterId: string;
     /*The account name associated with the character*/
@@ -3425,21 +3425,21 @@ interface Login_SendEnterWorld {
 }
 
 /*Asks server for a new object description*/
-interface Object_SendForceObjdesc {
+export interface Object_SendForceObjdesc {
     /*Object to get new Obj Desc for*/
     ObjectId: string;
 }
 
 /*The user has clicked 'Enter'. This message does not contain the Id of the character logging on; that comes later.*/
-interface Login_SendEnterWorldRequest {
+export interface Login_SendEnterWorldRequest {
 }
 
 /*Sent if player is an PSR, I assume it displays the server version number*/
-interface Admin_SendAdminGetServerVersion {
+export interface Admin_SendAdminGetServerVersion {
 }
 
 /*Seems to be a legacy friends command, /friends old, for when Jan 2006 event changed the friends list*/
-interface Social_SendFriendsCommand {
+export interface Social_SendFriendsCommand {
     /*Only 0 is used in client, I suspect it is list/display*/
     Command: string;
     /*I assume it would be used to pass a friend to add/remove.  Display passes null string.*/
@@ -3447,7 +3447,7 @@ interface Social_SendFriendsCommand {
 }
 
 /*Admin command to restore a character*/
-interface Admin_SendAdminRestoreCharacter {
+export interface Admin_SendAdminRestoreCharacter {
     /*Id of character to restore*/
     ObjectId: string;
     /*Name of character to restore*/
@@ -3457,7 +3457,7 @@ interface Admin_SendAdminRestoreCharacter {
 }
 
 /*Send or receive a message using Turbine Chat.*/
-interface Communication_TurbineChat {
+export interface Communication_TurbineChat {
     /*the number of bytes that follow after this DWORD*/
     MmessageSize: string;
     /*the type of data contained in this message*/
@@ -3510,7 +3510,7 @@ interface Communication_TurbineChat {
 }
 
 /*DDD request for data*/
-interface DDD_RequestDataMessage {
+export interface DDD_RequestDataMessage {
     /*the resource type*/
     ResourceType: string;
     /*the resource Id number*/
@@ -3518,27 +3518,27 @@ interface DDD_RequestDataMessage {
 }
 
 /*TODO*/
-interface DDD_InterrogationResponseMessage {
+export interface DDD_InterrogationResponseMessage {
     Language: string;
     Files: string;
 }
 
 /*Ends DDD message update*/
-interface DDD_EndDDDMessage {
+export interface DDD_EndDDDMessage {
 }
 
 /*Ends DDD update*/
-interface DDD_OnEndDDD {
+export interface DDD_OnEndDDD {
 }
 
 /*Sent every time an object you are aware of ceases to exist. Merely running out of range does not generate this message - in that case, the client just automatically stops tracking it after receiving no updates for a while (which I presume is a very short while).*/
-interface Item_ServerSaysRemove {
+export interface Item_ServerSaysRemove {
     /*The object that ceases to exist.*/
     ObjectId: string;
 }
 
 /*Failure to give an item*/
-interface Character_ServerSaysAttemptFailed {
+export interface Character_ServerSaysAttemptFailed {
     /*Item that could not be given*/
     ObjectId: string;
     /*Failure reason code*/
@@ -3546,7 +3546,7 @@ interface Character_ServerSaysAttemptFailed {
 }
 
 /*For stackable items, this changes the number of items in the stack.*/
-interface Item_UpdateStackSize {
+export interface Item_UpdateStackSize {
     /*Sequence number for this message*/
     Sequence: string;
     /*Item getting it's stack adjusted.*/
@@ -3558,7 +3558,7 @@ interface Item_UpdateStackSize {
 }
 
 /*A Player Kill occurred nearby (also sent for suicides).*/
-interface Combat_HandlePlayerDeathEvent {
+export interface Combat_HandlePlayerDeathEvent {
     /*The death message*/
     Message: string;
     /*The Id of the departed.*/
@@ -3568,13 +3568,13 @@ interface Combat_HandlePlayerDeathEvent {
 }
 
 /*Remove an int property from the character*/
-interface Qualities_PrivateRemoveIntEvent {
+export interface Qualities_PrivateRemoveIntEvent {
     Sequence: string;
     Type: string;
 }
 
 /*Remove an int property from an object*/
-interface Qualities_RemoveIntEvent {
+export interface Qualities_RemoveIntEvent {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3582,13 +3582,13 @@ interface Qualities_RemoveIntEvent {
 }
 
 /*Remove a bool property from the charactert*/
-interface Qualities_PrivateRemoveBoolEvent {
+export interface Qualities_PrivateRemoveBoolEvent {
     Sequence: string;
     Type: string;
 }
 
 /*Remove a bool property from an object*/
-interface Qualities_RemoveBoolEvent {
+export interface Qualities_RemoveBoolEvent {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3596,13 +3596,13 @@ interface Qualities_RemoveBoolEvent {
 }
 
 /*Remove a float property from the character*/
-interface Qualities_PrivateRemoveFloatEvent {
+export interface Qualities_PrivateRemoveFloatEvent {
     Sequence: string;
     Type: string;
 }
 
 /*Remove a float property from an object*/
-interface Qualities_RemoveFloatEvent {
+export interface Qualities_RemoveFloatEvent {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3610,13 +3610,13 @@ interface Qualities_RemoveFloatEvent {
 }
 
 /*Remove a string property from the character*/
-interface Qualities_PrivateRemoveStringEvent {
+export interface Qualities_PrivateRemoveStringEvent {
     Sequence: string;
     Type: string;
 }
 
 /*Remove a string property from an object*/
-interface Qualities_RemoveStringEvent {
+export interface Qualities_RemoveStringEvent {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3624,13 +3624,13 @@ interface Qualities_RemoveStringEvent {
 }
 
 /*Remove an dataId property from the character*/
-interface Qualities_PrivateRemoveDataIdEvent {
+export interface Qualities_PrivateRemoveDataIdEvent {
     Sequence: string;
     Type: string;
 }
 
 /*Remove an dataId property from an object*/
-interface Qualities_RemoveDataIdEvent {
+export interface Qualities_RemoveDataIdEvent {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3638,13 +3638,13 @@ interface Qualities_RemoveDataIdEvent {
 }
 
 /*Remove an instanceId property from the character*/
-interface Qualities_PrivateRemoveInstanceIdEvent {
+export interface Qualities_PrivateRemoveInstanceIdEvent {
     Sequence: string;
     Type: string;
 }
 
 /*Remove an instanceId property from an object*/
-interface Qualities_RemoveInstanceIdEvent {
+export interface Qualities_RemoveInstanceIdEvent {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3652,13 +3652,13 @@ interface Qualities_RemoveInstanceIdEvent {
 }
 
 /*Remove a position property from the character*/
-interface Qualities_PrivateRemovePositionEvent {
+export interface Qualities_PrivateRemovePositionEvent {
     Sequence: string;
     Type: string;
 }
 
 /*Remove a position property from an object*/
-interface Qualities_RemovePositionEvent {
+export interface Qualities_RemovePositionEvent {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3666,13 +3666,13 @@ interface Qualities_RemovePositionEvent {
 }
 
 /*Remove an int64 property from the character*/
-interface Qualities_PrivateRemoveInt64Event {
+export interface Qualities_PrivateRemoveInt64Event {
     Sequence: string;
     Type: string;
 }
 
 /*Remove an int64 property from an object*/
-interface Qualities_RemoveInt64Event {
+export interface Qualities_RemoveInt64Event {
     Sequence: string;
     /*Id of object being updated*/
     ObjectId: string;
@@ -3680,7 +3680,7 @@ interface Qualities_RemoveInt64Event {
 }
 
 /*Set or update a Character Int property value*/
-interface Qualities_PrivateUpdateInt {
+export interface Qualities_PrivateUpdateInt {
     /*sequence number*/
     Sequence: string;
     /*Int property Id*/
@@ -3690,7 +3690,7 @@ interface Qualities_PrivateUpdateInt {
 }
 
 /*Set or update an Object Int property value*/
-interface Qualities_UpdateInt {
+export interface Qualities_UpdateInt {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3702,7 +3702,7 @@ interface Qualities_UpdateInt {
 }
 
 /*Set or update a Character Int64 property value*/
-interface Qualities_PrivateUpdateInt64 {
+export interface Qualities_PrivateUpdateInt64 {
     /*sequence number*/
     Sequence: string;
     /*Int64 property Id*/
@@ -3712,7 +3712,7 @@ interface Qualities_PrivateUpdateInt64 {
 }
 
 /*Set or update a Character Int64 property value*/
-interface Qualities_UpdateInt64 {
+export interface Qualities_UpdateInt64 {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3724,7 +3724,7 @@ interface Qualities_UpdateInt64 {
 }
 
 /*Set or update a Character Boolean property value*/
-interface Qualities_PrivateUpdateBool {
+export interface Qualities_PrivateUpdateBool {
     /*sequence number*/
     Sequence: string;
     /*Boolean property Id*/
@@ -3734,7 +3734,7 @@ interface Qualities_PrivateUpdateBool {
 }
 
 /*Set or update an Object Boolean property value*/
-interface Qualities_UpdateBool {
+export interface Qualities_UpdateBool {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3746,7 +3746,7 @@ interface Qualities_UpdateBool {
 }
 
 /*Set or update an Object float property value*/
-interface Qualities_PrivateUpdateFloat {
+export interface Qualities_PrivateUpdateFloat {
     /*sequence number*/
     Sequence: string;
     /*Float property Id*/
@@ -3756,7 +3756,7 @@ interface Qualities_PrivateUpdateFloat {
 }
 
 /*Set or update an Object float property value*/
-interface Qualities_UpdateFloat {
+export interface Qualities_UpdateFloat {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3768,7 +3768,7 @@ interface Qualities_UpdateFloat {
 }
 
 /*Set or update an Object String property value*/
-interface Qualities_PrivateUpdateString {
+export interface Qualities_PrivateUpdateString {
     /*sequence number*/
     Sequence: string;
     /*String property Id*/
@@ -3778,7 +3778,7 @@ interface Qualities_PrivateUpdateString {
 }
 
 /*Set or update an Object String property value*/
-interface Qualities_UpdateString {
+export interface Qualities_UpdateString {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3790,7 +3790,7 @@ interface Qualities_UpdateString {
 }
 
 /*Set or update an Object DId property value*/
-interface Qualities_PrivateUpdateDataId {
+export interface Qualities_PrivateUpdateDataId {
     /*sequence number*/
     Sequence: string;
     /*Data property Id*/
@@ -3800,7 +3800,7 @@ interface Qualities_PrivateUpdateDataId {
 }
 
 /*Set or update an Object DId property value*/
-interface Qualities_UpdateDataId {
+export interface Qualities_UpdateDataId {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3812,7 +3812,7 @@ interface Qualities_UpdateDataId {
 }
 
 /*Set or update a IId property value*/
-interface Qualities_PrivateUpdateInstanceId {
+export interface Qualities_PrivateUpdateInstanceId {
     /*sequence number*/
     Sequence: string;
     /*Instance property Id*/
@@ -3822,7 +3822,7 @@ interface Qualities_PrivateUpdateInstanceId {
 }
 
 /*Set or update an Object IId property value*/
-interface Qualities_UpdateInstanceId {
+export interface Qualities_UpdateInstanceId {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3834,7 +3834,7 @@ interface Qualities_UpdateInstanceId {
 }
 
 /*Set or update a Character Position property value*/
-interface Qualities_PrivateUpdatePosition {
+export interface Qualities_PrivateUpdatePosition {
     /*sequence number*/
     Sequence: string;
     /*Position property Id*/
@@ -3844,7 +3844,7 @@ interface Qualities_PrivateUpdatePosition {
 }
 
 /*Set or update a Character Position property value*/
-interface Qualities_UpdatePosition {
+export interface Qualities_UpdatePosition {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3856,7 +3856,7 @@ interface Qualities_UpdatePosition {
 }
 
 /*Set or update a Character Skill value*/
-interface Qualities_PrivateUpdateSkill {
+export interface Qualities_PrivateUpdateSkill {
     /*sequence number*/
     Sequence: string;
     /*skill Id*/
@@ -3866,7 +3866,7 @@ interface Qualities_PrivateUpdateSkill {
 }
 
 /*Set or update a Character Skill value*/
-interface Qualities_UpdateSkill {
+export interface Qualities_UpdateSkill {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3878,7 +3878,7 @@ interface Qualities_UpdateSkill {
 }
 
 /*Set or update a Character Skill Level*/
-interface Qualities_PrivateUpdateSkillLevel {
+export interface Qualities_PrivateUpdateSkillLevel {
     /*sequence number*/
     Sequence: string;
     /*skill Id*/
@@ -3888,7 +3888,7 @@ interface Qualities_PrivateUpdateSkillLevel {
 }
 
 /*Set or update a Character Skill Level*/
-interface Qualities_UpdateSkillLevel {
+export interface Qualities_UpdateSkillLevel {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3900,7 +3900,7 @@ interface Qualities_UpdateSkillLevel {
 }
 
 /*Set or update a Character Skill state*/
-interface Qualities_PrivateUpdateSkillAC {
+export interface Qualities_PrivateUpdateSkillAC {
     /*sequence number*/
     Sequence: string;
     /*skill Id*/
@@ -3910,7 +3910,7 @@ interface Qualities_PrivateUpdateSkillAC {
 }
 
 /*Set or update a Character Skill state*/
-interface Qualities_UpdateSkillAC {
+export interface Qualities_UpdateSkillAC {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3922,7 +3922,7 @@ interface Qualities_UpdateSkillAC {
 }
 
 /*Set or update a Character Attribute value*/
-interface Qualities_PrivateUpdateAttribute {
+export interface Qualities_PrivateUpdateAttribute {
     /*sequence number*/
     Sequence: string;
     /*attribute Id*/
@@ -3932,7 +3932,7 @@ interface Qualities_PrivateUpdateAttribute {
 }
 
 /*Set or update a Character Attribute value*/
-interface Qualities_UpdateAttribute {
+export interface Qualities_UpdateAttribute {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3944,7 +3944,7 @@ interface Qualities_UpdateAttribute {
 }
 
 /*Set or update a Character Attribute Level*/
-interface Qualities_PrivateUpdateAttributeLevel {
+export interface Qualities_PrivateUpdateAttributeLevel {
     /*sequence number*/
     Sequence: string;
     /*attribute Id*/
@@ -3954,7 +3954,7 @@ interface Qualities_PrivateUpdateAttributeLevel {
 }
 
 /*Set or update a Character Attribute Level*/
-interface Qualities_UpdateAttributeLevel {
+export interface Qualities_UpdateAttributeLevel {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3966,7 +3966,7 @@ interface Qualities_UpdateAttributeLevel {
 }
 
 /*Set or update a Character Vital value*/
-interface Qualities_PrivateUpdateAttribute2nd {
+export interface Qualities_PrivateUpdateAttribute2nd {
     /*sequence number*/
     Sequence: string;
     /*vital Id*/
@@ -3976,7 +3976,7 @@ interface Qualities_PrivateUpdateAttribute2nd {
 }
 
 /*Set or update a Character Vital value*/
-interface Qualities_UpdateAttribute2nd {
+export interface Qualities_UpdateAttribute2nd {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -3988,7 +3988,7 @@ interface Qualities_UpdateAttribute2nd {
 }
 
 /*Set or update a Character Vital value*/
-interface Qualities_PrivateUpdateAttribute2ndLevel {
+export interface Qualities_PrivateUpdateAttribute2ndLevel {
     /*sequence number*/
     Sequence: string;
     /*vital Id*/
@@ -3998,7 +3998,7 @@ interface Qualities_PrivateUpdateAttribute2ndLevel {
 }
 
 /*Set or update a Character Vital value*/
-interface Qualities_UpdateAttribute2ndLevel {
+export interface Qualities_UpdateAttribute2ndLevel {
     /*sequence number*/
     Sequence: string;
     /*object Id*/
@@ -4010,7 +4010,7 @@ interface Qualities_UpdateAttribute2ndLevel {
 }
 
 /*Indirect '/e' text.*/
-interface Communication_HearEmote {
+export interface Communication_HearEmote {
     /*The Id of the character performing the emote - used for squelch/radar filtering.*/
     SenderId: string;
     /*Name of the character performing the emote.*/
@@ -4020,7 +4020,7 @@ interface Communication_HearEmote {
 }
 
 /*Contains the text associated with an emote action.*/
-interface Communication_HearSoulEmote {
+export interface Communication_HearSoulEmote {
     /*The Id of the character performing the emote - used for squelch/radar filtering.*/
     SenderId: string;
     /*Name of the character performing the emote.*/
@@ -4030,7 +4030,7 @@ interface Communication_HearSoulEmote {
 }
 
 /*A message to be displayed in the chat window, spoken by a nearby player, NPC or creature*/
-interface Communication_HearSpeech {
+export interface Communication_HearSpeech {
     /*message text*/
     Message: string;
     /*sender name*/
@@ -4042,7 +4042,7 @@ interface Communication_HearSpeech {
 }
 
 /*A message to be displayed in the chat window, spoken by a nearby player, NPC or creature*/
-interface Communication_HearRangedSpeech {
+export interface Communication_HearRangedSpeech {
     /*message text*/
     Message: string;
     /*sender name*/
@@ -4056,13 +4056,13 @@ interface Communication_HearRangedSpeech {
 }
 
 /*This appears to be an admin command to change the environment (light, fog, sounds, colors)*/
-interface Admin_Environs {
+export interface Admin_Environs {
     /*Id of option set to change the environs*/
     EnvrionOption: string;
 }
 
 /*Sets both the position and movement, such as when materializing at a lifestone*/
-interface Movement_PositionAndMovementEvent {
+export interface Movement_PositionAndMovementEvent {
     /*ObjectId of the character doing the animation*/
     ObjectId: string;
     Position: string;
@@ -4071,7 +4071,7 @@ interface Movement_PositionAndMovementEvent {
 }
 
 /*Sent whenever a character changes their clothes. It contains the entire description of what their wearing (and possibly their facial features as well). This message is only sent for changes, when the character is first created, the body of this message is included inside the creation message.*/
-interface Item_ObjDescEvent {
+export interface Item_ObjDescEvent {
     /*The Id of character whose visual description is changing.*/
     ObjectId: string;
     /*Set of visual description information for the object*/
@@ -4083,13 +4083,13 @@ interface Item_ObjDescEvent {
 }
 
 /*Sets the player visual desc, TODO confirm this*/
-interface Character_SetPlayerVisualDesc {
+export interface Character_SetPlayerVisualDesc {
     /*Set of visual description information for the player*/
     ObjectDescription: string;
 }
 
 /*Character creation screen initilised.*/
-interface Character_CharGenVerificationResponse {
+export interface Character_CharGenVerificationResponse {
     /*Type of response*/
     ResponseType: string;
     /*The character Id for this entry.*/
@@ -4101,21 +4101,21 @@ interface Character_CharGenVerificationResponse {
 }
 
 /*Sent when your subsciption is about to expire*/
-interface Login_AwaitingSubscriptionExpiration {
+export interface Login_AwaitingSubscriptionExpiration {
     /*Time remaining before your subscription expires.*/
     SecondsRemaining: string;
 }
 
 /*Instructs the client to return to 2D mode - the character list.*/
-interface Login_LogOffCharacter {
+export interface Login_LogOffCharacter {
 }
 
 /*A character was marked for deletetion.*/
-interface Character_CharacterDelete {
+export interface Character_CharacterDelete {
 }
 
 /*The list of characters on the current account.*/
-interface Login_LoginCharacterSet {
+export interface Login_LoginCharacterSet {
     Status: string;
     Characters: string;
     DeletedCharacters: string;
@@ -4130,13 +4130,13 @@ interface Login_LoginCharacterSet {
 }
 
 /*Failure to log in*/
-interface Character_CharacterError {
+export interface Character_CharacterError {
     /*Identifies type of error*/
     Reason: string;
 }
 
 /*Create an object somewhere in the world*/
-interface Item_CreateObject {
+export interface Item_CreateObject {
     /*object Id*/
     ObjectId: string;
     ObjectDescription: string;
@@ -4145,13 +4145,13 @@ interface Item_CreateObject {
 }
 
 /*Login of player*/
-interface Login_CreatePlayer {
+export interface Login_CreatePlayer {
     /*Id of the character logging on - should be you.*/
     CharacterId: string;
 }
 
 /*Sent whenever an object is being deleted from the scene.*/
-interface Item_DeleteObject {
+export interface Item_DeleteObject {
     /*The object that was recently erased.*/
     ObjectId: string;
     /*The instance sequence value for the object (number of logins for players)*/
@@ -4159,7 +4159,7 @@ interface Item_DeleteObject {
 }
 
 /*Sets the position/motion of an object*/
-interface Movement_PositionEvent {
+export interface Movement_PositionEvent {
     /*The object with the position changing.*/
     ObjectId: string;
     /*The current or starting location.*/
@@ -4167,7 +4167,7 @@ interface Movement_PositionEvent {
 }
 
 /*Sets the parent for an object, eg. equipting an object.*/
-interface Item_ParentEvent {
+export interface Item_ParentEvent {
     /*id of the parent object*/
     ParentId: string;
     /*id of the child object*/
@@ -4183,7 +4183,7 @@ interface Item_ParentEvent {
 }
 
 /*Sent when picking up an object*/
-interface Inventory_PickupEvent {
+export interface Inventory_PickupEvent {
     /*The object being picked up*/
     ObjectId: string;
     /*The instance sequence value for the object (number of logins for players)*/
@@ -4193,7 +4193,7 @@ interface Inventory_PickupEvent {
 }
 
 /*Set's the current state of the object. Client appears to only process the following state changes post creation: NoDraw, LightingOn, Hidden*/
-interface Item_SetState {
+export interface Item_SetState {
     /*The object being changed*/
     ObjectId: string;
     /*The new state for the object*/
@@ -4205,7 +4205,7 @@ interface Item_SetState {
 }
 
 /*These are animations. Whenever a human, monster or object moves - one of these little messages is sent. Even idle emotes (like head scratching and nodding) are sent in this manner.*/
-interface Movement_SetObjectMovement {
+export interface Movement_SetObjectMovement {
     /*Id of the character moving*/
     ObjectId: string;
     /*The instance sequence value for this object (number of logins for players)*/
@@ -4215,7 +4215,7 @@ interface Movement_SetObjectMovement {
 }
 
 /*Changes an objects vector, for things like jumping*/
-interface Movement_VectorUpdate {
+export interface Movement_VectorUpdate {
     /*Id of the object being updated*/
     ObjectId: string;
     /*new velocity component*/
@@ -4229,7 +4229,7 @@ interface Movement_VectorUpdate {
 }
 
 /*Applies a sound effect.*/
-interface Effects_SoundEvent {
+export interface Effects_SoundEvent {
     /*Id of the object from which the effect originates. Can be you, another char/npc or an item.*/
     ObjectId: string;
     /*The sound type Id, which is referenced in the Sound Table.*/
@@ -4239,13 +4239,13 @@ interface Effects_SoundEvent {
 }
 
 /*Instructs the client to show the portal graphic.*/
-interface Effects_PlayerTeleport {
+export interface Effects_PlayerTeleport {
     /*The teleport sequence value for the object*/
     ObjectTeleportSequence: string;
 }
 
 /*Instructs the client to play a script. (Not seen so far, maybe prefered PlayScriptType)*/
-interface Effects_PlayScriptId {
+export interface Effects_PlayScriptId {
     /*Id of the object to play the script*/
     ObjectId: string;
     /*Id of script to be played*/
@@ -4253,7 +4253,7 @@ interface Effects_PlayScriptId {
 }
 
 /*Applies an effect with visual and sound by providing the type to be looked up in the Physics Script Table*/
-interface Effects_PlayScriptType {
+export interface Effects_PlayScriptType {
     /*Id of the object from which the effect originates. Can be you, another char/npc or an item.*/
     ObjectId: string;
     /*The script type id*/
@@ -4263,7 +4263,7 @@ interface Effects_PlayScriptType {
 }
 
 /*Account has been banned*/
-interface Login_AccountBanned {
+export interface Login_AccountBanned {
     /*Timestamp when ban expires, or 0 for permaban*/
     BannedUntil: string;
     /*I believe this will be empty (len=1) in current version*/
@@ -4271,21 +4271,21 @@ interface Login_AccountBanned {
 }
 
 /*Admin Receive Account Data*/
-interface Admin_ReceiveAccountData {
+export interface Admin_ReceiveAccountData {
     Unknown: string;
     /*Set of account data*/
     AdminAccountData: string;
 }
 
 /*Admin Receive Player Data*/
-interface Admin_ReceivePlayerData {
+export interface Admin_ReceivePlayerData {
     Unknown: string;
     /*Set of player data*/
     AdminPlayerData: string;
 }
 
 /*Update an existing object's data.*/
-interface Item_UpdateObject {
+export interface Item_UpdateObject {
     /*the object being updated*/
     ObjectId: string;
     /*updated model data*/
@@ -4297,13 +4297,13 @@ interface Item_UpdateObject {
 }
 
 /*Account has been booted*/
-interface Login_AccountBooted {
+export interface Login_AccountBooted {
     AdditionalReasonText: string;
     ReasonText: string;
 }
 
 /*Send or receive a message using Turbine Chat.*/
-interface Communication_TurbineChat {
+export interface Communication_TurbineChat {
     /*the number of bytes that follow after this DWORD*/
     MessageSize: string;
     /*the type of data contained in this message*/
@@ -4356,11 +4356,11 @@ interface Communication_TurbineChat {
 }
 
 /*Switch from the character display to the game display.*/
-interface Login_EnterGame_ServerReady {
+export interface Login_EnterGame_ServerReady {
 }
 
 /*Display a message in the chat window.*/
-interface Communication_TextboxString {
+export interface Communication_TextboxString {
     /*the message text*/
     Text: string;
     /*the message type, controls color and @filter processing*/
@@ -4368,7 +4368,7 @@ interface Communication_TextboxString {
 }
 
 /*The name of the current world.*/
-interface Login_WorldInfo {
+export interface Login_WorldInfo {
     /*the number of players connected*/
     Connections: string;
     /*the max number of players allowed to connect*/
@@ -4378,7 +4378,7 @@ interface Login_WorldInfo {
 }
 
 /*Add or update a dat file Resource.*/
-interface DDD_DataMessage {
+export interface DDD_DataMessage {
     /*which dat file should store this resource*/
     DatFile: string;
     /*the resource type*/
@@ -4398,7 +4398,7 @@ interface DDD_DataMessage {
 }
 
 /*DDD error*/
-interface DDD_ErrorMessage {
+export interface DDD_ErrorMessage {
     /*the resource type*/
     ResourceType: string;
     /*the resource Id number*/
@@ -4407,14 +4407,14 @@ interface DDD_ErrorMessage {
 }
 
 /*A list of dat files that need to be patched*/
-interface DDD_BeginDDDMessage {
+export interface DDD_BeginDDDMessage {
     /*Amount of data expected*/
     DataExpected: string;
     Revisions: string;
 }
 
 /*Add or update a dat file Resource.*/
-interface DDD_InterrogationMessage {
+export interface DDD_InterrogationMessage {
     ServersRegion: string;
     NameRuleLanguage: string;
     ProductId: string;
@@ -4422,11 +4422,11 @@ interface DDD_InterrogationMessage {
 }
 
 /*Ends DDD update*/
-interface DDD_OnEndDDD {
+export interface DDD_OnEndDDD {
 }
 
 /*Client to Server AC packet.*/
-interface C2SPacket {
+export interface C2SPacket {
     /*Packet Sequence / Order*/
     Sequence: string;
     /*Flags that dictate the content / purpose of this packet*/
@@ -4465,7 +4465,7 @@ interface C2SPacket {
 }
 
 /*Server to Client AC packet.*/
-interface S2CPacket {
+export interface S2CPacket {
     /*Packet Sequence / Order*/
     Sequence: string;
     /*Flags that dictate the content / purpose of this packet*/

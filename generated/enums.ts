@@ -1,4 +1,4 @@
-enum PacketHeaderFlags {
+export enum PacketHeaderFlags {
     None = 0,
     Retransmission = 1,
     EncryptedChecksum = 2,
@@ -24,33 +24,33 @@ enum PacketHeaderFlags {
     Flow = 134217728
 }
 
-enum FragmentGroup {
+export enum FragmentGroup {
     Event = 5,
     Private = 9,
     Object = 10
 }
 
 /*The type of server to switch*/
-enum ServerSwitchType {
+export enum ServerSwitchType {
     World = 0,
     Logon = 1
 }
 
-enum AuthFlags {
+export enum AuthFlags {
     None = 0,
     EnableCrypto = 1,
     AdminAccountOverride = 2,
     LastDefault = 4
 }
 
-enum NetAuthType {
+export enum NetAuthType {
     Undef = 0,
     Account = 1,
     AccountPassword = 2,
     GlsTicket = 1073741826
 }
 
-enum GameMessageGroup {
+export enum GameMessageGroup {
     Event = 1,
     /*C2S, small number of admin messages and a few others*/
     Control = 2,
@@ -71,7 +71,7 @@ enum GameMessageGroup {
 }
 
 /*Client to Server message opcodes*/
-enum C2SMessage {
+export enum C2SMessage {
     Login_LogOffCharacter = 63059,
     Character_CharacterDelete = 63061,
     Character_SendCharGenResult = 63062,
@@ -90,7 +90,7 @@ enum C2SMessage {
 }
 
 /*Server to Client message opcodes*/
-enum S2CMessage {
+export enum S2CMessage {
     Item_ServerSaysRemove = 36,
     Character_ServerSaysAttemptFailed = 160,
     Item_UpdateStackSize = 407,
@@ -186,7 +186,7 @@ enum S2CMessage {
 }
 
 /*Ordered (0xF7B0) Server to Client opcodes*/
-enum GameEvent {
+export enum GameEvent {
     Allegiance_AllegianceUpdateAborted = 3,
     Communication_PopUpString = 4,
     Login_PlayerDescription = 19,
@@ -290,7 +290,7 @@ enum GameEvent {
 }
 
 /*Ordered (0xF7B1) Client to server opcodes*/
-enum GameAction {
+export enum GameAction {
     Character_PlayerOptionChangedEvent = 5,
     Combat_TargetedMeleeAttack = 8,
     Combat_TargetedMissileAttack = 10,
@@ -449,7 +449,7 @@ enum GameAction {
     Movement_Jump_NonAutonomous = 63433
 }
 
-enum WeenieType {
+export enum WeenieType {
     Undef = 0,
     Generic = 1,
     Clothing = 2,
@@ -525,7 +525,7 @@ enum WeenieType {
 }
 
 /*Flags that dictate what property tables are included with the ACBaseQuali*/
-enum ACBaseQualitiesFlags {
+export enum ACBaseQualitiesFlags {
     None = 0,
     PropertyInt = 1,
     PropertyBool = 2,
@@ -538,7 +538,7 @@ enum ACBaseQualitiesFlags {
 }
 
 /*Set of predefined error messages that accept interpolated string argument*/
-enum WeenieErrorWithString {
+export enum WeenieErrorWithString {
     IsTooBusyToAcceptGifts = 30,
     CannotCarryAnymore = 43,
     YouFailToAffect_YouCannotAffectAnyone = 78,
@@ -655,7 +655,7 @@ enum WeenieErrorWithString {
 }
 
 /*Set of predefined error messages*/
-enum WeenieError {
+export enum WeenieError {
     None = 0,
     NoMem = 1,
     BadParam = 2,
@@ -1028,7 +1028,7 @@ enum WeenieError {
 }
 
 /*The PositionFlags value defines the fields present in the Position structure.*/
-enum PositionFlags {
+export enum PositionFlags {
     /*velocity vector is present*/
     HasVelocity = 1,
     /*placement id is present*/
@@ -1046,20 +1046,20 @@ enum PositionFlags {
 }
 
 /*Height of the attack.  TODO these need to be verified.*/
-enum AttackHeight {
+export enum AttackHeight {
     High = 1,
     Medium = 2,
     Low = 3
 }
 
 /*Container properties of an item*/
-enum ContainerProperties {
+export enum ContainerProperties {
     None = 0,
     Container = 1,
     Foci = 2
 }
 
-enum AttackType {
+export enum AttackType {
     Undef = 0,
     Punch = 1,
     Thrust = 2,
@@ -1079,7 +1079,7 @@ enum AttackType {
 }
 
 /*The objects type information*/
-enum ItemType {
+export enum ItemType {
     MeleeWeapon = 1,
     Armor = 2,
     Clothing = 4,
@@ -1114,7 +1114,7 @@ enum ItemType {
 }
 
 /*The Skill identifies a specific Character skill.*/
-enum SkillId {
+export enum SkillId {
     Axe = 1,
     Bow = 2,
     Crossbow = 3,
@@ -1171,13 +1171,13 @@ enum SkillId {
 }
 
 /*The SkillAdvancementClass identifies whether a skill is untrained, trained or specialized.*/
-enum SkillAdvancementClass {
+export enum SkillAdvancementClass {
     Untrained = 1,
     Trained = 2,
     Specialized = 3
 }
 
-enum PropertyAttribute2nd {
+export enum PropertyAttribute2nd {
     Undef = 0,
     MaxHealth = 1,
     Health = 2,
@@ -1188,7 +1188,7 @@ enum PropertyAttribute2nd {
 }
 
 /*The EmoteType identifies the type of emote action*/
-enum EmoteType {
+export enum EmoteType {
     Invalid_EmoteType = 0,
     Invalid_VendorEmoteType = 0,
     Act_EmoteType = 1,
@@ -1315,7 +1315,7 @@ enum EmoteType {
 }
 
 /*The EmoteCategory identifies the category of an emote.*/
-enum EmoteCategory {
+export enum EmoteCategory {
     Invalid_EmoteCategory = 0,
     Refuse_EmoteCategory = 1,
     Vendor_EmoteCategory = 2,
@@ -1358,7 +1358,7 @@ enum EmoteCategory {
 }
 
 /*The CharacterOptions1 word contains character options.*/
-enum CharacterOptions1 {
+export enum CharacterOptions1 {
     AutoRepeatAttack = 2,
     IgnoreAllegianceRequests = 4,
     IgnoreFellowshipRequests = 8,
@@ -1393,7 +1393,7 @@ enum CharacterOptions1 {
 }
 
 /*The CharacterOptions2 word contains additional character options.*/
-enum CharacterOptions2 {
+export enum CharacterOptions2 {
     PersistentAtDay = 1,
     DisplayDateOfBirth = 2,
     DisplayChessRank = 4,
@@ -1423,7 +1423,7 @@ enum CharacterOptions2 {
 }
 
 /*The various options for filtering the spellbook*/
-enum SpellBookFilterOptions {
+export enum SpellBookFilterOptions {
     None = 0,
     Creature = 1,
     Item = 2,
@@ -1442,7 +1442,7 @@ enum SpellBookFilterOptions {
 }
 
 /*The EquipMask value describes the equipment slots an item uses.*/
-enum EquipMask {
+export enum EquipMask {
     Head = 1,
     ChestUnderwear = 2,
     AbdomenUnderwear = 4,
@@ -1471,7 +1471,7 @@ enum EquipMask {
 }
 
 /*The type of the friend change event.*/
-enum FriendsUpdateType {
+export enum FriendsUpdateType {
     Full = 0,
     Added = 1,
     Removed = 2,
@@ -1479,14 +1479,14 @@ enum FriendsUpdateType {
 }
 
 /*The permission levels that can be given to an allegiance officer*/
-enum AllegianceOfficerLevel {
+export enum AllegianceOfficerLevel {
     Speaker = 1,
     Seneschal = 2,
     Castellan = 3
 }
 
 /*Actions related to /allegiance lock*/
-enum AllegianceLockAction {
+export enum AllegianceLockAction {
     LockedOff = 1,
     LockedOn = 2,
     ToggleLocked = 3,
@@ -1496,7 +1496,7 @@ enum AllegianceLockAction {
 }
 
 /*Actions related to /allegiance house*/
-enum AllegianceHouseAction {
+export enum AllegianceHouseAction {
     Help = 1,
     GuestOpen = 2,
     GuestClosed = 3,
@@ -1505,7 +1505,7 @@ enum AllegianceHouseAction {
 }
 
 /*The AttributeId identifies a specific Character attribute.*/
-enum AttributeId {
+export enum AttributeId {
     Strength = 1,
     Endurance = 2,
     Quickness = 3,
@@ -1515,28 +1515,28 @@ enum AttributeId {
 }
 
 /*The VitalId identifies a specific Character vital (secondary attribute).*/
-enum VitalId {
+export enum VitalId {
     MaximumHealth = 1,
     MaximumStamina = 3,
     MaximumMana = 5
 }
 
 /*The CurVitalId identifies a specific Character vital (secondary attribute).*/
-enum CurVitalId {
+export enum CurVitalId {
     CurrentHealth = 2,
     CurrentStamina = 4,
     CurrentMana = 6
 }
 
 /*The combat mode for a character or monster.*/
-enum CombatMode {
+export enum CombatMode {
     NonCombat = 1,
     Melee = 2,
     Missle = 4,
     Magic = 8
 }
 
-enum Sound {
+export enum Sound {
     Invalid = 0,
     Speak1 = 1,
     Random = 2,
@@ -1745,7 +1745,7 @@ enum Sound {
 }
 
 /*The ChatFragmentType categorizes chat window messages to control color and filtering.*/
-enum ChatFragmentType {
+export enum ChatFragmentType {
     Default = 0,
     Speech = 2,
     Tell = 3,
@@ -1775,7 +1775,7 @@ enum ChatFragmentType {
 }
 
 /*Flags related to the use of the item.*/
-enum ObjectDescriptionFlag {
+export enum ObjectDescriptionFlag {
     /*can be opened (false if locked)*/
     Openable = 1,
     /*inscribable*/
@@ -1839,7 +1839,7 @@ enum ObjectDescriptionFlag {
 }
 
 /*The AmmoType value describes the type of ammunition a missile weapon uses.*/
-enum AmmoType {
+export enum AmmoType {
     ThrownWeapon = 0,
     Arrow = 1,
     Bolt = 2,
@@ -1847,7 +1847,7 @@ enum AmmoType {
 }
 
 /*The useablilty flags of the object*/
-enum Usable {
+export enum Usable {
     /*source not usable*/
     SourceUnusable = 1,
     /*source self*/
@@ -1883,7 +1883,7 @@ enum Usable {
 }
 
 /*The CoverageMask value describes what parts of the body an item protects.*/
-enum CoverageMask {
+export enum CoverageMask {
     UpperLegsUnderwear = 2,
     LowerLegsUnderwear = 4,
     ChestUnderwear = 8,
@@ -1902,7 +1902,7 @@ enum CoverageMask {
 }
 
 /*The HookType identifies the types of dwelling hooks.*/
-enum HookType {
+export enum HookType {
     Floor = 1,
     Wall = 2,
     Ceiling = 4,
@@ -1911,7 +1911,7 @@ enum HookType {
 }
 
 /*The MaterialType identifies the material an object is made of.*/
-enum MaterialType {
+export enum MaterialType {
     Ceramic = 1,
     Porcelain = 2,
     Linen = 4,
@@ -1987,7 +1987,7 @@ enum MaterialType {
 }
 
 /*The ConfirmationType identifies the specific confirmation panel to be displayed.*/
-enum ConfirmationType {
+export enum ConfirmationType {
     /*Swear Allegiance Request*/
     SwearAllegiance = 1,
     /*Alter Skill Confirmation Request*/
@@ -2005,7 +2005,7 @@ enum ConfirmationType {
 }
 
 /*The EnvrionChangeType identifies the environment option set.*/
-enum EnvrionChangeType {
+export enum EnvrionChangeType {
     /*Removes all overrides*/
     Clear = 0,
     /*Sets Red Fog*/
@@ -2065,7 +2065,7 @@ enum EnvrionChangeType {
 }
 
 /*The movement type defines the fields for the rest of the message*/
-enum MovementType {
+export enum MovementType {
     InterpertedMotionState = 0,
     MoveToObject = 6,
     MoveToPosition = 7,
@@ -2074,14 +2074,14 @@ enum MovementType {
 }
 
 /*Additional movement options*/
-enum MovementOption {
+export enum MovementOption {
     None = 0,
     StickToObject = 1,
     StandingLongJump = 2
 }
 
 /*Command types*/
-enum Command {
+export enum Command {
     Invalid = 0,
     HoldRun = 1,
     HoldSidestep = 2,
@@ -2493,7 +2493,7 @@ enum Command {
 }
 
 /*The stance for a character or monster.*/
-enum StanceMode {
+export enum StanceMode {
     HandCombat = 60,
     NonCombat = 61,
     SwordCombat = 62,
@@ -2513,7 +2513,7 @@ enum StanceMode {
 }
 
 /*The movement (forward, side, turn) for a character or monster.*/
-enum MovementCommand {
+export enum MovementCommand {
     HoldRun = 1,
     HoldSidestep = 2,
     WalkForward = 5,
@@ -2526,14 +2526,14 @@ enum MovementCommand {
 }
 
 /*House flags*/
-enum HouseBitfield {
+export enum HouseBitfield {
     Undef = 0,
     Active = 1,
     RequiresMonarch = 2
 }
 
 /*The type response to a chargen request*/
-enum CharGenResponseType {
+export enum CharGenResponseType {
     OK = 1,
     NameInUse = 3,
     NameBanned = 4,
@@ -2543,7 +2543,7 @@ enum CharGenResponseType {
 }
 
 /*The CharacterErrorType identifies the type of character error that has occured.*/
-enum CharacterErrorType {
+export enum CharacterErrorType {
     /*Id_CHAR_ERROR_LOGON*/
     Logon = 1,
     /*Id_CHAR_ERROR_ACCOUNT_LOGON*/
@@ -2589,7 +2589,7 @@ enum CharacterErrorType {
 }
 
 /*The state flags for an object*/
-enum PhysicsState {
+export enum PhysicsState {
     None = 0,
     Static = 1,
     Ethereal = 4,
@@ -2617,27 +2617,27 @@ enum PhysicsState {
 }
 
 /*The TurbineChatType identifies the type of Turbine Chat message.*/
-enum TurbineChatType {
+export enum TurbineChatType {
     ServerToClientMessage = 1,
     ClientToServerMessage = 3,
     AckClientToServerMessage = 5
 }
 
 /*The DatFileType identifies the dat file to be used.*/
-enum DatFileType {
+export enum DatFileType {
     client_portal = 1,
     client_cell_1 = 2,
     client_local_English = 3
 }
 
 /*The CompressionType identifies the type of data compression used.*/
-enum CompressionType {
+export enum CompressionType {
     None = 0,
     ZLib = 1
 }
 
 /*The AttributeMask selects which creature attributes highlighting is applied to.*/
-enum AttributeMask {
+export enum AttributeMask {
     Strength = 1,
     Endurance = 2,
     Quickness = 4,
@@ -2650,7 +2650,7 @@ enum AttributeMask {
 }
 
 /*The DamageType identifies the type of damage.*/
-enum DamageType {
+export enum DamageType {
     Slashing = 1,
     Piercing = 2,
     Bludgeoning = 4,
@@ -2661,14 +2661,14 @@ enum DamageType {
 }
 
 /*The HookAppraisalFlags identifies various properties for an item hooked.*/
-enum HookAppraisalFlags {
+export enum HookAppraisalFlags {
     Inscribable = 1,
     IsHealer = 2,
     IsLockpick = 8
 }
 
 /*The ArmorHighlightMask selects which armor attributes highlighting is applied to.*/
-enum ArmorHighlightMask {
+export enum ArmorHighlightMask {
     ArmorLevel = 1,
     SlashingProtection = 2,
     PiercingProtection = 4,
@@ -2680,7 +2680,7 @@ enum ArmorHighlightMask {
 }
 
 /*The ResistHighlightMask selects which wand attributes highlighting is applied to.*/
-enum ResistHighlightMask {
+export enum ResistHighlightMask {
     ResistSlash = 1,
     ResistPierce = 2,
     ResistBludgeon = 4,
@@ -2699,7 +2699,7 @@ enum ResistHighlightMask {
 }
 
 /*The WeaponHighlightMask selects which weapon attributes highlighting is applied to.*/
-enum WeaponHighlightMask {
+export enum WeaponHighlightMask {
     AttackSkill = 1,
     MeleeDefense = 2,
     Speed = 4,
@@ -2709,14 +2709,14 @@ enum WeaponHighlightMask {
 }
 
 /*Additional attack information*/
-enum AttackConditionsMask {
+export enum AttackConditionsMask {
     CriticalProtectionAugmentation = 1,
     Recklessness = 2,
     SneakAttack = 4
 }
 
 /*The DamageLocation indicates where damage was done.*/
-enum DamageLocation {
+export enum DamageLocation {
     Head = 0,
     Chest = 1,
     Abdomen = 2,
@@ -2729,7 +2729,7 @@ enum DamageLocation {
 }
 
 /*The LogTextType indicates the kind of text going to the chat area.*/
-enum LogTextType {
+export enum LogTextType {
     Default = 0,
     Speech = 2,
     Tell = 3,
@@ -2759,20 +2759,20 @@ enum LogTextType {
 }
 
 /*The EndTradeReason identifies the reason trading was ended.*/
-enum EndTradeReason {
+export enum EndTradeReason {
     Normal = 0,
     EnteredCombat = 2,
     Cancelled = 81
 }
 
 /*The TradeSide identifies the side of the trade window.*/
-enum TradeSide {
+export enum TradeSide {
     Self = 1,
     Partner = 2
 }
 
 /*The HouseType identifies the type of house.*/
-enum HouseType {
+export enum HouseType {
     Cottage = 1,
     Villa = 2,
     Mansion = 3,
@@ -2780,7 +2780,7 @@ enum HouseType {
 }
 
 /*Identifies the chess move attempt result.  Negative/0 values are failures.*/
-enum ChessMoveResult {
+export enum ChessMoveResult {
     /*Its not your turn, please wait for your opponents move.*/
     FailureNotYourTurn = -3,
     /*The selected piece cannot move that direction*/
@@ -2816,14 +2816,14 @@ enum ChessMoveResult {
 }
 
 /*Type of fellow update*/
-enum FellowUpdateType {
+export enum FellowUpdateType {
     FullUpdate = 1,
     UpdateStats = 2,
     UpdateVitals = 3
 }
 
 /*Stage a contract is in.  Values 4+ appear to provide contract specific update messages*/
-enum ContractStage {
+export enum ContractStage {
     New = 1,
     InProgress = 2,
     /*If this is set, it looks at the time when repeats to show either Done, Available, or # to Repeat*/
@@ -2831,14 +2831,14 @@ enum ContractStage {
 }
 
 /*Movement hold key*/
-enum HoldKey {
+export enum HoldKey {
     Invalid = 0,
     None = 1,
     Run = 2
 }
 
 /*Radar behavior*/
-enum RadarBehavior {
+export enum RadarBehavior {
     Undefined = 0,
     ShowNever = 1,
     ShowMovement = 2,
@@ -2847,13 +2847,13 @@ enum RadarBehavior {
 }
 
 /*Gender of a player*/
-enum Gender {
+export enum Gender {
     Invalid = 0,
     Male = 1,
     Female = 2
 }
 
-enum FactionBits {
+export enum FactionBits {
     None = 0,
     CelestialHand = 1,
     EldrytchWeb = 2,
@@ -2861,7 +2861,7 @@ enum FactionBits {
 }
 
 /*Creature type*/
-enum CreatureType {
+export enum CreatureType {
     Olthoi = 1,
     Banderling = 2,
     Drudge = 3,
@@ -2965,7 +2965,7 @@ enum CreatureType {
     Anekshay = 101
 }
 
-enum CombatStyle {
+export enum CombatStyle {
     Undef = 0,
     Unarmed = 1,
     OneHanded = 2,
@@ -2991,7 +2991,7 @@ enum CombatStyle {
 }
 
 /*Indicates what data is present in the ACQualities data*/
-enum ACQualitiesFlags {
+export enum ACQualitiesFlags {
     Attributes = 1,
     Skills = 2,
     Body = 4,
@@ -3006,14 +3006,14 @@ enum ACQualitiesFlags {
     GeneratorQueue = 2048
 }
 
-enum GeneratorDestruct {
+export enum GeneratorDestruct {
     Undef = 0,
     Nothing = 1,
     Destroy = 2,
     Kill = 3
 }
 
-enum GeneratorTimeType {
+export enum GeneratorTimeType {
     Undef = 0,
     RealTime = 1,
     Defined = 2,
@@ -3022,13 +3022,13 @@ enum GeneratorTimeType {
     Day = 5
 }
 
-enum GeneratorType {
+export enum GeneratorType {
     Undef = 0,
     Relative = 1,
     Absolute = 2
 }
 
-enum ImbuedEffectType {
+export enum ImbuedEffectType {
     Undef = 0,
     CriticalStrike = 1,
     CripplingBlow = 2,
@@ -3050,14 +3050,14 @@ enum ImbuedEffectType {
     IgnoreAllArmor = 2147483648
 }
 
-enum ItemXpStyle {
+export enum ItemXpStyle {
     Undef = 0,
     Fixed = 1,
     ScalesWithLevel = 2,
     FixedPlusBase = 3
 }
 
-enum SubscriptionStatus {
+export enum SubscriptionStatus {
     No_Subscription = 0,
     AsheronsCall_Subscription = 1,
     DarkMajesty_Subscription = 2,
@@ -3065,7 +3065,7 @@ enum SubscriptionStatus {
     ThroneOfDestiny_Preordered = 4
 }
 
-enum WeaponType {
+export enum WeaponType {
     Undef = 0,
     Unarmed = 1,
     Sword = 2,
@@ -3081,7 +3081,7 @@ enum WeaponType {
     Magic = 12
 }
 
-enum ActivationResponse {
+export enum ActivationResponse {
     Undef = 0,
     Use = 2,
     Animate = 4,
@@ -3091,14 +3091,14 @@ enum ActivationResponse {
     Generate = 65536
 }
 
-enum AetheriaBitfield {
+export enum AetheriaBitfield {
     None = 0,
     Blue = 1,
     Yellow = 2,
     Red = 4
 }
 
-enum HookGroupType {
+export enum HookGroupType {
     Undef = 0,
     NoisemakingItems = 1,
     TestItems = 2,
@@ -3108,7 +3108,7 @@ enum HookGroupType {
     SpellTeachingItems = 32
 }
 
-enum ArmorType {
+export enum ArmorType {
     None = 0,
     Cloth = 1,
     Leather = 2,
@@ -3118,13 +3118,13 @@ enum ArmorType {
     Metal = 32
 }
 
-enum AttunedStatus {
+export enum AttunedStatus {
     Normal = 0,
     Attuned = 1,
     Sticky = 2
 }
 
-enum BondedStatus {
+export enum BondedStatus {
     Destroy = -2,
     Slippery = -1,
     Normal = 0,
@@ -3132,13 +3132,13 @@ enum BondedStatus {
     Sticky = 2
 }
 
-enum HouseStatus {
+export enum HouseStatus {
     Disabled = -1,
     InActive = 0,
     Active = 1
 }
 
-enum UiEffects {
+export enum UiEffects {
     Undef = 0,
     Magical = 1,
     Poisoned = 2,
@@ -3155,7 +3155,7 @@ enum UiEffects {
     Nether = 4096
 }
 
-enum PlayerKillerStatus {
+export enum PlayerKillerStatus {
     Undef = 0,
     Protected = 1,
     NPK = 2,
@@ -3166,7 +3166,7 @@ enum PlayerKillerStatus {
     PKLite = 64
 }
 
-enum PortalBitmask {
+export enum PortalBitmask {
     Undef = 0,
     NotPassable = 0,
     Unrestricted = 1,
@@ -3181,7 +3181,7 @@ enum PortalBitmask {
     NoNewAccounts = 512
 }
 
-enum WieldRequirement {
+export enum WieldRequirement {
     Undef = 0,
     Skill = 1,
     RawSkill = 2,
@@ -3197,7 +3197,7 @@ enum WieldRequirement {
     HeritageType = 12
 }
 
-enum PaletteTemplate {
+export enum PaletteTemplate {
     Undef = 0,
     AquaBlue = 1,
     Blue = 2,
@@ -3294,14 +3294,14 @@ enum PaletteTemplate {
     DyeSpringBlack = 93
 }
 
-enum SummoningMastery {
+export enum SummoningMastery {
     Undef = 0,
     Primalist = 1,
     Necromancer = 2,
     Naturalist = 3
 }
 
-enum ContractId {
+export enum ContractId {
     Undef = 0,
     Contract_1_The_Shadows_of_Bitter_Winter = 1,
     Contract_2_Test_Quest_Stamping = 2,
@@ -3628,7 +3628,7 @@ enum ContractId {
 }
 
 /*The PropertyInt64 identifies a specific Character or Object int64 property.*/
-enum PropertyInt64 {
+export enum PropertyInt64 {
     TotalExperience = 1,
     AvailableExperience = 2,
     AugmentationCost = 3,
@@ -3640,7 +3640,7 @@ enum PropertyInt64 {
 }
 
 /*The PropertyBool identifies a specific Character or Object boolean property.*/
-enum PropertyBool {
+export enum PropertyBool {
     Undef = 0,
     Stuck = 1,
     Open = 2,
@@ -3775,7 +3775,7 @@ enum PropertyBool {
 }
 
 /*The DataPropertyId identifies a specific Character or Object data property.*/
-enum PropertyDataId {
+export enum PropertyDataId {
     Setup = 1,
     MotionTable = 2,
     SoundTable = 3,
@@ -3840,7 +3840,7 @@ enum PropertyDataId {
 }
 
 /*The PropertyInt identifies a specific Character or Object int property.*/
-enum PropertyInt {
+export enum PropertyInt {
     ItemType = 1,
     CreatureType = 2,
     PaletteTemplate = 3,
@@ -4234,7 +4234,7 @@ enum PropertyInt {
 }
 
 /*The PropertyInstanceId identifies a specific Character or Object instance property.*/
-enum PropertyInstanceId {
+export enum PropertyInstanceId {
     Owner = 1,
     Container = 2,
     Wielder = 3,
@@ -4283,7 +4283,7 @@ enum PropertyInstanceId {
 }
 
 /*The PropertyPosition identifies a specific Character or Object position property.*/
-enum PropertyPosition {
+export enum PropertyPosition {
     /*Current Position*/
     Location = 1,
     /*May be used to store where we are headed when we teleport (?)*/
@@ -4341,7 +4341,7 @@ enum PropertyPosition {
 }
 
 /*The PropertyString identifies a specific Character or Object string property.*/
-enum PropertyString {
+export enum PropertyString {
     Name = 1,
     Title = 2,
     Sex = 3,
@@ -4397,7 +4397,7 @@ enum PropertyString {
 }
 
 /*The PropertyFloat identifies a specific Character or Object float property.*/
-enum PropertyFloat {
+export enum PropertyFloat {
     Undef = 0,
     HeartbeatInterval = 1,
     HeartbeatTimestamp = 2,
@@ -4573,7 +4573,7 @@ enum PropertyFloat {
 }
 
 /*Chat channels*/
-enum Channel {
+export enum Channel {
     Undef = 0,
     Abuse = 1,
     Admin = 2,
@@ -4614,7 +4614,7 @@ enum Channel {
 }
 
 /*Equipment Set Ids*/
-enum EquipmentSet {
+export enum EquipmentSet {
     None = 0,
     Test = 1,
     Test2 = 2,
@@ -4759,7 +4759,7 @@ enum EquipmentSet {
 }
 
 /*Radar Color*/
-enum RadarColor {
+export enum RadarColor {
     Default = 0,
     Blue = 1,
     Gold = 2,
@@ -4774,14 +4774,14 @@ enum RadarColor {
 }
 
 /*Flags that determine what data is contained in the EnchantmentRegistry*/
-enum EnchantmentRegistryFlags {
+export enum EnchantmentRegistryFlags {
     LifeSpells = 1,
     CreatureSpells = 2,
     Vitae = 4,
     Cooldowns = 8
 }
 
-enum SpellCategory {
+export enum SpellCategory {
     Undef = 0,
     StrengthRaising = 1,
     StrengthLowering = 2,
@@ -5514,7 +5514,7 @@ enum SpellCategory {
 }
 
 /*Heritage of a player*/
-enum HeritageGroup {
+export enum HeritageGroup {
     Invalid = 0,
     Aluvian = 1,
     Gharundim = 2,
@@ -5532,7 +5532,7 @@ enum HeritageGroup {
 }
 
 /*the type of highlight (outline) applied to the object's icon*/
-enum IconHighlight {
+export enum IconHighlight {
     Invalid = 0,
     Magical = 1,
     Poisoned = 2,
@@ -5549,7 +5549,7 @@ enum IconHighlight {
     Nether = 4096
 }
 
-enum CombatUse {
+export enum CombatUse {
     None = 0,
     Melee = 1,
     Missile = 2,
@@ -5559,7 +5559,7 @@ enum CombatUse {
 }
 
 /*the type of wieldable item this is*/
-enum WieldType {
+export enum WieldType {
     Invalid = 0,
     MeleeWeapon = 1,
     Armor = 2,
@@ -5568,7 +5568,7 @@ enum WieldType {
 }
 
 /*Chat channel type, for turbine chat*/
-enum ChatType {
+export enum ChatType {
     Undef = 0,
     Allegiance = 1,
     General = 2,
@@ -5583,7 +5583,7 @@ enum ChatType {
 }
 
 /*The ChatDisplayMask identifies that types of chat that are displayed in each chat window. */
-enum ChatDisplayMask {
+export enum ChatDisplayMask {
     /*Gameplay (main chat window only)*/
     Gameplay = 59842593,
     /*Mandatory (main chat window only, cannot be disabled)*/
@@ -5600,14 +5600,14 @@ enum ChatDisplayMask {
     RoleplayChannel = 1073741824
 }
 
-enum EnchantmentMask {
+export enum EnchantmentMask {
     Multiplicative = 59842593,
     Additive = 59842593,
     Vitae = 59842593,
     Cooldown = 59842593
 }
 
-enum EnchantmentTypeFlags {
+export enum EnchantmentTypeFlags {
     Undef = 0,
     Attribute = 1,
     SecondAtt = 2,
@@ -5631,7 +5631,7 @@ enum EnchantmentTypeFlags {
     StatTypes = 255
 }
 
-enum ParentLocation {
+export enum ParentLocation {
     None = 0,
     RightHand = 1,
     LeftHand = 2,
@@ -5644,7 +5644,7 @@ enum ParentLocation {
     LeftUnarmed = 9
 }
 
-enum Placement {
+export enum Placement {
     Default = 0,
     RightHandCombat = 1,
     RightHandNonCombat = 2,
