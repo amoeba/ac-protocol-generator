@@ -1,26 +1,11 @@
-export interface WString {
-}
-
-export interface WORD {
-}
-
-export interface DWORD {
-}
-
-export interface PackedWORD {
-}
-
-export interface PackedDWORD {
-}
-
-export interface ObjectId {
-}
-
-export interface LandcellId {
-}
-
-export interface SpellId {
-}
+export type WString = string;
+export type WORD = number;
+export type DWORD = number;
+export type PackedWORD = number;
+export type PackedDWORD = number;
+export type ObjectId = number;
+export type LandcellId = number;
+export type SpellId = number;
 
 export interface DataId {
 }

@@ -19,5 +19,5 @@ const result = process(xml);
 const types_file = path.join(__dirname, "..", "generated", "types.ts");
 const enums_file = path.join(__dirname, "..", "generated", "enums.ts");
 
-Bun.write(types_file, result.types.join("\n\n"));
+Bun.write(types_file, [result.type_aliases.join("\n"), result.interfaces.join("\n\n")].join("\n\n"));
 Bun.write(enums_file, result.enums.join("\n\n"));

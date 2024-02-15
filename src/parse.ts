@@ -1,5 +1,5 @@
 import sax from "sax";
-import type { ParseResult, TypeData } from "./types";
+import type { InterfaceData, ParseResult, TypeAliasData, TypeData } from "./types";
 import { parseBool, parseSignedHexString } from "./util";
 
 enum NODE_NAME {
@@ -33,12 +33,26 @@ const ignored_type_names = [
   "string",
 ]
 
+// These types should just be aliased to existing types and not have new
+// interfaces created for them
+const types_to_alias = [
+  "WString",
+  "WORD",
+  "DWORD",
+  "ObjectId",
+  "LandcellId",
+  "SpellId",
+  "PackedWORD",
+  "PackedDWORD"
+]
+
 export const parse = (xml: string): ParseResult => {
   // result is passed into our SAX parser's callbacks so the structure of this
   // function is set up to allow that
   const result: ParseResult = {
     enums: [],
-    types: [],
+    type_aliases: [],
+    interfaces: []
   };
 
   // Keep a cursor into result
@@ -96,15 +110,25 @@ export const parse = (xml: string): ParseResult => {
         return;
       }
 
-      const new_type: TypeData = {
-        name: node.attributes.name,
-        fields: [],
-        comment: node.attributes.text,
-        primitive: parseBool(node.attributes.primitive),
-        size: Number(node.attributes.size)
-      };
-      result_cursor = new_type;
-      result.types.push(new_type)
+      // Handle type aliases first
+      if (types_to_alias.findIndex(n => n === node.attributes.name) >= 0) {
+        const new_type: TypeAliasData = {
+          name: node.attributes.name,
+          type: node.attributes.parent || node.attributes.primitive,
+        };
+        result_cursor = new_type;
+        result.type_aliases.push(new_type)
+      } else {
+        const new_type: InterfaceData = {
+          name: node.attributes.name,
+          fields: [],
+          comment: node.attributes.text,
+          primitive: parseBool(node.attributes.primitive),
+          size: Number(node.attributes.size)
+        };
+        result_cursor = new_type;
+        result.interfaces.push(new_type)
+      }
     } else if (node.name === NODE_NAME.FIELD) {
       state = STATES.FIELD;
 
