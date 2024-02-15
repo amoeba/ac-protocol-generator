@@ -16,7 +16,7 @@ export interface EnumData {
   members: EnumValue[]
 }
 
-export interface Field {
+export interface FieldData {
   name: string,
   type: string, // TODO: Should eventually be a type reference
   comment?: string
