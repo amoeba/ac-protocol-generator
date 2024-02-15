@@ -16,7 +16,6 @@ const xml = await input.text();
 
 const result = process(xml);
 
-console.log(result)
 const types_file = path.join(__dirname, "..", "generated", "types.ts");
 const enums_file = path.join(__dirname, "..", "generated", "enums.ts");
 
