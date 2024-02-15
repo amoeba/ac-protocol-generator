@@ -1,36 +1,3 @@
-interface bool {
-}
-
-interface byte {
-}
-
-interface short {
-}
-
-interface ushort {
-}
-
-interface int {
-}
-
-interface uint {
-}
-
-interface long {
-}
-
-interface ulong {
-}
-
-interface float {
-}
-
-interface double {
-}
-
-interface string {
-}
-
 interface WString {
 }
 

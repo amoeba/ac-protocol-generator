@@ -18,6 +18,21 @@ enum STATES {
   FIELD = 4,
 }
 
+// Skip types already defined by the runtime
+const ignored_type_names = [
+  "bool",
+  "byte",
+  "short",
+  "ushort",
+  "int",
+  "uint",
+  "long",
+  "ulong",
+  "float",
+  "double",
+  "string",
+]
+
 export const parse = (xml: string): ParseResult => {
   // result is passed into our SAX parser's callbacks so the structure of this
   // function is set up to allow that
@@ -76,10 +91,10 @@ export const parse = (xml: string): ParseResult => {
     } else if (node.name === NODE_NAME.TYPE) {
       state = STATES.TYPE;
 
-      // <type name="LayeredSpellId" text="Full spell Id combining the spell id with the spell layer.">
-      //   <field type="SpellId" name="Id" text="Id of the spell" />
-      //   <field type="ushort" name="Layer" text="Layer of the spell, seperating multiple instances of the same spell" />
-      // </type>
+      // Skip ignored types
+      if (ignored_type_names.findIndex(n => n === node.attributes.name) >= 0) {
+        return;
+      }
 
       const new_type: TypeData = {
         name: node.attributes.name,
