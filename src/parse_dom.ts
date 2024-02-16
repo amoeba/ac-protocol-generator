@@ -1,8 +1,6 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const parseString = require('xml2js').parseString;
 
 const doc = await Bun.file("./protocol/protocol.xml").text()
-const dom = new JSDOM(doc);
 
 // TODO
 //
@@ -15,21 +13,52 @@ const dom = new JSDOM(doc);
 //   s2c (type)
 // packets (type)
 
+// enum
 const parseEnumValue = (x) => {
   return {
-    name: x.getAttribute("name"),
-    value: x.getAttribute("value")
+    name: x.$.name,
+    value: x.$.value
   }
 }
 const parseEnum = (x) => {
-  const values = Object.values(x.querySelectorAll("value"))
-
   return {
-    name: x.getAttribute("name"),
-    members: Object.values(values).map(parseEnumValue)
+    name: x.$.name,
+    comment: x.$.text,
+    members: x.value.map(parseEnumValue)
   }
 }
-const enums = dom.window.document.querySelectorAll("enums > enum");
-const result = Object.values(enums).map(parseEnum)
 
-console.log(result)
+// type
+// <type name="Vector3">
+// <field type="float" name="X" />
+// <field type="float" name="Y" />
+// <field type="float" name="Z" />
+// </type>
+
+const parseField = x => {
+  return {
+    name: x.$.name,
+    comment: x.$.text,
+    type: x.$.type
+  }
+}
+
+const parseType = x => {
+  return {
+    name: x.$.name,
+    comment: x.$.text,
+    fields: x.field.map(parseField)
+  }
+}
+
+
+let output;
+
+parseString(doc, function (err, result) {
+  output = result;
+});
+
+// console.log(JSON.stringify(output.schema.enums[0].enum[0]));
+// console.log(parseEnum(output.schema.enums[0].enum[0]))
+// console.log(output.schema.types[0].type[27])
+console.log(parseType(output.schema.types[0].type[27]))
