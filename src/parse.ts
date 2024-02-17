@@ -32,7 +32,7 @@ const parseEnum = (x) => {
   }
 }
 
-const parseEnums = x => {
+export const parseEnums = x => {
   return x.map(parseEnum)
 }
 
@@ -44,18 +44,38 @@ const parseField = x => {
   }
 }
 
+const parseTypeAlias = x => {
+  return {
+    name: x.$.name,
+    comment: x.$.text,
+    type: x.$.parent || x.$.primitive
+  }
+}
+
+const typeAliasNames = ["WString", "WORD", "DWORD", "PackedDWORD", "PackedWORD", "ObjectId", "LandcellId", "SpellId", "DataId"]
+
 const parseType = x => {
+  // Type aliases are handled specially
+  if (typeAliasNames.includes(x.$.name)) {
+    return parseTypeAlias(x)
+  }
+
   return {
     name: x.$.name,
     comment: x.$.text,
     fields: x.field.map(parseField)
   }
 }
+const skippedTypeNames = ["bool", "byte", "short", "ushort", "int", "uint", "long", "ulong", "float", "double", "string"]
+const typeNameFilter = (x) => {
+  return !skippedTypeNames.includes(x.$.name)
+}
 
-// TODO: Encapsulate this better
-const doc = await Bun.file("./protocol/protocol.xml").text()
+export const parseTypes = x => {
+  return x.filter(typeNameFilter).map(parseType)
+}
 
-const parse_doc = (x: string) => {
+export const parseDoc = (doc: string) => {
   let output = "";
 
   parseString(doc, (err: Error, result: string) => {
@@ -68,20 +88,3 @@ const parse_doc = (x: string) => {
 
   return output;
 }
-
-const parsed_doc = parse_doc(doc)
-
-// TODO: Save this as we're eventually going to go through all of these
-// console.log(output.schema.enums[0].enum[0])
-// console.log(output.schema.types[0].type)
-// console.log(output.schema.gameactions[0].type)
-// console.log(output.schema.gameevents[0].type)
-// console.log(output.schema.messages[0].type)
-// console.log(output.schema.packets[0].type)
-
-const all_enums = parseEnums(parsed_doc.schema.enums[0].enum)
-console.log(all_enums[0])
-const enum_decls = all_enums.map(createEnumDeclaration)
-const enum_delcs_printed = enum_decls.map(printNode)
-const enum_file = Bun.file("./generated/enums.ts")
-Bun.write(enum_file, enum_delcs_printed.join("\n\n"));

@@ -13,6 +13,8 @@ Protocol Elements:
 - [x] Enums
 - [ ] Types
   - [ ] Base Types
+    - [ ] maskmap nodes
+    - [ ] genericType attributes
   - [ ] GameActions
   - [ ] GameEvents
   - [ ] Messsages

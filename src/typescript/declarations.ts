@@ -95,7 +95,10 @@ const getKeywordTypeNodeForTypeAlias = (type_alias_data: TypeAliasData) => {
     return ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword);
   }
 
-  throw new Error("unhandled");
+  // return ts.factory.createKeywordTypeNode(ts.SyntaxKind.)
+  return ts.factory.createTypeReferenceNode(parent, undefined)
+
+
 }
 
 export const createTypeAliasDeclaration = (type_alias_data: TypeAliasData): ts.TypeAliasDeclaration => {
@@ -108,4 +111,23 @@ export const createTypeAliasDeclaration = (type_alias_data: TypeAliasData): ts.T
   );
 
   return interface_decl;
+}
+
+/*
+  For any type, we might want to make one of:
+
+  1. A type alias
+  2. An interface
+  3. A class (not implemented yet)
+*/
+export const createDeclarationForType = (x) => {
+
+  if (Object.keys(x).includes("type")) {
+    // Is a type alias
+    return createTypeAliasDeclaration(x);
+  }
+
+  return createInterfaceDeclaration(x)
+
+  // Classes are not implemented
 }
