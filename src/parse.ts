@@ -1,155 +1,87 @@
-import sax from "sax";
-import type { InterfaceData, ParseResult, TypeAliasData } from "./types";
-import { parseBool, parseSignedHexString } from "./util";
+import { createEnumDeclaration } from "./typescript/declarations";
+import { printNode } from "./typescript/print";
+import { parseSignedHexString } from "./util";
 
-enum NODE_NAME {
-  ENUM = "enum",
-  VALUE = "value",
-  TYPES = "types",
-  TYPE = "type",
-  FIELD = "field"
+const parseString = require('xml2js').parseString;
+
+const enumFieldFilter = (x) => {
+  if (x.$.value.includes("|")) {
+    return false;
+  }
+
+  if (Number.isNaN(parseSignedHexString(x.$.value))) {
+    return false;
+  }
+
+  return true;
 }
 
-enum STATES {
-  NONE = 0,
-  ENUM = 1,
-  VALUE = 2,
-  TYPE = 3,
-  FIELD = 4,
+const parseEnumValue = (x) => {
+  return {
+    name: x.$.name,
+    comment: x.$.text,
+    value: x.$.value
+  }
 }
 
-// Skip types already defined by the runtime
-const ignored_type_names = [
-  "bool",
-  "byte",
-  "short",
-  "ushort",
-  "int",
-  "uint",
-  "long",
-  "ulong",
-  "float",
-  "double",
-  "string",
-]
+const parseEnum = (x) => {
+  return {
+    name: x.$.name,
+    comment: x.$.text,
+    members: x.value.filter(enumFieldFilter).map(parseEnumValue)
+  }
+}
 
-// These types should just be aliased to existing types and not have new
-// interfaces created for them
-const types_to_alias = [
-  "WString",
-  "WORD",
-  "DWORD",
-  "ObjectId",
-  "LandcellId",
-  "SpellId",
-  "PackedWORD",
-  "PackedDWORD"
-]
+const parseEnums = x => {
+  return x.map(parseEnum)
+}
 
-export const parse = (xml: string): ParseResult => {
-  // result is passed into our SAX parser's callbacks so the structure of this
-  // function is set up to allow that
-  const result: ParseResult = {
-    enums: {},
-    type_aliases: {},
-    interfaces: {}
-  };
+const parseField = x => {
+  return {
+    name: x.$.name,
+    comment: x.$.text,
+    type: x.$.type
+  }
+}
 
-  // Store a key to object we're in the middle of creating. This is needed
-  // because the SAX parser approach needs more context
-  let context = "";
+const parseType = x => {
+  return {
+    name: x.$.name,
+    comment: x.$.text,
+    fields: x.field.map(parseField)
+  }
+}
 
-  // State machine
-  let state = STATES.NONE;
+// TODO: Encapsulate this better
+const doc = await Bun.file("./protocol/protocol.xml").text()
 
-  // Build SAX stream parser
-  const saxStream = sax.createStream(
-    /*strict*/true,
-    {}
-  );
+const parse_doc = (x: string) => {
+  let output = "";
 
-  saxStream.on("error", (e: any) => {
-    console.error("error!", e);
-  });
-
-  saxStream.on("opentag", (node: any) => {
-    if (node.name === NODE_NAME.ENUM) {
-      state = STATES.ENUM;
-
-      const new_enum = {
-        name: node.attributes.name,
-        comment: node.attributes.text,
-        members: [],
-      };
-
-      context = new_enum.name;
-      result.enums[new_enum.name] = new_enum;
-    } else if (node.name === NODE_NAME.VALUE) {
-      state = STATES.VALUE;
-
-      // Ignore union enums ACE made up
-      if (
-        node.attributes.value.includes("|") ||
-        Number.isNaN(parseSignedHexString(node.attributes.value))
-      ) {
-        return;
-      }
-
-      const member = {
-        name: node.attributes.name,
-        value: node.attributes.value,
-        comment: node.attributes.text,
-      };
-
-      result.enums[context].members.push(member);
-    } else if (node.name === NODE_NAME.TYPE) {
-      state = STATES.TYPE;
-
-      // Skip ignored types
-      if (ignored_type_names.findIndex(n => n === node.attributes.name) >= 0) {
-        return;
-      }
-
-      // Handle type aliases first
-      if (types_to_alias.findIndex(n => n === node.attributes.name) >= 0) {
-        const new_type: TypeAliasData = {
-          name: node.attributes.name,
-          type: node.attributes.parent || node.attributes.primitive,
-        };
-        context = new_type.name;
-        result.type_aliases[context] = new_type;
-      } else {
-        const new_type: InterfaceData = {
-          name: node.attributes.name,
-          fields: [],
-          comment: node.attributes.text,
-          primitive: parseBool(node.attributes.primitive),
-          size: Number(node.attributes.size)
-        };
-        context = new_type.name;
-        result.interfaces[new_type.name] = new_type;
-      }
-    } else if (node.name === NODE_NAME.FIELD) {
-      state = STATES.FIELD;
-
-      const new_field = {
-        name: node.attributes.name,
-        type: node.attributes.type,
-        comment: node.attributes.text
-      };
-
-      result.interfaces[context].fields.push(new_field);
+  parseString(doc, (err: Error, result: string) => {
+    if (err) {
+      throw new Error(err.message)
     }
+
+    output = result;
   });
 
-  saxStream.on("closetag", (node: any) => {
-    if (node.name === NODE_NAME.ENUM) {
-      state = STATES.NONE;
-      context = "";
-    }
-  });
+  return output;
+}
 
-  saxStream.write(xml);
+const parsed_doc = parse_doc(doc)
 
-  return result;
-};
+// TODO: Save this as we're eventually going to go through all of these
+// console.log(output.schema.enums[0].enum[0])
+// console.log(output.schema.types[0].type)
+// console.log(output.schema.gameactions[0].type)
+// console.log(output.schema.gameevents[0].type)
+// console.log(output.schema.messages[0].type)
+// console.log(output.schema.packets[0].type)
+
+const all_enums = parseEnums(parsed_doc.schema.enums[0].enum)
+console.log(all_enums[0])
+const enum_decls = all_enums.map(createEnumDeclaration)
+const enum_delcs_printed = enum_decls.map(printNode)
+const enum_file = Bun.file("./generated/enums.ts")
+Bun.write(enum_file, enum_delcs_printed.join("\n\n"));
