@@ -1,8 +1,13 @@
+import type { EnumMember } from "typescript"
+
+export interface StringIndexedDict<V> {
+  [key: string]: V
+}
 
 export interface ParseResult {
-  enums: EnumData[]
-  interfaces: InterfaceData[]
-  type_aliases: TypeAliasData[]
+  enums: StringIndexedDict<EnumData>,
+  interfaces: StringIndexedDict<InterfaceData>
+  type_aliases: StringIndexedDict<TypeAliasData>
 }
 
 export interface EnumValue {

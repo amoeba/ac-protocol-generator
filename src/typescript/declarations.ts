@@ -1,7 +1,6 @@
-import ts, { type EnumDeclaration, type InterfaceDeclaration } from "typescript";
-
-import type { EnumData, EnumValue, FieldData, InterfaceData, ParseResult, TypeAliasData, TypeData } from "./types";
-import { parseSignedHexString } from "./util.ts"
+import ts from "typescript";
+import type { EnumValue, EnumData, FieldData, InterfaceData, TypeAliasData } from "../types";
+import { parseSignedHexString } from "../util";
 
 const createEnumMember = (member: EnumValue) => {
   const node = ts.factory.createEnumMember(
@@ -21,7 +20,7 @@ const createEnumMember = (member: EnumValue) => {
   return node;
 };
 
-const createEnum = (enum_data: EnumData) => {
+export const createEnumDeclaration = (enum_data: EnumData) => {
   const id = ts.factory.createIdentifier(enum_data.name);
   const node = ts.factory.createEnumDeclaration(
     /*modifiers*/[ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
@@ -62,7 +61,7 @@ const createInterfaceMember = (field_data: FieldData) => {
   return nameProp;
 }
 
-const createInterface = (interface_data: InterfaceData): ts.InterfaceDeclaration => {
+export const createInterfaceDeclaration = (interface_data: InterfaceData): ts.InterfaceDeclaration => {
   const id = ts.factory.createIdentifier(interface_data.name);
   const members = interface_data.fields.map((f: FieldData) => createInterfaceMember(f));
   const interface_decl = ts.factory.createInterfaceDeclaration(
@@ -99,7 +98,7 @@ const getKeywordTypeNodeForTypeAlias = (type_alias_data: TypeAliasData) => {
   throw new Error("unhandled");
 }
 
-const createTypeAlias = (type_alias_data: TypeAliasData): ts.TypeAliasDeclaration => {
+export const createTypeAliasDeclaration = (type_alias_data: TypeAliasData): ts.TypeAliasDeclaration => {
   const id = ts.factory.createIdentifier(type_alias_data.name);
   const interface_decl = ts.factory.createTypeAliasDeclaration(
     /* modifiers */[ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
@@ -109,32 +108,4 @@ const createTypeAlias = (type_alias_data: TypeAliasData): ts.TypeAliasDeclaratio
   );
 
   return interface_decl;
-}
-
-function printNode(printer: ts.Printer, node: ts.Node) {
-  // I have no idea why this is involved at all, this doesn't read or write to
-  // the file
-  const useless_file = ts.createSourceFile(
-    /*fileName*/ "./protocol.ts",
-    /*sourceText*/"",
-    /*languageVersionOrOptions*/ts.ScriptTarget.Latest,
-    /*setParentNodes*/false,
-    /*scriptKind*/ts.ScriptKind.TSX,
-  );
-
-  return printer.printNode(ts.EmitHint.Unspecified, node, useless_file);
-}
-
-export const convert = (result: ParseResult) => {
-  const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-
-  const enums = result.enums.map((e: EnumData) => createEnum(e));
-  const type_aliases = result.type_aliases.map((e: TypeAliasData) => createTypeAlias(e));
-  const interfaces = result.interfaces.map((t: InterfaceData) => createInterface(t));
-
-  return {
-    enums: enums.map(n => printNode(printer, n)),
-    type_aliases: type_aliases.map(n => printNode(printer, n)),
-    interfaces: interfaces.map(n => printNode(printer, n))
-  }
 }

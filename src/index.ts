@@ -1,7 +1,7 @@
 import path from "path";
 
 import { parse } from "./parse";
-import { convert } from "./typescript";
+import { convert } from "./typescript/convert";
 
 export const process = (document: string) => {
   const parsed = parse(document);
@@ -12,9 +12,9 @@ export const process = (document: string) => {
 
 const protocol_file = path.join(__dirname, "..", "protocol", "protocol.xml");
 const input = Bun.file(protocol_file);
-const xml = await input.text();
+const xml_string = await input.text();
 
-const result = process(xml);
+const result = process(xml_string);
 
 const types_file = path.join(__dirname, "..", "generated", "types.ts");
 const enums_file = path.join(__dirname, "..", "generated", "enums.ts");

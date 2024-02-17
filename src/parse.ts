@@ -1,5 +1,5 @@
 import sax from "sax";
-import type { InterfaceData, ParseResult, TypeAliasData, TypeData } from "./types";
+import type { InterfaceData, ParseResult, TypeAliasData } from "./types";
 import { parseBool, parseSignedHexString } from "./util";
 
 enum NODE_NAME {
@@ -50,13 +50,14 @@ export const parse = (xml: string): ParseResult => {
   // result is passed into our SAX parser's callbacks so the structure of this
   // function is set up to allow that
   const result: ParseResult = {
-    enums: [],
-    type_aliases: [],
-    interfaces: []
+    enums: {},
+    type_aliases: {},
+    interfaces: {}
   };
 
-  // Keep a cursor into result
-  let result_cursor: any = null;
+  // Store a key to object we're in the middle of creating. This is needed
+  // because the SAX parser approach needs more context
+  let context = "";
 
   // State machine
   let state = STATES.NONE;
@@ -81,8 +82,8 @@ export const parse = (xml: string): ParseResult => {
         members: [],
       };
 
-      result_cursor = new_enum;
-      result.enums.push(new_enum);
+      context = new_enum.name;
+      result.enums[new_enum.name] = new_enum;
     } else if (node.name === NODE_NAME.VALUE) {
       state = STATES.VALUE;
 
@@ -94,14 +95,13 @@ export const parse = (xml: string): ParseResult => {
         return;
       }
 
-      result_cursor.members.push({
+      const member = {
         name: node.attributes.name,
         value: node.attributes.value,
         comment: node.attributes.text,
-      });
-    } else if (node.name === NODE_NAME.TYPES) {
-      // TODO: Change this once I figure out what I want to do
-      result_cursor = null;
+      };
+
+      result.enums[context].members.push(member);
     } else if (node.name === NODE_NAME.TYPE) {
       state = STATES.TYPE;
 
@@ -116,8 +116,8 @@ export const parse = (xml: string): ParseResult => {
           name: node.attributes.name,
           type: node.attributes.parent || node.attributes.primitive,
         };
-        result_cursor = new_type;
-        result.type_aliases.push(new_type)
+        context = new_type.name;
+        result.type_aliases[context] = new_type;
       } else {
         const new_type: InterfaceData = {
           name: node.attributes.name,
@@ -126,28 +126,26 @@ export const parse = (xml: string): ParseResult => {
           primitive: parseBool(node.attributes.primitive),
           size: Number(node.attributes.size)
         };
-        result_cursor = new_type;
-        result.interfaces.push(new_type)
+        context = new_type.name;
+        result.interfaces[new_type.name] = new_type;
       }
     } else if (node.name === NODE_NAME.FIELD) {
       state = STATES.FIELD;
 
-      // TODO: Remove this once parsing is complete
-      if (!result_cursor || !result_cursor.fields) {
-        return;
-      }
-      result_cursor.fields.push({
+      const new_field = {
         name: node.attributes.name,
         type: node.attributes.type,
         comment: node.attributes.text
-      })
+      };
+
+      result.interfaces[context].fields.push(new_field);
     }
   });
 
   saxStream.on("closetag", (node: any) => {
     if (node.name === NODE_NAME.ENUM) {
       state = STATES.NONE;
-      result_cursor = null;
+      context = "";
     }
   });
 

@@ -1,39 +1,40 @@
+import { createEnumDeclaration } from "./typescript/declarations";
+import { printNode } from "./typescript/print";
+import { parseSignedHexString } from "./util";
+
 const parseString = require('xml2js').parseString;
 
-const doc = await Bun.file("./protocol/protocol.xml").text()
+const enumFieldFilter = (x) => {
+  if (x.$.value.includes("|")) {
+    return false;
+  }
 
-// TODO
-//
-// enums (enum)
-// types (type)
-// gameactions (type)
-// gameevents (type)
-// messages
-//   c2s (type)
-//   s2c (type)
-// packets (type)
+  if (Number.isNaN(parseSignedHexString(x.$.value))) {
+    return false;
+  }
 
-// enum
+  return true;
+}
+
 const parseEnumValue = (x) => {
   return {
     name: x.$.name,
+    comment: x.$.text,
     value: x.$.value
   }
 }
+
 const parseEnum = (x) => {
   return {
     name: x.$.name,
     comment: x.$.text,
-    members: x.value.map(parseEnumValue)
+    members: x.value.filter(enumFieldFilter).map(parseEnumValue)
   }
 }
 
-// type
-// <type name="Vector3">
-// <field type="float" name="X" />
-// <field type="float" name="Y" />
-// <field type="float" name="Z" />
-// </type>
+const parseEnums = x => {
+  return x.map(parseEnum)
+}
 
 const parseField = x => {
   return {
@@ -51,14 +52,36 @@ const parseType = x => {
   }
 }
 
+// TODO: Encapsulate this better
+const doc = await Bun.file("./protocol/protocol.xml").text()
 
-let output;
+const parse_doc = (x: string) => {
+  let output = "";
 
-parseString(doc, function (err, result) {
-  output = result;
-});
+  parseString(doc, (err: Error, result: string) => {
+    if (err) {
+      throw new Error(err.message)
+    }
 
-// console.log(JSON.stringify(output.schema.enums[0].enum[0]));
-// console.log(parseEnum(output.schema.enums[0].enum[0]))
-// console.log(output.schema.types[0].type[27])
-console.log(parseType(output.schema.types[0].type[27]))
+    output = result;
+  });
+
+  return output;
+}
+
+const parsed_doc = parse_doc(doc)
+
+// TODO: Save this as we're eventually going to go through all of these
+// console.log(output.schema.enums[0].enum[0])
+// console.log(output.schema.types[0].type)
+// console.log(output.schema.gameactions[0].type)
+// console.log(output.schema.gameevents[0].type)
+// console.log(output.schema.messages[0].type)
+// console.log(output.schema.packets[0].type)
+
+const all_enums = parseEnums(parsed_doc.schema.enums[0].enum)
+console.log(all_enums[0])
+const enum_decls = all_enums.map(createEnumDeclaration)
+const enum_delcs_printed = enum_decls.map(printNode)
+const enum_file = Bun.file("./generated/enums.ts")
+Bun.write(enum_file, enum_delcs_printed.join("\n\n"));
